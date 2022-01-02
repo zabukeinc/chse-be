@@ -3,7 +3,7 @@ export type BaseEntity = {
 }
 
 export type BaseDateEntity = {
-  created_at: Date
-  updated_at: Date
-  deleted_at: Date
+  created_at?: Date
+  updated_at?: Date
+  deleted_at?: Date
 }

@@ -3,6 +3,7 @@ import dotenv from 'dotenv';
 import { UserModel } from "src/app/user/data/models/user.model";
 import { ISOModel } from "src/app/iso/data/models/iso.model";
 import { ISODetailModel } from "src/app/iso/data/models/iso-detail.model";
+import { CompanyModel } from "src/app/company/data/models/company.model";
 
 dotenv.config({});
 class Database {
@@ -24,7 +25,8 @@ class Database {
       entities: [
         UserModel,
         ISOModel,
-        ISODetailModel
+        ISODetailModel,
+        CompanyModel
       ],
       synchronize: true,
       logging: false
