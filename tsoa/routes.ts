@@ -3,6 +3,8 @@
 // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
 import { Controller, ValidationService, FieldErrors, ValidateError, TsoaRoute, HttpStatusCodeLiteral, TsoaResponse } from '@tsoa/runtime';
 // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+import { AuditorController } from './../src/app/auditor/presentation/producers/auditor.router';
+// WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
 import { CompanyController } from './../src/app/company/presentation/router/company.router';
 // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
 import { IsoController } from './../src/app/iso/presentation/router/iso.router';
@@ -13,6 +15,43 @@ import * as express from 'express';
 // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
 
 const models: TsoaRoute.Models = {
+    "AuditorGender": {
+        "dataType": "refEnum",
+        "enums": ["male","female"],
+    },
+    // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+    "AuditorEducationDTO": {
+        "dataType": "refObject",
+        "properties": {
+            "id": {"dataType":"string"},
+            "strata": {"dataType":"string","required":true},
+            "scholarship": {"dataType":"string","required":true},
+            "instance_name": {"dataType":"string","required":true},
+            "country": {"dataType":"string","required":true},
+            "graduate_year": {"dataType":"double","required":true},
+            "created_at": {"dataType":"datetime"},
+            "updated_at": {"dataType":"datetime"},
+            "deleted_at": {"dataType":"datetime"},
+        },
+        "additionalProperties": false,
+    },
+    // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+    "AuditorWorkExperienceDTO": {
+        "dataType": "refObject",
+        "properties": {
+            "id": {"dataType":"string"},
+            "description": {"dataType":"string","required":true},
+            "institution": {"dataType":"string","required":true},
+            "job_position": {"dataType":"string","required":true},
+            "start_date": {"dataType":"datetime","required":true},
+            "end_date": {"dataType":"datetime","required":true},
+            "created_at": {"dataType":"datetime"},
+            "updated_at": {"dataType":"datetime"},
+            "deleted_at": {"dataType":"datetime"},
+        },
+        "additionalProperties": false,
+    },
+    // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
     "UserRole": {
         "dataType": "refEnum",
         "enums": ["admin","manager","auditor","sales","company"],
@@ -21,6 +60,66 @@ const models: TsoaRoute.Models = {
     "UserEntity": {
         "dataType": "refAlias",
         "type": {"dataType":"nestedObjectLiteral","nestedProperties":{"deleted_at":{"dataType":"datetime"},"updated_at":{"dataType":"datetime"},"created_at":{"dataType":"datetime"},"role":{"ref":"UserRole","required":true},"password":{"dataType":"string","required":true},"username":{"dataType":"string","required":true},"id":{"dataType":"string"}},"validators":{}},
+    },
+    // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+    "AuditorEducationEntity": {
+        "dataType": "refObject",
+        "properties": {
+            "id": {"dataType":"string"},
+            "strata": {"dataType":"string","required":true},
+            "scholarship": {"dataType":"string","required":true},
+            "instance_name": {"dataType":"string","required":true},
+            "country": {"dataType":"string","required":true},
+            "graduate_year": {"dataType":"double","required":true},
+            "created_at": {"dataType":"datetime"},
+            "updated_at": {"dataType":"datetime"},
+            "deleted_at": {"dataType":"datetime"},
+        },
+        "additionalProperties": false,
+    },
+    // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+    "AuditorWorkExperienceEntity": {
+        "dataType": "refObject",
+        "properties": {
+            "id": {"dataType":"string"},
+            "description": {"dataType":"string","required":true},
+            "institution": {"dataType":"string","required":true},
+            "job_position": {"dataType":"string","required":true},
+            "start_date": {"dataType":"datetime","required":true},
+            "end_date": {"dataType":"datetime","required":true},
+            "created_at": {"dataType":"datetime"},
+            "updated_at": {"dataType":"datetime"},
+            "deleted_at": {"dataType":"datetime"},
+        },
+        "additionalProperties": false,
+    },
+    // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+    "AuditorDTO": {
+        "dataType": "refObject",
+        "properties": {
+            "id": {"dataType":"string"},
+            "name": {"dataType":"string","required":true},
+            "gender": {"ref":"AuditorGender","required":true},
+            "front_title": {"dataType":"string","required":true},
+            "back_title": {"dataType":"string","required":true},
+            "born_date": {"dataType":"datetime","required":true},
+            "born_address": {"dataType":"string","required":true},
+            "institution": {"dataType":"string","required":true},
+            "address": {"dataType":"string","required":true},
+            "city": {"dataType":"string","required":true},
+            "province": {"dataType":"string","required":true},
+            "postal_code": {"dataType":"double","required":true},
+            "phone": {"dataType":"double","required":true},
+            "fax": {"dataType":"double","required":true},
+            "email": {"dataType":"string","required":true},
+            "educations": {"dataType":"array","array":{"dataType":"refObject","ref":"AuditorEducationDTO"},"required":true},
+            "work_experiences": {"dataType":"array","array":{"dataType":"refObject","ref":"AuditorWorkExperienceDTO"},"required":true},
+            "user": {"ref":"UserEntity"},
+            "created_at": {"dataType":"datetime"},
+            "updated_at": {"dataType":"datetime"},
+            "deleted_at": {"dataType":"datetime"},
+        },
+        "additionalProperties": false,
     },
     // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
     "CompanyDTO": {
@@ -79,6 +178,124 @@ export function RegisterRoutes(app: express.Router) {
     //  NOTE: If you do not see routes for all of your controllers in this file, then you might not have informed tsoa of where to look
     //      Please look into the "controllerPathGlobs" config option described in the readme: https://github.com/lukeautry/tsoa
     // ###########################################################################################################
+        app.post('/api/auditors',
+
+            function AuditorController_create(request: any, response: any, next: any) {
+            const args = {
+                    body: {"in":"body","name":"body","required":true,"ref":"AuditorDTO"},
+            };
+
+            // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+
+            let validatedArgs: any[] = [];
+            try {
+                validatedArgs = getValidatedArgs(args, request, response);
+
+                const controller = new AuditorController();
+
+
+              const promise = controller.create.apply(controller, validatedArgs as any);
+              promiseHandler(controller, promise, response, undefined, next);
+            } catch (err) {
+                return next(err);
+            }
+        });
+        // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+        app.put('/api/auditors/:id',
+
+            function AuditorController_update(request: any, response: any, next: any) {
+            const args = {
+                    id: {"in":"query","name":"id","required":true,"dataType":"string"},
+                    updateData: {"in":"body","name":"updateData","required":true,"ref":"AuditorDTO"},
+            };
+
+            // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+
+            let validatedArgs: any[] = [];
+            try {
+                validatedArgs = getValidatedArgs(args, request, response);
+
+                const controller = new AuditorController();
+
+
+              const promise = controller.update.apply(controller, validatedArgs as any);
+              promiseHandler(controller, promise, response, undefined, next);
+            } catch (err) {
+                return next(err);
+            }
+        });
+        // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+        app.delete('/api/auditors',
+
+            function AuditorController_delete(request: any, response: any, next: any) {
+            const args = {
+                    body: {"in":"body","name":"body","required":true,"dataType":"nestedObjectLiteral","nestedProperties":{"ids":{"dataType":"array","array":{"dataType":"string"},"required":true}}},
+            };
+
+            // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+
+            let validatedArgs: any[] = [];
+            try {
+                validatedArgs = getValidatedArgs(args, request, response);
+
+                const controller = new AuditorController();
+
+
+              const promise = controller.delete.apply(controller, validatedArgs as any);
+              promiseHandler(controller, promise, response, undefined, next);
+            } catch (err) {
+                return next(err);
+            }
+        });
+        // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+        app.get('/api/auditors/:id',
+
+            function AuditorController_show(request: any, response: any, next: any) {
+            const args = {
+                    id: {"in":"query","name":"id","required":true,"dataType":"string"},
+            };
+
+            // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+
+            let validatedArgs: any[] = [];
+            try {
+                validatedArgs = getValidatedArgs(args, request, response);
+
+                const controller = new AuditorController();
+
+
+              const promise = controller.show.apply(controller, validatedArgs as any);
+              promiseHandler(controller, promise, response, undefined, next);
+            } catch (err) {
+                return next(err);
+            }
+        });
+        // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+        app.get('/api/auditors',
+
+            function AuditorController_index(request: any, response: any, next: any) {
+            const args = {
+                    page: {"in":"query","name":"page","required":true,"dataType":"double"},
+                    limit: {"in":"query","name":"limit","required":true,"dataType":"double"},
+                    params: {"in":"query","name":"params","dataType":"any"},
+            };
+
+            // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+
+            let validatedArgs: any[] = [];
+            try {
+                validatedArgs = getValidatedArgs(args, request, response);
+
+                const controller = new AuditorController();
+
+
+              const promise = controller.index.apply(controller, validatedArgs as any);
+              promiseHandler(controller, promise, response, undefined, next);
+            } catch (err) {
+                return next(err);
+            }
+        });
+        // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
         app.post('/api/companies',
 
             function CompanyController_create(request: any, response: any, next: any) {

@@ -4,6 +4,9 @@ import { UserModel } from "src/app/user/data/models/user.model";
 import { ISOModel } from "src/app/iso/data/models/iso.model";
 import { ISODetailModel } from "src/app/iso/data/models/iso-detail.model";
 import { CompanyModel } from "src/app/company/data/models/company.model";
+import { AuditorModel } from "src/app/auditor/data/models/auditor.model";
+import { AuditorWorkExperienceModel } from "src/app/auditor/data/models/auditor-work-experience.model";
+import { AuditorEducationModel } from "src/app/auditor/data/models/auditor-education.model";
 
 dotenv.config({});
 class Database {
@@ -26,7 +29,11 @@ class Database {
         UserModel,
         ISOModel,
         ISODetailModel,
-        CompanyModel
+        CompanyModel,
+
+        AuditorModel,
+        AuditorWorkExperienceModel,
+        AuditorEducationModel
       ],
       synchronize: true,
       logging: false

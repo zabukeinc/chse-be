@@ -1,3 +1,4 @@
+import { AuditorModel } from "src/app/auditor/data/models/auditor.model";
 import { CompanyModel } from "src/app/company/data/models/company.model";
 import { BaseEntity, Column, CreateDateColumn, DeleteDateColumn, Entity, OneToOne, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
 import { UserEntity, UserRole } from "../../domain/entities/user.entity";
@@ -19,6 +20,14 @@ export class UserModel extends BaseEntity implements UserEntity {
     onUpdate: 'CASCADE'
   })
   company: CompanyModel
+
+  /** Join with Auditor */
+  @OneToOne(() => AuditorModel, model => model.user, {
+    cascade: ['update'],
+    onUpdate: 'CASCADE',
+    onDelete: 'CASCADE'
+  })
+  auditor: AuditorModel
 
   @PrimaryGeneratedColumn('uuid')
   id?: string;

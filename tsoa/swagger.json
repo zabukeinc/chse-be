@@ -6,6 +6,102 @@
 		"requestBodies": {},
 		"responses": {},
 		"schemas": {
+			"AuditorGender": {
+				"enum": [
+					"male",
+					"female"
+				],
+				"type": "string"
+			},
+			"AuditorEducationDTO": {
+				"properties": {
+					"id": {
+						"type": "string"
+					},
+					"strata": {
+						"type": "string"
+					},
+					"scholarship": {
+						"type": "string"
+					},
+					"instance_name": {
+						"type": "string"
+					},
+					"country": {
+						"type": "string"
+					},
+					"graduate_year": {
+						"type": "number",
+						"format": "double"
+					},
+					"created_at": {
+						"type": "string",
+						"format": "date-time"
+					},
+					"updated_at": {
+						"type": "string",
+						"format": "date-time"
+					},
+					"deleted_at": {
+						"type": "string",
+						"format": "date-time"
+					}
+				},
+				"required": [
+					"strata",
+					"scholarship",
+					"instance_name",
+					"country",
+					"graduate_year"
+				],
+				"type": "object",
+				"additionalProperties": false
+			},
+			"AuditorWorkExperienceDTO": {
+				"properties": {
+					"id": {
+						"type": "string"
+					},
+					"description": {
+						"type": "string"
+					},
+					"institution": {
+						"type": "string"
+					},
+					"job_position": {
+						"type": "string"
+					},
+					"start_date": {
+						"type": "string",
+						"format": "date-time"
+					},
+					"end_date": {
+						"type": "string",
+						"format": "date-time"
+					},
+					"created_at": {
+						"type": "string",
+						"format": "date-time"
+					},
+					"updated_at": {
+						"type": "string",
+						"format": "date-time"
+					},
+					"deleted_at": {
+						"type": "string",
+						"format": "date-time"
+					}
+				},
+				"required": [
+					"description",
+					"institution",
+					"job_position",
+					"start_date",
+					"end_date"
+				],
+				"type": "object",
+				"additionalProperties": false
+			},
 			"UserRole": {
 				"enum": [
 					"admin",
@@ -49,6 +145,195 @@
 					"username"
 				],
 				"type": "object"
+			},
+			"AuditorEducationEntity": {
+				"properties": {
+					"id": {
+						"type": "string"
+					},
+					"strata": {
+						"type": "string"
+					},
+					"scholarship": {
+						"type": "string"
+					},
+					"instance_name": {
+						"type": "string"
+					},
+					"country": {
+						"type": "string"
+					},
+					"graduate_year": {
+						"type": "number",
+						"format": "double"
+					},
+					"created_at": {
+						"type": "string",
+						"format": "date-time"
+					},
+					"updated_at": {
+						"type": "string",
+						"format": "date-time"
+					},
+					"deleted_at": {
+						"type": "string",
+						"format": "date-time"
+					}
+				},
+				"required": [
+					"strata",
+					"scholarship",
+					"instance_name",
+					"country",
+					"graduate_year"
+				],
+				"type": "object",
+				"additionalProperties": false
+			},
+			"AuditorWorkExperienceEntity": {
+				"properties": {
+					"id": {
+						"type": "string"
+					},
+					"description": {
+						"type": "string"
+					},
+					"institution": {
+						"type": "string"
+					},
+					"job_position": {
+						"type": "string"
+					},
+					"start_date": {
+						"type": "string",
+						"format": "date-time"
+					},
+					"end_date": {
+						"type": "string",
+						"format": "date-time"
+					},
+					"created_at": {
+						"type": "string",
+						"format": "date-time"
+					},
+					"updated_at": {
+						"type": "string",
+						"format": "date-time"
+					},
+					"deleted_at": {
+						"type": "string",
+						"format": "date-time"
+					}
+				},
+				"required": [
+					"description",
+					"institution",
+					"job_position",
+					"start_date",
+					"end_date"
+				],
+				"type": "object",
+				"additionalProperties": false
+			},
+			"AuditorDTO": {
+				"properties": {
+					"id": {
+						"type": "string"
+					},
+					"name": {
+						"type": "string"
+					},
+					"gender": {
+						"$ref": "#/components/schemas/AuditorGender"
+					},
+					"front_title": {
+						"type": "string"
+					},
+					"back_title": {
+						"type": "string"
+					},
+					"born_date": {
+						"type": "string",
+						"format": "date-time"
+					},
+					"born_address": {
+						"type": "string"
+					},
+					"institution": {
+						"type": "string"
+					},
+					"address": {
+						"type": "string"
+					},
+					"city": {
+						"type": "string"
+					},
+					"province": {
+						"type": "string"
+					},
+					"postal_code": {
+						"type": "number",
+						"format": "double"
+					},
+					"phone": {
+						"type": "number",
+						"format": "double"
+					},
+					"fax": {
+						"type": "number",
+						"format": "double"
+					},
+					"email": {
+						"type": "string"
+					},
+					"educations": {
+						"items": {
+							"$ref": "#/components/schemas/AuditorEducationDTO"
+						},
+						"type": "array"
+					},
+					"work_experiences": {
+						"items": {
+							"$ref": "#/components/schemas/AuditorWorkExperienceDTO"
+						},
+						"type": "array"
+					},
+					"user": {
+						"$ref": "#/components/schemas/UserEntity"
+					},
+					"created_at": {
+						"type": "string",
+						"format": "date-time"
+					},
+					"updated_at": {
+						"type": "string",
+						"format": "date-time"
+					},
+					"deleted_at": {
+						"type": "string",
+						"format": "date-time"
+					}
+				},
+				"required": [
+					"name",
+					"gender",
+					"front_title",
+					"back_title",
+					"born_date",
+					"born_address",
+					"institution",
+					"address",
+					"city",
+					"province",
+					"postal_code",
+					"phone",
+					"fax",
+					"email",
+					"educations",
+					"work_experiences"
+				],
+				"type": "object",
+				"additionalProperties": false
 			},
 			"CompanyDTO": {
 				"properties": {
@@ -227,6 +512,186 @@
 	},
 	"openapi": "3.0.0",
 	"paths": {
+		"/api/auditors": {
+			"post": {
+				"operationId": "Create",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {}
+							}
+						}
+					}
+				},
+				"tags": [
+					"Auditor Service"
+				],
+				"security": [],
+				"parameters": [],
+				"requestBody": {
+					"required": true,
+					"content": {
+						"application/json": {
+							"schema": {
+								"$ref": "#/components/schemas/AuditorDTO"
+							}
+						}
+					}
+				}
+			},
+			"delete": {
+				"operationId": "Delete",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {}
+							}
+						}
+					}
+				},
+				"tags": [
+					"Auditor Service"
+				],
+				"security": [],
+				"parameters": [],
+				"requestBody": {
+					"required": true,
+					"content": {
+						"application/json": {
+							"schema": {
+								"properties": {
+									"ids": {
+										"items": {
+											"type": "string"
+										},
+										"type": "array"
+									}
+								},
+								"required": [
+									"ids"
+								],
+								"type": "object"
+							}
+						}
+					}
+				}
+			},
+			"get": {
+				"operationId": "Index",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {}
+							}
+						}
+					}
+				},
+				"tags": [
+					"Auditor Service"
+				],
+				"security": [],
+				"parameters": [
+					{
+						"in": "query",
+						"name": "page",
+						"required": true,
+						"schema": {
+							"format": "double",
+							"type": "number"
+						}
+					},
+					{
+						"in": "query",
+						"name": "limit",
+						"required": true,
+						"schema": {
+							"format": "double",
+							"type": "number"
+						}
+					},
+					{
+						"in": "query",
+						"name": "params",
+						"required": false,
+						"schema": {
+							"type": "string"
+						}
+					}
+				]
+			}
+		},
+		"/api/auditors/{id}": {
+			"put": {
+				"operationId": "Update",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {}
+							}
+						}
+					}
+				},
+				"tags": [
+					"Auditor Service"
+				],
+				"security": [],
+				"parameters": [
+					{
+						"in": "query",
+						"name": "id",
+						"required": true,
+						"schema": {
+							"type": "string"
+						}
+					}
+				],
+				"requestBody": {
+					"required": true,
+					"content": {
+						"application/json": {
+							"schema": {
+								"$ref": "#/components/schemas/AuditorDTO"
+							}
+						}
+					}
+				}
+			},
+			"get": {
+				"operationId": "Show",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {}
+							}
+						}
+					}
+				},
+				"tags": [
+					"Auditor Service"
+				],
+				"security": [],
+				"parameters": [
+					{
+						"in": "query",
+						"name": "id",
+						"required": true,
+						"schema": {
+							"type": "string"
+						}
+					}
+				]
+			}
+		},
 		"/api/companies": {
 			"post": {
 				"operationId": "Create",
