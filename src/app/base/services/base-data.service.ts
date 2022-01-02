@@ -43,14 +43,6 @@ export abstract class BaseDataService<Entity> {
       relations: this.relations,
     })
 
-    console.log({
-      data,
-      count,
-      page,
-      limit,
-      options
-    })
-
     return {
       meta: {
         page: page,
