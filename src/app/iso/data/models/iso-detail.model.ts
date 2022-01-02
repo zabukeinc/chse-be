@@ -1,5 +1,6 @@
+import { ApplicantDetailModel } from "src/app/applicant/data/models/applicant-detail.model";
 import { BaseModel } from "src/app/base/data/models/base.model";
-import { Column, Entity, JoinColumn, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
+import { Column, Entity, JoinColumn, ManyToOne, OneToMany, OneToOne, PrimaryGeneratedColumn } from "typeorm";
 import { ISODetailEntity } from "../../domain/entities/iso-detail.entity";
 import { ISOModel } from "./iso.model";
 
@@ -17,4 +18,7 @@ export class ISODetailModel extends BaseModel implements ISODetailEntity {
   })
   @JoinColumn({ name: 'iso_id' })
   iso: ISOModel
+
+  @OneToMany(() => ApplicantDetailModel, model => model.iso_detail)
+  applicant_details: ApplicantDetailModel[]
 }

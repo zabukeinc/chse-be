@@ -7,6 +7,8 @@ import { CompanyModel } from "src/app/company/data/models/company.model";
 import { AuditorModel } from "src/app/auditor/data/models/auditor.model";
 import { AuditorWorkExperienceModel } from "src/app/auditor/data/models/auditor-work-experience.model";
 import { AuditorEducationModel } from "src/app/auditor/data/models/auditor-education.model";
+import { ApplicantModel } from "src/app/applicant/data/models/applicant.model";
+import { ApplicantDetailModel } from "src/app/applicant/data/models/applicant-detail.model";
 
 dotenv.config({});
 class Database {
@@ -33,7 +35,10 @@ class Database {
 
         AuditorModel,
         AuditorWorkExperienceModel,
-        AuditorEducationModel
+        AuditorEducationModel,
+
+        ApplicantModel,
+        ApplicantDetailModel
       ],
       synchronize: true,
       logging: false

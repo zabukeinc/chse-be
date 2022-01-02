@@ -1,6 +1,7 @@
+import { ApplicantModel } from "src/app/applicant/data/models/applicant.model";
 import { BaseModel } from "src/app/base/data/models/base.model";
 import { UserModel } from "src/app/user/data/models/user.model";
-import { Column, Entity, JoinColumn, OneToOne } from "typeorm";
+import { Column, Entity, JoinColumn, OneToMany, OneToOne } from "typeorm";
 import { CompanyEntity } from "../../domain/entities/company.entity";
 
 @Entity({ name: 'companies' })
@@ -45,4 +46,7 @@ export class CompanyModel extends BaseModel implements CompanyEntity {
   })
   @JoinColumn({ name: 'user_id' })
   user: UserModel
+
+  @OneToMany(() => ApplicantModel, model => model.company)
+  applicants: ApplicantModel[]
 }

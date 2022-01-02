@@ -1,3 +1,4 @@
+import { ApplicantModel } from "src/app/applicant/data/models/applicant.model";
 import { BaseEntity, Column, CreateDateColumn, DeleteDateColumn, Entity, OneToMany, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
 import { ISOEntity } from "../../domain/entities/iso.entity";
 import { ISODetailModel } from "./iso-detail.model";
@@ -17,6 +18,11 @@ export class ISOModel extends BaseEntity implements ISOEntity {
     cascade: ['insert', 'update', 'remove']
   })
   details: ISODetailModel[];
+
+  @OneToMany(() => ApplicantModel, model => model.iso, {
+    cascade: ['update', 'remove']
+  })
+  applicants: ApplicantModel[]
 
   @CreateDateColumn({ type: 'timestamp' })
   created_at?: Date;

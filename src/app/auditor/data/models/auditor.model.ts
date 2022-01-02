@@ -1,3 +1,4 @@
+import { ApplicantModel } from "src/app/applicant/data/models/applicant.model";
 import { BaseModel } from "src/app/base/data/models/base.model";
 import { UserModel } from "src/app/user/data/models/user.model";
 import { Column, Entity, JoinColumn, OneToMany, OneToOne, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
@@ -73,4 +74,7 @@ export class AuditorModel extends BaseModel implements AuditorEntity {
   })
   @JoinColumn({ name: 'user_id' })
   user?: UserModel;
+
+  @OneToMany(() => ApplicantModel, model => model.auditor)
+  applicants: ApplicantModel[]
 }
