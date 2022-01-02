@@ -5,7 +5,120 @@
 		"parameters": {},
 		"requestBodies": {},
 		"responses": {},
-		"schemas": {},
+		"schemas": {
+			"ISODetailEntity": {
+				"properties": {
+					"deleted_at": {
+						"type": "string",
+						"format": "date-time"
+					},
+					"updated_at": {
+						"type": "string",
+						"format": "date-time"
+					},
+					"created_at": {
+						"type": "string",
+						"format": "date-time"
+					},
+					"template_path": {
+						"type": "string"
+					},
+					"name": {
+						"type": "string"
+					},
+					"id": {
+						"type": "string"
+					}
+				},
+				"required": [
+					"template_path",
+					"name"
+				],
+				"type": "object"
+			},
+			"ISOEntity": {
+				"properties": {
+					"deleted_at": {
+						"type": "string",
+						"format": "date-time"
+					},
+					"updated_at": {
+						"type": "string",
+						"format": "date-time"
+					},
+					"created_at": {
+						"type": "string",
+						"format": "date-time"
+					},
+					"details": {
+						"items": {
+							"$ref": "#/components/schemas/ISODetailEntity"
+						},
+						"type": "array"
+					},
+					"code": {
+						"type": "string"
+					},
+					"name": {
+						"type": "string"
+					},
+					"id": {
+						"type": "string"
+					}
+				},
+				"required": [
+					"details",
+					"code",
+					"name"
+				],
+				"type": "object"
+			},
+			"UserRole": {
+				"enum": [
+					"admin",
+					"manager",
+					"auditor",
+					"sales",
+					"company"
+				],
+				"type": "string"
+			},
+			"UserDTO": {
+				"properties": {
+					"deleted_at": {
+						"type": "string",
+						"format": "date-time"
+					},
+					"updated_at": {
+						"type": "string",
+						"format": "date-time"
+					},
+					"created_at": {
+						"type": "string",
+						"format": "date-time"
+					},
+					"role": {
+						"$ref": "#/components/schemas/UserRole"
+					},
+					"password": {
+						"type": "string"
+					},
+					"username": {
+						"type": "string"
+					},
+					"id": {
+						"type": "string"
+					}
+				},
+				"required": [
+					"role",
+					"password",
+					"username"
+				],
+				"type": "object",
+				"additionalProperties": false
+			}
+		},
 		"securitySchemes": {}
 	},
 	"info": {
@@ -13,9 +126,9 @@
 	},
 	"openapi": "3.0.0",
 	"paths": {
-		"/api/user-permission/get-all": {
-			"get": {
-				"operationId": "GetAllUser",
+		"/api/iso": {
+			"post": {
+				"operationId": "Create",
 				"responses": {
 					"200": {
 						"description": "Ok",
@@ -27,15 +140,23 @@
 					}
 				},
 				"tags": [
-					"User Permission"
+					"ISO Service"
 				],
 				"security": [],
-				"parameters": []
-			}
-		},
-		"/api/user-permission/create": {
-			"post": {
-				"operationId": "CreateUser",
+				"parameters": [],
+				"requestBody": {
+					"required": true,
+					"content": {
+						"application/json": {
+							"schema": {
+								"$ref": "#/components/schemas/ISOEntity"
+							}
+						}
+					}
+				}
+			},
+			"delete": {
+				"operationId": "Delete",
 				"responses": {
 					"200": {
 						"description": "Ok",
@@ -47,7 +168,7 @@
 					}
 				},
 				"tags": [
-					"User Permission"
+					"ISO Service"
 				],
 				"security": [],
 				"parameters": [],
@@ -57,30 +178,24 @@
 						"application/json": {
 							"schema": {
 								"properties": {
-									"roles": {
+									"ids": {
 										"items": {
 											"type": "string"
 										},
 										"type": "array"
-									},
-									"email": {
-										"type": "string"
 									}
 								},
 								"required": [
-									"roles",
-									"email"
+									"ids"
 								],
 								"type": "object"
 							}
 						}
 					}
 				}
-			}
-		},
-		"/api/user-permission/update/{id}": {
-			"put": {
-				"operationId": "UpdateUser",
+			},
+			"get": {
+				"operationId": "Index",
 				"responses": {
 					"200": {
 						"description": "Ok",
@@ -92,7 +207,54 @@
 					}
 				},
 				"tags": [
-					"User Permission"
+					"ISO Service"
+				],
+				"security": [],
+				"parameters": [
+					{
+						"in": "query",
+						"name": "page",
+						"required": true,
+						"schema": {
+							"format": "double",
+							"type": "number"
+						}
+					},
+					{
+						"in": "query",
+						"name": "limit",
+						"required": true,
+						"schema": {
+							"format": "double",
+							"type": "number"
+						}
+					},
+					{
+						"in": "query",
+						"name": "params",
+						"required": false,
+						"schema": {
+							"type": "string"
+						}
+					}
+				]
+			}
+		},
+		"/api/iso/{id}": {
+			"put": {
+				"operationId": "Update",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {}
+							}
+						}
+					}
+				},
+				"tags": [
+					"ISO Service"
 				],
 				"security": [],
 				"parameters": [
@@ -110,31 +272,14 @@
 					"content": {
 						"application/json": {
 							"schema": {
-								"properties": {
-									"roles": {
-										"items": {
-											"type": "string"
-										},
-										"type": "array"
-									},
-									"email": {
-										"type": "string"
-									}
-								},
-								"required": [
-									"roles",
-									"email"
-								],
-								"type": "object"
+								"$ref": "#/components/schemas/ISOEntity"
 							}
 						}
 					}
 				}
-			}
-		},
-		"/api/user-permission/delete/{id}": {
-			"delete": {
-				"operationId": "DeleteUser",
+			},
+			"get": {
+				"operationId": "Show",
 				"responses": {
 					"200": {
 						"description": "Ok",
@@ -146,7 +291,7 @@
 					}
 				},
 				"tags": [
-					"User Permission"
+					"ISO Service"
 				],
 				"security": [],
 				"parameters": [
@@ -161,43 +306,9 @@
 				]
 			}
 		},
-		"/api/server-status": {
-			"get": {
-				"operationId": "GetServerStatus",
-				"responses": {
-					"200": {
-						"description": "Ok",
-						"content": {
-							"application/json": {
-								"schema": {
-									"properties": {
-										"serverTime": {
-											"type": "string"
-										},
-										"status": {
-											"type": "string"
-										}
-									},
-									"required": [
-										"serverTime",
-										"status"
-									],
-									"type": "object"
-								}
-							}
-						}
-					}
-				},
-				"tags": [
-					"Server Status"
-				],
-				"security": [],
-				"parameters": []
-			}
-		},
-		"/api/server-status/routes": {
-			"get": {
-				"operationId": "GetServerRoutes",
+		"/api/users": {
+			"post": {
+				"operationId": "Create",
 				"responses": {
 					"200": {
 						"description": "Ok",
@@ -209,10 +320,170 @@
 					}
 				},
 				"tags": [
-					"Server Status"
+					"User Service"
 				],
 				"security": [],
-				"parameters": []
+				"parameters": [],
+				"requestBody": {
+					"required": true,
+					"content": {
+						"application/json": {
+							"schema": {
+								"$ref": "#/components/schemas/UserDTO"
+							}
+						}
+					}
+				}
+			},
+			"delete": {
+				"operationId": "Delete",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {}
+							}
+						}
+					}
+				},
+				"tags": [
+					"User Service"
+				],
+				"security": [],
+				"parameters": [],
+				"requestBody": {
+					"required": true,
+					"content": {
+						"application/json": {
+							"schema": {
+								"properties": {
+									"ids": {
+										"items": {
+											"type": "string"
+										},
+										"type": "array"
+									}
+								},
+								"required": [
+									"ids"
+								],
+								"type": "object"
+							}
+						}
+					}
+				}
+			},
+			"get": {
+				"operationId": "Index",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {}
+							}
+						}
+					}
+				},
+				"tags": [
+					"User Service"
+				],
+				"security": [],
+				"parameters": [
+					{
+						"in": "query",
+						"name": "page",
+						"required": true,
+						"schema": {
+							"format": "double",
+							"type": "number"
+						}
+					},
+					{
+						"in": "query",
+						"name": "limit",
+						"required": true,
+						"schema": {
+							"format": "double",
+							"type": "number"
+						}
+					},
+					{
+						"in": "query",
+						"name": "role",
+						"required": false,
+						"schema": {
+							"$ref": "#/components/schemas/UserRole"
+						}
+					}
+				]
+			}
+		},
+		"/api/users/{id}": {
+			"put": {
+				"operationId": "Update",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {}
+							}
+						}
+					}
+				},
+				"tags": [
+					"User Service"
+				],
+				"security": [],
+				"parameters": [
+					{
+						"in": "query",
+						"name": "id",
+						"required": true,
+						"schema": {
+							"type": "string"
+						}
+					}
+				],
+				"requestBody": {
+					"required": true,
+					"content": {
+						"application/json": {
+							"schema": {
+								"$ref": "#/components/schemas/UserDTO"
+							}
+						}
+					}
+				}
+			},
+			"get": {
+				"operationId": "Show",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {}
+							}
+						}
+					}
+				},
+				"tags": [
+					"User Service"
+				],
+				"security": [],
+				"parameters": [
+					{
+						"in": "query",
+						"name": "id",
+						"required": true,
+						"schema": {
+							"type": "string"
+						}
+					}
+				]
 			}
 		}
 	},

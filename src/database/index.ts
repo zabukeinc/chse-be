@@ -1,5 +1,8 @@
 import { Connection, createConnection, SimpleConsoleLogger } from "typeorm";
 import dotenv from 'dotenv';
+import { UserModel } from "src/app/user/data/models/user.model";
+import { ISOModel } from "src/app/iso/data/models/iso.model";
+import { ISODetailModel } from "src/app/iso/data/models/iso-detail.model";
 
 dotenv.config({});
 class Database {
@@ -12,15 +15,16 @@ class Database {
 
   private connectToDB(): void {
     createConnection({
-      type: envString("mysql", "sqlite"),
+      type: "mysql",
       host: envString(process.env.DATABASE_HOST!, ""),
-      port: envString(Number(process.env.DATABASE_PORT!), 0),
-      username: envString(process.env.DATABASE_USERNAME!, ""),
-      password: envString(process.env.DATABASE_PASSWORD!, ""),
-      database: envString(process.env.DATABASE_NAME!, "./db.sqlite"),
+      port: envString(Number(process.env.DATABASE_PORT!), 3306),
+      username: envString(process.env.DATABASE_USERNAME!, "root"),
+      password: envString(process.env.DATABASE_PASSWORD!, "eigen3m!"),
+      database: envString(process.env.DATABASE_NAME!, "chse"),
       entities: [
-        __dirname + "/entity/*.ts",
-        __dirname + "/entity/*.js"
+        UserModel,
+        ISOModel,
+        ISODetailModel
       ],
       synchronize: true,
       logging: false
