@@ -3,6 +3,7 @@ build/
 logs/
 .env
 db.sqlite
+swagger.json
 
 src/app/.notes
 
