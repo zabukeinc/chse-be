@@ -1,6 +1,6 @@
 import { BaseDeleteManager } from "src/app/base/domain/usecases/managers/base-delete.manager";
-import { UserEntity } from "../../data/entities/user.entity";
-import { UserDataService } from "../../data/services/user-data.service";
+import { UserDataService } from "src/app/user/data/services/user-data.service";
+import { UserEntity } from "../../entities/user.entity";
 
 export class DeleteUserManager extends BaseDeleteManager<UserEntity>{
   constructor(

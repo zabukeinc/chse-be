@@ -1,9 +1,10 @@
+import { CompanyModel } from "src/app/company/data/models/company.model";
 import { BaseEntity, Column, CreateDateColumn, DeleteDateColumn, Entity, OneToOne, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
-import { UserEntity, UserRole } from "../entities/user.entity";
+import { UserEntity, UserRole } from "../../domain/entities/user.entity";
 
 @Entity({ name: 'users' })
 export class UserModel extends BaseEntity implements UserEntity {
-  @Column('varchar', { name: 'username', nullable: false, length: 30 })
+  @Column('varchar', { name: 'username', nullable: false, length: 30, unique: true })
   username: string;
 
   @Column('varchar', { name: 'password', nullable: false })
@@ -11,6 +12,13 @@ export class UserModel extends BaseEntity implements UserEntity {
 
   @Column('enum', { name: 'role', enum: UserRole, nullable: false })
   role: UserRole;
+
+  /** Join with Company */
+  @OneToOne(() => CompanyModel, model => model.user, {
+    cascade: ['update'],
+    onUpdate: 'CASCADE'
+  })
+  company: CompanyModel
 
   @PrimaryGeneratedColumn('uuid')
   id?: string;

@@ -6,6 +6,50 @@
 		"requestBodies": {},
 		"responses": {},
 		"schemas": {
+			"UserRole": {
+				"enum": [
+					"admin",
+					"manager",
+					"auditor",
+					"sales",
+					"company"
+				],
+				"type": "string"
+			},
+			"UserEntity": {
+				"properties": {
+					"deleted_at": {
+						"type": "string",
+						"format": "date-time"
+					},
+					"updated_at": {
+						"type": "string",
+						"format": "date-time"
+					},
+					"created_at": {
+						"type": "string",
+						"format": "date-time"
+					},
+					"role": {
+						"$ref": "#/components/schemas/UserRole"
+					},
+					"password": {
+						"type": "string"
+					},
+					"username": {
+						"type": "string"
+					},
+					"id": {
+						"type": "string"
+					}
+				},
+				"required": [
+					"role",
+					"password",
+					"username"
+				],
+				"type": "object"
+			},
 			"CompanyDTO": {
 				"properties": {
 					"id": {
@@ -41,6 +85,9 @@
 					},
 					"website_url": {
 						"type": "string"
+					},
+					"user": {
+						"$ref": "#/components/schemas/UserEntity"
 					},
 					"created_at": {
 						"type": "string",
@@ -136,16 +183,6 @@
 					"name"
 				],
 				"type": "object"
-			},
-			"UserRole": {
-				"enum": [
-					"admin",
-					"manager",
-					"auditor",
-					"sales",
-					"company"
-				],
-				"type": "string"
 			},
 			"UserDTO": {
 				"properties": {

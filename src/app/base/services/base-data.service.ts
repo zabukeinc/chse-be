@@ -37,10 +37,18 @@ export abstract class BaseDataService<Entity> {
 
   async index(page: number, limit: number, options: FindManyOptions<Entity>): Promise<any> {
     const [data, count] = await this.baseRepo.findAndCount({
-      take: limit,
-      skip: page,
+      ...options,
+      take: isNaN(limit) ? parseInt(limit.toString()) : limit,
+      skip: isNaN(page) ? parseInt(page.toString()) : page,
       relations: this.relations,
-      ...options
+    })
+
+    console.log({
+      data,
+      count,
+      page,
+      limit,
+      options
     })
 
     return {

@@ -1,12 +1,12 @@
-import { BaseController } from "src/app/base/base-controller";
 import { IResponses } from "src/app/base/data/entities/response.entity";
 import { Body, Delete, Get, Post, Put, Query, Route, Tags } from "tsoa";
-import { UserEntity, UserRole } from "../../data/entities/user.entity";
+import { UserEntity, UserRole } from "../../domain/entities/user.entity";
 import { UserModel } from "../../data/models/user.model";
 import { UserDataService } from "../../data/services/user-data.service";
 import { UserOrchestrator } from "../../domain/user.orchestrator";
 import { UserFilterDTO } from "../dto/user-filter.dto";
 import { UserDTO } from "../dto/user.dto";
+import { BaseController } from "../../../base/base-controller";
 
 @Tags('User Service')
 @Route('/api/users/')

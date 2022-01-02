@@ -1,6 +1,6 @@
+import { UserFilterDTO } from "src/app/user/presentation/dto/user-filter.dto";
 import { SelectQueryBuilder } from "typeorm";
-import { UserEntity } from "../../data/entities/user.entity";
-import { UserFilterDTO } from "../../presentation/dto/user-filter.dto";
+import { UserEntity } from "../../entities/user.entity";
 
 export class FilterUserManager extends UserFilterDTO {
   constructor(protected params: UserFilterDTO) {

@@ -1,6 +1,6 @@
 import { BaseUpdateManager } from "src/app/base/domain/usecases/managers/base-update.manager";
-import { UserEntity } from "../../data/entities/user.entity";
-import { UserDataService } from "../../data/services/user-data.service";
+import { UserDataService } from "src/app/user/data/services/user-data.service";
+import { UserEntity } from "../../entities/user.entity";
 import { HashPassword } from "../helpers/hash-password.helper";
 import { DuplicateUsernameValidator } from "../validators/duplicate-username.validator";
 

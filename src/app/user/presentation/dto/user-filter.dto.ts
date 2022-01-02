@@ -1,4 +1,4 @@
-import { UserRole } from "../../data/entities/user.entity";
+import { UserRole } from "../../domain/entities/user.entity";
 
 export class UserFilterDTO {
   role: UserRole

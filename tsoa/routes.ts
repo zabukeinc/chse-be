@@ -13,6 +13,16 @@ import * as express from 'express';
 // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
 
 const models: TsoaRoute.Models = {
+    "UserRole": {
+        "dataType": "refEnum",
+        "enums": ["admin","manager","auditor","sales","company"],
+    },
+    // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+    "UserEntity": {
+        "dataType": "refAlias",
+        "type": {"dataType":"nestedObjectLiteral","nestedProperties":{"deleted_at":{"dataType":"datetime"},"updated_at":{"dataType":"datetime"},"created_at":{"dataType":"datetime"},"role":{"ref":"UserRole","required":true},"password":{"dataType":"string","required":true},"username":{"dataType":"string","required":true},"id":{"dataType":"string"}},"validators":{}},
+    },
+    // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
     "CompanyDTO": {
         "dataType": "refObject",
         "properties": {
@@ -27,6 +37,7 @@ const models: TsoaRoute.Models = {
             "email": {"dataType":"string","required":true},
             "npwp": {"dataType":"string","required":true},
             "website_url": {"dataType":"string","required":true},
+            "user": {"ref":"UserEntity"},
             "created_at": {"dataType":"datetime"},
             "updated_at": {"dataType":"datetime"},
             "deleted_at": {"dataType":"datetime"},
@@ -42,11 +53,6 @@ const models: TsoaRoute.Models = {
     "ISOEntity": {
         "dataType": "refAlias",
         "type": {"dataType":"nestedObjectLiteral","nestedProperties":{"deleted_at":{"dataType":"datetime"},"updated_at":{"dataType":"datetime"},"created_at":{"dataType":"datetime"},"details":{"dataType":"array","array":{"dataType":"refAlias","ref":"ISODetailEntity"},"required":true},"code":{"dataType":"string","required":true},"name":{"dataType":"string","required":true},"id":{"dataType":"string"}},"validators":{}},
-    },
-    // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
-    "UserRole": {
-        "dataType": "refEnum",
-        "enums": ["admin","manager","auditor","sales","company"],
     },
     // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
     "UserDTO": {

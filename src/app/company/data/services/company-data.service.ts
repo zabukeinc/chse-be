@@ -7,4 +7,6 @@ export class CompanyDataService extends BaseDataService<CompanyEntity> {
   constructor(protected repo: Repository<CompanyModel>) {
     super(repo)
   }
+
+  relations: string[] = ['user'];
 }
