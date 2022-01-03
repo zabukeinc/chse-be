@@ -1,9 +1,11 @@
 import { BaseController } from "src/app/base/base-controller";
-import { Body, Delete, Get, Post, Put, Query, Route, Tags } from "tsoa";
+import { StoreFileConfig } from "src/helpers/store-file-config.helper";
+import { Body, Delete, File, Get, Post, Put, Query, Request, Route, Tags, UploadedFile, UploadedFiles } from "tsoa";
 import { ISOModel } from "../../data/models/iso.model";
 import { IsoDataService } from "../../data/services/iso-data.service";
 import { ISOEntity } from "../../domain/entities/iso.entity";
 import { IsoOrchestrator } from "../../domain/usecases/iso.orchestrator";
+const multer = require('multer')
 
 @Tags('ISO Service')
 @Route('/api/iso/')
@@ -14,6 +16,25 @@ export class IsoController extends BaseController<ISOEntity> {
       ISOModel.getRepository()
     )
   )
+
+  @Post('uploads')
+  public async file(@UploadedFile() file: Express.Multer.File): Promise<void> {
+    try {
+      const multerSingle = multer(StoreFileConfig).single('file')
+
+      return new Promise((resolve, reject) => {
+        multerSingle(file, undefined, async (error: Error) => {
+          if (error) {
+            reject("error");
+          }
+          resolve();
+        });
+      })
+    }
+    catch {
+      throw new Error("Error uploading file.");
+    }
+  }
 
   @Post()
   async create(@Body() body: ISOEntity): Promise<any> {

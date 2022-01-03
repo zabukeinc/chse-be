@@ -1,11 +1,22 @@
+import { FormField } from "tsoa"
+import { ISODetailEntity } from "../../domain/entities/iso-detail.entity"
+import { ISOEntity } from "../../domain/entities/iso.entity"
 
-export type IsoDTO = {
+export class IsoDTO implements ISOEntity{
+  @FormField('name')
   name: string
+
+  @FormField('code')
   code: string
-  detail: IsoDetailDTO[]
+
+  @FormField('details')
+  details: IsoDetailDTO[]
 }
 
-export type IsoDetailDTO = {
+export class IsoDetailDTO implements ISODetailEntity {
+  @FormField('name')
   name: string
-  template_path?: string
+
+  @FormField('template_path')
+  template_path: string
 }
