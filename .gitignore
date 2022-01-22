@@ -3,7 +3,6 @@ build/
 logs/
 .env
 db.sqlite
-tsoa/
-
 src/app/.notes
-
+src/uploads/
+tsoa/swagger.json
