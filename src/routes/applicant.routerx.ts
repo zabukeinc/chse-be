@@ -1,24 +1,29 @@
-import { BaseController } from "src/app/base/base-controller";
+import { ApplicantModel } from "../app/applicant/data/models/applicant.model";
+import { ApplicantDataService } from "../app/applicant/data/services/applicant-data.service";
+import { ApplicantEntity } from "../app/applicant/domain/entities/applicant.entity";
+import { ApplicantOrchestrator } from "../app/applicant/domain/usecases/applicant.orchestrator";
+import { BaseController } from "../app/base/base-controller";
 import { IResponses } from "src/app/base/data/entities/response.entity";
+import { ISOModel } from "src/app/iso/data/models/iso.model";
+import { IsoDataService } from "src/app/iso/data/services/iso-data.service";
 import { Body, Delete, Get, Post, Put, Query, Route, Tags } from "tsoa";
-import { CompanyModel } from "../../data/models/company.model";
-import { CompanyDataService } from "../../data/services/company-data.service";
-import { CompanyEntity } from "../../domain/entities/company.entity";
-import { CompanyOrchestrator } from "../../domain/usecases/company.orchestrator";
-import { CompanyDTO } from "../dto/company.dto";
 
-@Tags('Compan Service')
-@Route('/api/companies/')
-export class CompanyController extends BaseController<CompanyEntity> {
-  orchestrator = new CompanyOrchestrator(
-    new CompanyDataService(
-      CompanyModel.getRepository()
+@Tags('Applicant Service')
+@Route('/api/applicants/')
+export class ApplicantController extends BaseController<ApplicantEntity> {
+  orchestrator = new ApplicantOrchestrator(
+    new ApplicantDataService(
+      ApplicantModel.getRepository()
+    ),
+    new IsoDataService(
+      ISOModel.getRepository()
     )
   )
+
   @Post()
-  async create(@Body() body: CompanyDTO): Promise<any> {
+  async create(@Body() body: any): Promise<any> {
     try {
-      const entity = await this.orchestrator.create(body)
+      const entity = await this.orchestrator.create(body as any)
 
       return this.responses.json(200, entity) as IResponses
     } catch (err) {
@@ -27,9 +32,9 @@ export class CompanyController extends BaseController<CompanyEntity> {
   }
 
   @Put('{id}')
-  async update(@Query('id') id: string, @Body() updateData: CompanyDTO): Promise<any> {
+  async update(@Query('id') id: string, @Body() updateData: any): Promise<any> {
     try {
-      const entity = await this.orchestrator.update(id, updateData)
+      const entity = await this.orchestrator.update(id, updateData as any)
 
       return this.responses.json(200, entity) as IResponses
     } catch (err) {
@@ -63,10 +68,9 @@ export class CompanyController extends BaseController<CompanyEntity> {
   async index(
     @Query('page') page: number,
     @Query('limit') limit: number,
+    @Query() params?: any
   ): Promise<any> {
     try {
-      let params = null
-
       const entities = await this.orchestrator.index(page, limit, params)
 
       return this.responses.json(200, entities) as IResponses

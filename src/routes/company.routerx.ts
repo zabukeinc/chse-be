@@ -1,30 +1,24 @@
+import { BaseController } from "src/app/base/base-controller";
 import { IResponses } from "src/app/base/data/entities/response.entity";
-import { ISOModel } from "src/app/iso/data/models/iso.model";
-import { IsoDataService } from "src/app/iso/data/services/iso-data.service";
+import { CompanyModel } from "src/app/company/data/models/company.model";
+import { CompanyDataService } from "src/app/company/data/services/company-data.service";
+import { CompanyEntity } from "src/app/company/domain/entities/company.entity";
+import { CompanyOrchestrator } from "src/app/company/domain/usecases/company.orchestrator";
+import { CompanyDTO } from "src/app/company/presentation/dto/company.dto";
 import { Body, Delete, Get, Post, Put, Query, Route, Tags } from "tsoa";
-import { BaseController } from "../../../base/base-controller";
-import { ApplicantModel } from "../../data/models/applicant.model";
-import { ApplicantDataService } from "../../data/services/applicant-data.service";
-import { ApplicantEntity } from "../../domain/entities/applicant.entity";
-import { ApplicantOrchestrator } from "../../domain/usecases/applicant.orchestrator";
-import { ApplicantDTO } from "../dto/applicant.dto";
 
-@Tags('Applicant Service')
-@Route('/api/applicants/')
-export class ApplicantController extends BaseController<ApplicantEntity> {
-  orchestrator = new ApplicantOrchestrator(
-    new ApplicantDataService(
-      ApplicantModel.getRepository()
-    ),
-    new IsoDataService(
-      ISOModel.getRepository()
+@Tags('Compan Service')
+@Route('/api/companies/')
+export class CompanyController extends BaseController<CompanyEntity> {
+  orchestrator = new CompanyOrchestrator(
+    new CompanyDataService(
+      CompanyModel.getRepository()
     )
   )
-
   @Post()
-  async create(@Body() body: any): Promise<any> {
+  async create(@Body() body: CompanyDTO): Promise<any> {
     try {
-      const entity = await this.orchestrator.create(body as any)
+      const entity = await this.orchestrator.create(body)
 
       return this.responses.json(200, entity) as IResponses
     } catch (err) {
@@ -33,9 +27,9 @@ export class ApplicantController extends BaseController<ApplicantEntity> {
   }
 
   @Put('{id}')
-  async update(@Query('id') id: string, @Body() updateData: any): Promise<any> {
+  async update(@Query('id') id: string, @Body() updateData: CompanyDTO): Promise<any> {
     try {
-      const entity = await this.orchestrator.update(id, updateData as any)
+      const entity = await this.orchestrator.update(id, updateData)
 
       return this.responses.json(200, entity) as IResponses
     } catch (err) {
@@ -69,9 +63,10 @@ export class ApplicantController extends BaseController<ApplicantEntity> {
   async index(
     @Query('page') page: number,
     @Query('limit') limit: number,
-    @Query() params?: any
   ): Promise<any> {
     try {
+      let params = null
+
       const entities = await this.orchestrator.index(page, limit, params)
 
       return this.responses.json(200, entities) as IResponses
