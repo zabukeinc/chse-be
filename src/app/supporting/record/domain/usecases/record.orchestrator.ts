@@ -33,9 +33,9 @@ export class RecordOrchestrator extends BaseOrchestrator<RecordEntity> {
     ).execute()
   }
 
-  async delete(ids: string[]): Promise<any> {
+  async delete(id: string): Promise<any> {
     return await new DeleteRecordManager(
-      ids,
+      id,
       this.service
     ).execute()
   }

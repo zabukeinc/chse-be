@@ -5,12 +5,10 @@ import { RecordDataService } from "../app/supporting/record/data/services/record
 import { RecordEntity } from "../app/supporting/record/domain/entities/record.entity";
 import { RecordOrchestrator } from "../app/supporting/record/domain/usecases/record.orchestrator";
 import { RecordDTO } from "../app/supporting/record/presentation/dto/record.dto";
-import { Body, Delete, FormField, Get, Post, Put, Query, Route, Tags, UploadedFile, UploadedFiles, Request } from "tsoa";
-import express from 'express'
-import multer from 'multer'
+import { Body, Delete, FormField, Get, Post, Put, Query, Route, Tags } from "tsoa";
 
 @Tags('Record Services')
-@Route('/api/records/')
+@Route('/api/records')
 export class RecordController extends BaseController<RecordEntity> {
   orchestrator = new RecordOrchestrator(
     new RecordDataService(
@@ -30,7 +28,7 @@ export class RecordController extends BaseController<RecordEntity> {
   }
 
   @Put('{id}')
-  async update(@Query('id') id: string, @Body() updateData: RecordDTO): Promise<any> {
+  async update(id: string, @Body() updateData: RecordDTO): Promise<any> {
     try {
       const entity = await this.orchestrator.update(id, updateData)
 
@@ -40,10 +38,10 @@ export class RecordController extends BaseController<RecordEntity> {
     }
   }
 
-  @Delete()
-  async delete(@Body() body: { ids: string[] }): Promise<any> {
+  @Delete('{id}')
+  async delete(id: string): Promise<any> {
     try {
-      await this.orchestrator.delete(body.ids)
+      await this.orchestrator.delete(id)
 
       return this.responses.json(200, 'Data succesfully deleted.') as IResponses
     } catch (err) {
@@ -51,8 +49,8 @@ export class RecordController extends BaseController<RecordEntity> {
     }
   }
 
-  @Get('{id}')
-  async show(@Query() id: string): Promise<any> {
+  @Get(':id')
+  async show(id: string): Promise<any> {
     try {
       const entity = await this.orchestrator.show(id)
 

@@ -19,6 +19,8 @@ export abstract class BaseUpdateManager<Entity> {
     await this.prepareData()
     await this.beforeProcess()
 
+
+    Object.assign(this.entity, this.updateData)
     return await this.service.save(this.entity)
   }
 

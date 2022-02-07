@@ -4,20 +4,10 @@ import { RecordEntity } from "../../entities/record.entity";
 
 export class DeleteRecordManager extends BaseDeleteManager<RecordEntity> {
   constructor(
-    protected entityIds: string[],
+    protected entityId: string,
     protected service: RecordDataService
   ) {
-    super(service, entityIds)
-  }
-
-  async processEachEntity(): Promise<void> {
-    await Promise.all(
-      this.entities.map(
-        async (entity) => {
-          await this.service.delete([entity.id])
-        }
-      )
-    )
+    super(service, entityId)
   }
 
   async beforeProcess(): Promise<void> {
@@ -25,6 +15,6 @@ export class DeleteRecordManager extends BaseDeleteManager<RecordEntity> {
   }
 
   async prepareData(): Promise<RecordEntity> {
-    return this.entities[0]
+    return this.entity
   }
 }

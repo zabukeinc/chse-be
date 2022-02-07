@@ -10,5 +10,5 @@ export abstract class BaseController<Entity> extends Controller {
   abstract show(id: string): Promise<IResponses>
   abstract create(entity: Entity): Promise<IResponses>
   abstract update(id: string, updateData: Entity): Promise<IResponses>
-  abstract delete(body: { ids: string[] }): Promise<IResponses>
+  abstract delete(id: string): Promise<IResponses>
 }

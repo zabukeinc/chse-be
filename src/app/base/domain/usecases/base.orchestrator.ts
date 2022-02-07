@@ -7,7 +7,7 @@ export abstract class BaseOrchestrator<Entity> {
   abstract show(id: string): Promise<Entity>;
   abstract create(entity: Entity): Promise<Entity>;
   abstract update(id: string, updateData: Entity): Promise<Entity>;
-  abstract delete(ids: string[]): Promise<any>;
+  abstract delete(id: string): Promise<any>;
 
   protected throwError(err: any) {
     throw new Error(err as any)

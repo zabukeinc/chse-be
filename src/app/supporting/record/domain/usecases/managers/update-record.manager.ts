@@ -10,9 +10,11 @@ export class UpdateRecordManager extends BaseUpdateManager<RecordEntity> {
   ) {
     super(service, id, updateData)
   }
+
   async beforeProcess(): Promise<void> {
     return
   }
+  
   async prepareData(): Promise<RecordEntity> {
     return this.updateData;
   }

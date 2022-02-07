@@ -3,25 +3,27 @@ import { BaseDataService } from "../../../services/base-data.service";
 export abstract class BaseDeleteManager<Entity> {
   constructor(
     protected service: BaseDataService<Entity>,
-    protected entityIds: string[]
+    protected entityId: string
   ) { }
 
-  protected entities: Entity[]
+  protected entity: Entity
 
-  async getEntityByIds(): Promise<void> {
-    const entities = await this.service.findByIds(this.entityIds)
-    Object.assign(this, { entities })
+  async getEntityById(): Promise<void> {
+    const entity = await this.service.findOne({
+      where: {
+        id: this.entityId
+      }
+    })
+    Object.assign(this, { entity })
   }
 
   async execute(): Promise<any> {
-    await this.getEntityByIds()
+    await this.getEntityById()
     await this.prepareData()
     await this.beforeProcess()
 
-    await this.processEachEntity()
+    await this.service.delete([this.entityId])
   }
-
-  abstract processEachEntity(): Promise<void>;
 
   abstract beforeProcess(): Promise<void>;
 
