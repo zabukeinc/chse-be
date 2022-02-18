@@ -6,236 +6,131 @@
 		"requestBodies": {},
 		"responses": {},
 		"schemas": {
-			"AuditorGender": {
+			"RecordType": {
 				"enum": [
-					"male",
-					"female"
+					"mutu",
+					"teknis"
 				],
 				"type": "string"
 			},
-			"AuditorEducationDTO": {
+			"RecordDTO": {
 				"properties": {
 					"id": {
 						"type": "string"
 					},
-					"strata": {
+					"type": {
+						"$ref": "#/components/schemas/RecordType"
+					},
+					"pic": {
 						"type": "string"
 					},
-					"scholarship": {
+					"area": {
+						"type": "string"
+					},
+					"title": {
+						"type": "string"
+					},
+					"year": {
+						"type": "number",
+						"format": "double"
+					},
+					"resensi": {
+						"type": "string",
+						"format": "date-time"
+					},
+					"file_path": {
+						"type": "string"
+					}
+				},
+				"required": [
+					"type",
+					"title",
+					"year",
+					"resensi"
+				],
+				"type": "object",
+				"additionalProperties": false
+			},
+			"SdmStatus": {
+				"enum": [
+					"menikah",
+					"lajang",
+					"pelajar/mahasiswa",
+					"pekerja"
+				],
+				"type": "string"
+			},
+			"SdmEducationDTO": {
+				"properties": {
+					"id": {
 						"type": "string"
 					},
 					"instance_name": {
 						"type": "string"
 					},
-					"country": {
+					"major_name": {
 						"type": "string"
 					},
-					"graduate_year": {
+					"level": {
+						"type": "string"
+					}
+				},
+				"required": [
+					"instance_name",
+					"major_name",
+					"level"
+				],
+				"type": "object",
+				"additionalProperties": false
+			},
+			"SdmWorkExperienceDTO": {
+				"properties": {
+					"id": {
+						"type": "string"
+					},
+					"company_name": {
+						"type": "string"
+					},
+					"position": {
+						"type": "string"
+					},
+					"year": {
 						"type": "number",
 						"format": "double"
-					},
-					"created_at": {
-						"type": "string",
-						"format": "date-time"
-					},
-					"updated_at": {
-						"type": "string",
-						"format": "date-time"
-					},
-					"deleted_at": {
-						"type": "string",
-						"format": "date-time"
 					}
 				},
 				"required": [
-					"strata",
-					"scholarship",
-					"instance_name",
-					"country",
-					"graduate_year"
+					"company_name",
+					"position",
+					"year"
 				],
 				"type": "object",
 				"additionalProperties": false
 			},
-			"AuditorWorkExperienceDTO": {
+			"SdmFunctionalDTO": {
 				"properties": {
 					"id": {
 						"type": "string"
 					},
-					"description": {
+					"schema": {
 						"type": "string"
 					},
-					"institution": {
+					"scope": {
 						"type": "string"
 					},
-					"job_position": {
+					"position": {
 						"type": "string"
-					},
-					"start_date": {
-						"type": "string",
-						"format": "date-time"
-					},
-					"end_date": {
-						"type": "string",
-						"format": "date-time"
-					},
-					"created_at": {
-						"type": "string",
-						"format": "date-time"
-					},
-					"updated_at": {
-						"type": "string",
-						"format": "date-time"
-					},
-					"deleted_at": {
-						"type": "string",
-						"format": "date-time"
 					}
 				},
 				"required": [
-					"description",
-					"institution",
-					"job_position",
-					"start_date",
-					"end_date"
+					"schema",
+					"scope",
+					"position"
 				],
 				"type": "object",
 				"additionalProperties": false
 			},
-			"UserRole": {
-				"enum": [
-					"admin",
-					"manager",
-					"auditor",
-					"sales",
-					"company"
-				],
-				"type": "string"
-			},
-			"UserEntity": {
-				"properties": {
-					"deleted_at": {
-						"type": "string",
-						"format": "date-time"
-					},
-					"updated_at": {
-						"type": "string",
-						"format": "date-time"
-					},
-					"created_at": {
-						"type": "string",
-						"format": "date-time"
-					},
-					"role": {
-						"$ref": "#/components/schemas/UserRole"
-					},
-					"password": {
-						"type": "string"
-					},
-					"username": {
-						"type": "string"
-					},
-					"id": {
-						"type": "string"
-					}
-				},
-				"required": [
-					"role",
-					"password",
-					"username"
-				],
-				"type": "object"
-			},
-			"AuditorEducationEntity": {
-				"properties": {
-					"id": {
-						"type": "string"
-					},
-					"strata": {
-						"type": "string"
-					},
-					"scholarship": {
-						"type": "string"
-					},
-					"instance_name": {
-						"type": "string"
-					},
-					"country": {
-						"type": "string"
-					},
-					"graduate_year": {
-						"type": "number",
-						"format": "double"
-					},
-					"created_at": {
-						"type": "string",
-						"format": "date-time"
-					},
-					"updated_at": {
-						"type": "string",
-						"format": "date-time"
-					},
-					"deleted_at": {
-						"type": "string",
-						"format": "date-time"
-					}
-				},
-				"required": [
-					"strata",
-					"scholarship",
-					"instance_name",
-					"country",
-					"graduate_year"
-				],
-				"type": "object",
-				"additionalProperties": false
-			},
-			"AuditorWorkExperienceEntity": {
-				"properties": {
-					"id": {
-						"type": "string"
-					},
-					"description": {
-						"type": "string"
-					},
-					"institution": {
-						"type": "string"
-					},
-					"job_position": {
-						"type": "string"
-					},
-					"start_date": {
-						"type": "string",
-						"format": "date-time"
-					},
-					"end_date": {
-						"type": "string",
-						"format": "date-time"
-					},
-					"created_at": {
-						"type": "string",
-						"format": "date-time"
-					},
-					"updated_at": {
-						"type": "string",
-						"format": "date-time"
-					},
-					"deleted_at": {
-						"type": "string",
-						"format": "date-time"
-					}
-				},
-				"required": [
-					"description",
-					"institution",
-					"job_position",
-					"start_date",
-					"end_date"
-				],
-				"type": "object",
-				"additionalProperties": false
-			},
-			"AuditorDTO": {
+			"SdmDTO": {
 				"properties": {
 					"id": {
 						"type": "string"
@@ -243,261 +138,55 @@
 					"name": {
 						"type": "string"
 					},
-					"gender": {
-						"$ref": "#/components/schemas/AuditorGender"
-					},
-					"front_title": {
+					"email": {
 						"type": "string"
 					},
-					"back_title": {
+					"phone": {
+						"type": "string"
+					},
+					"address": {
+						"type": "string"
+					},
+					"born_address": {
 						"type": "string"
 					},
 					"born_date": {
 						"type": "string",
 						"format": "date-time"
 					},
-					"born_address": {
-						"type": "string"
+					"status": {
+						"$ref": "#/components/schemas/SdmStatus"
 					},
-					"institution": {
-						"type": "string"
-					},
-					"address": {
-						"type": "string"
-					},
-					"city": {
-						"type": "string"
-					},
-					"province": {
-						"type": "string"
-					},
-					"postal_code": {
-						"type": "number",
-						"format": "double"
-					},
-					"phone": {
-						"type": "string"
-					},
-					"fax": {
-						"type": "string"
-					},
-					"email": {
+					"title": {
 						"type": "string"
 					},
 					"educations": {
 						"items": {
-							"$ref": "#/components/schemas/AuditorEducationDTO"
+							"$ref": "#/components/schemas/SdmEducationDTO"
 						},
 						"type": "array"
 					},
 					"work_experiences": {
 						"items": {
-							"$ref": "#/components/schemas/AuditorWorkExperienceDTO"
+							"$ref": "#/components/schemas/SdmWorkExperienceDTO"
 						},
 						"type": "array"
 					},
-					"user": {
-						"$ref": "#/components/schemas/UserEntity"
-					},
-					"created_at": {
-						"type": "string",
-						"format": "date-time"
-					},
-					"updated_at": {
-						"type": "string",
-						"format": "date-time"
-					},
-					"deleted_at": {
-						"type": "string",
-						"format": "date-time"
-					}
-				},
-				"required": [
-					"name",
-					"gender",
-					"front_title",
-					"back_title",
-					"born_date",
-					"born_address",
-					"institution",
-					"address",
-					"city",
-					"province",
-					"postal_code",
-					"phone",
-					"fax",
-					"email",
-					"educations",
-					"work_experiences"
-				],
-				"type": "object",
-				"additionalProperties": false
-			},
-			"CompanyDTO": {
-				"properties": {
-					"id": {
-						"type": "string"
-					},
-					"name": {
-						"type": "string"
-					},
-					"address": {
-						"type": "string"
-					},
-					"province": {
-						"type": "string"
-					},
-					"city": {
-						"type": "string"
-					},
-					"postal_code": {
-						"type": "number",
-						"format": "double"
-					},
-					"phone": {
-						"type": "string"
-					},
-					"fax": {
-						"type": "string"
-					},
-					"email": {
-						"type": "string"
-					},
-					"npwp": {
-						"type": "string"
-					},
-					"website_url": {
-						"type": "string"
-					},
-					"user": {
-						"$ref": "#/components/schemas/UserEntity"
-					},
-					"created_at": {
-						"type": "string",
-						"format": "date-time"
-					},
-					"updated_at": {
-						"type": "string",
-						"format": "date-time"
-					},
-					"deleted_at": {
-						"type": "string",
-						"format": "date-time"
-					}
-				},
-				"required": [
-					"name",
-					"address",
-					"province",
-					"city",
-					"postal_code",
-					"phone",
-					"fax",
-					"email",
-					"npwp",
-					"website_url"
-				],
-				"type": "object",
-				"additionalProperties": false
-			},
-			"ISODetailEntity": {
-				"properties": {
-					"deleted_at": {
-						"type": "string",
-						"format": "date-time"
-					},
-					"updated_at": {
-						"type": "string",
-						"format": "date-time"
-					},
-					"created_at": {
-						"type": "string",
-						"format": "date-time"
-					},
-					"template_path": {
-						"type": "string"
-					},
-					"name": {
-						"type": "string"
-					},
-					"id": {
-						"type": "string"
-					}
-				},
-				"required": [
-					"template_path",
-					"name"
-				],
-				"type": "object"
-			},
-			"ISOEntity": {
-				"properties": {
-					"deleted_at": {
-						"type": "string",
-						"format": "date-time"
-					},
-					"updated_at": {
-						"type": "string",
-						"format": "date-time"
-					},
-					"created_at": {
-						"type": "string",
-						"format": "date-time"
-					},
-					"details": {
+					"functionals": {
 						"items": {
-							"$ref": "#/components/schemas/ISODetailEntity"
+							"$ref": "#/components/schemas/SdmFunctionalDTO"
 						},
 						"type": "array"
-					},
-					"code": {
-						"type": "string"
-					},
-					"name": {
-						"type": "string"
-					},
-					"id": {
-						"type": "string"
 					}
 				},
 				"required": [
-					"details",
-					"code",
-					"name"
-				],
-				"type": "object"
-			},
-			"UserDTO": {
-				"properties": {
-					"deleted_at": {
-						"type": "string",
-						"format": "date-time"
-					},
-					"updated_at": {
-						"type": "string",
-						"format": "date-time"
-					},
-					"created_at": {
-						"type": "string",
-						"format": "date-time"
-					},
-					"role": {
-						"$ref": "#/components/schemas/UserRole"
-					},
-					"password": {
-						"type": "string"
-					},
-					"username": {
-						"type": "string"
-					},
-					"id": {
-						"type": "string"
-					}
-				},
-				"required": [
-					"role",
-					"password",
-					"username"
+					"name",
+					"email",
+					"phone",
+					"address",
+					"born_address",
+					"born_date",
+					"status"
 				],
 				"type": "object",
 				"additionalProperties": false
@@ -510,9 +199,9 @@
 	},
 	"openapi": "3.0.0",
 	"paths": {
-		"/api/applicants": {
+		"/files/uploadFile": {
 			"post": {
-				"operationId": "Create",
+				"operationId": "UploadFile",
 				"responses": {
 					"200": {
 						"description": "Ok",
@@ -523,532 +212,6 @@
 						}
 					}
 				},
-				"tags": [
-					"Applicant Service"
-				],
-				"security": [],
-				"parameters": [],
-				"requestBody": {
-					"required": true,
-					"content": {
-						"application/json": {
-							"schema": {}
-						}
-					}
-				}
-			},
-			"delete": {
-				"operationId": "Delete",
-				"responses": {
-					"200": {
-						"description": "Ok",
-						"content": {
-							"application/json": {
-								"schema": {}
-							}
-						}
-					}
-				},
-				"tags": [
-					"Applicant Service"
-				],
-				"security": [],
-				"parameters": [],
-				"requestBody": {
-					"required": true,
-					"content": {
-						"application/json": {
-							"schema": {
-								"properties": {
-									"ids": {
-										"items": {
-											"type": "string"
-										},
-										"type": "array"
-									}
-								},
-								"required": [
-									"ids"
-								],
-								"type": "object"
-							}
-						}
-					}
-				}
-			},
-			"get": {
-				"operationId": "Index",
-				"responses": {
-					"200": {
-						"description": "Ok",
-						"content": {
-							"application/json": {
-								"schema": {}
-							}
-						}
-					}
-				},
-				"tags": [
-					"Applicant Service"
-				],
-				"security": [],
-				"parameters": [
-					{
-						"in": "query",
-						"name": "page",
-						"required": true,
-						"schema": {
-							"format": "double",
-							"type": "number"
-						}
-					},
-					{
-						"in": "query",
-						"name": "limit",
-						"required": true,
-						"schema": {
-							"format": "double",
-							"type": "number"
-						}
-					},
-					{
-						"in": "query",
-						"name": "params",
-						"required": false,
-						"schema": {
-							"type": "string"
-						}
-					}
-				]
-			}
-		},
-		"/api/applicants/{id}": {
-			"put": {
-				"operationId": "Update",
-				"responses": {
-					"200": {
-						"description": "Ok",
-						"content": {
-							"application/json": {
-								"schema": {}
-							}
-						}
-					}
-				},
-				"tags": [
-					"Applicant Service"
-				],
-				"security": [],
-				"parameters": [
-					{
-						"in": "query",
-						"name": "id",
-						"required": true,
-						"schema": {
-							"type": "string"
-						}
-					}
-				],
-				"requestBody": {
-					"required": true,
-					"content": {
-						"application/json": {
-							"schema": {}
-						}
-					}
-				}
-			},
-			"get": {
-				"operationId": "Show",
-				"responses": {
-					"200": {
-						"description": "Ok",
-						"content": {
-							"application/json": {
-								"schema": {}
-							}
-						}
-					}
-				},
-				"tags": [
-					"Applicant Service"
-				],
-				"security": [],
-				"parameters": [
-					{
-						"in": "query",
-						"name": "id",
-						"required": true,
-						"schema": {
-							"type": "string"
-						}
-					}
-				]
-			}
-		},
-		"/api/auditors": {
-			"post": {
-				"operationId": "Create",
-				"responses": {
-					"200": {
-						"description": "Ok",
-						"content": {
-							"application/json": {
-								"schema": {}
-							}
-						}
-					}
-				},
-				"tags": [
-					"Auditor Service"
-				],
-				"security": [],
-				"parameters": [],
-				"requestBody": {
-					"required": true,
-					"content": {
-						"application/json": {
-							"schema": {
-								"$ref": "#/components/schemas/AuditorDTO"
-							}
-						}
-					}
-				}
-			},
-			"delete": {
-				"operationId": "Delete",
-				"responses": {
-					"200": {
-						"description": "Ok",
-						"content": {
-							"application/json": {
-								"schema": {}
-							}
-						}
-					}
-				},
-				"tags": [
-					"Auditor Service"
-				],
-				"security": [],
-				"parameters": [],
-				"requestBody": {
-					"required": true,
-					"content": {
-						"application/json": {
-							"schema": {
-								"properties": {
-									"ids": {
-										"items": {
-											"type": "string"
-										},
-										"type": "array"
-									}
-								},
-								"required": [
-									"ids"
-								],
-								"type": "object"
-							}
-						}
-					}
-				}
-			},
-			"get": {
-				"operationId": "Index",
-				"responses": {
-					"200": {
-						"description": "Ok",
-						"content": {
-							"application/json": {
-								"schema": {}
-							}
-						}
-					}
-				},
-				"tags": [
-					"Auditor Service"
-				],
-				"security": [],
-				"parameters": [
-					{
-						"in": "query",
-						"name": "page",
-						"required": true,
-						"schema": {
-							"format": "double",
-							"type": "number"
-						}
-					},
-					{
-						"in": "query",
-						"name": "limit",
-						"required": true,
-						"schema": {
-							"format": "double",
-							"type": "number"
-						}
-					},
-					{
-						"in": "query",
-						"name": "params",
-						"required": false,
-						"schema": {
-							"type": "string"
-						}
-					}
-				]
-			}
-		},
-		"/api/auditors/{id}": {
-			"put": {
-				"operationId": "Update",
-				"responses": {
-					"200": {
-						"description": "Ok",
-						"content": {
-							"application/json": {
-								"schema": {}
-							}
-						}
-					}
-				},
-				"tags": [
-					"Auditor Service"
-				],
-				"security": [],
-				"parameters": [
-					{
-						"in": "query",
-						"name": "id",
-						"required": true,
-						"schema": {
-							"type": "string"
-						}
-					}
-				],
-				"requestBody": {
-					"required": true,
-					"content": {
-						"application/json": {
-							"schema": {
-								"$ref": "#/components/schemas/AuditorDTO"
-							}
-						}
-					}
-				}
-			},
-			"get": {
-				"operationId": "Show",
-				"responses": {
-					"200": {
-						"description": "Ok",
-						"content": {
-							"application/json": {
-								"schema": {}
-							}
-						}
-					}
-				},
-				"tags": [
-					"Auditor Service"
-				],
-				"security": [],
-				"parameters": [
-					{
-						"in": "query",
-						"name": "id",
-						"required": true,
-						"schema": {
-							"type": "string"
-						}
-					}
-				]
-			}
-		},
-		"/api/companies": {
-			"post": {
-				"operationId": "Create",
-				"responses": {
-					"200": {
-						"description": "Ok",
-						"content": {
-							"application/json": {
-								"schema": {}
-							}
-						}
-					}
-				},
-				"tags": [
-					"Compan Service"
-				],
-				"security": [],
-				"parameters": [],
-				"requestBody": {
-					"required": true,
-					"content": {
-						"application/json": {
-							"schema": {
-								"$ref": "#/components/schemas/CompanyDTO"
-							}
-						}
-					}
-				}
-			},
-			"delete": {
-				"operationId": "Delete",
-				"responses": {
-					"200": {
-						"description": "Ok",
-						"content": {
-							"application/json": {
-								"schema": {}
-							}
-						}
-					}
-				},
-				"tags": [
-					"Compan Service"
-				],
-				"security": [],
-				"parameters": [],
-				"requestBody": {
-					"required": true,
-					"content": {
-						"application/json": {
-							"schema": {
-								"properties": {
-									"ids": {
-										"items": {
-											"type": "string"
-										},
-										"type": "array"
-									}
-								},
-								"required": [
-									"ids"
-								],
-								"type": "object"
-							}
-						}
-					}
-				}
-			},
-			"get": {
-				"operationId": "Index",
-				"responses": {
-					"200": {
-						"description": "Ok",
-						"content": {
-							"application/json": {
-								"schema": {}
-							}
-						}
-					}
-				},
-				"tags": [
-					"Compan Service"
-				],
-				"security": [],
-				"parameters": [
-					{
-						"in": "query",
-						"name": "page",
-						"required": true,
-						"schema": {
-							"format": "double",
-							"type": "number"
-						}
-					},
-					{
-						"in": "query",
-						"name": "limit",
-						"required": true,
-						"schema": {
-							"format": "double",
-							"type": "number"
-						}
-					}
-				]
-			}
-		},
-		"/api/companies/{id}": {
-			"put": {
-				"operationId": "Update",
-				"responses": {
-					"200": {
-						"description": "Ok",
-						"content": {
-							"application/json": {
-								"schema": {}
-							}
-						}
-					}
-				},
-				"tags": [
-					"Compan Service"
-				],
-				"security": [],
-				"parameters": [
-					{
-						"in": "query",
-						"name": "id",
-						"required": true,
-						"schema": {
-							"type": "string"
-						}
-					}
-				],
-				"requestBody": {
-					"required": true,
-					"content": {
-						"application/json": {
-							"schema": {
-								"$ref": "#/components/schemas/CompanyDTO"
-							}
-						}
-					}
-				}
-			},
-			"get": {
-				"operationId": "Show",
-				"responses": {
-					"200": {
-						"description": "Ok",
-						"content": {
-							"application/json": {
-								"schema": {}
-							}
-						}
-					}
-				},
-				"tags": [
-					"Compan Service"
-				],
-				"security": [],
-				"parameters": [
-					{
-						"in": "query",
-						"name": "id",
-						"required": true,
-						"schema": {
-							"type": "string"
-						}
-					}
-				]
-			}
-		},
-		"/api/iso/uploads": {
-			"post": {
-				"operationId": "File",
-				"responses": {
-					"204": {
-						"description": "No content"
-					}
-				},
-				"tags": [
-					"ISO Service"
-				],
 				"security": [],
 				"parameters": [],
 				"requestBody": {
@@ -1061,10 +224,14 @@
 									"file": {
 										"type": "string",
 										"format": "binary"
+									},
+									"fileType": {
+										"type": "string"
 									}
 								},
 								"required": [
-									"file"
+									"file",
+									"fileType"
 								]
 							}
 						}
@@ -1072,7 +239,7 @@
 				}
 			}
 		},
-		"/api/iso": {
+		"/api/records": {
 			"post": {
 				"operationId": "Create",
 				"responses": {
@@ -1086,7 +253,7 @@
 					}
 				},
 				"tags": [
-					"ISO Service"
+					"Record Services"
 				],
 				"security": [],
 				"parameters": [],
@@ -1095,46 +262,7 @@
 					"content": {
 						"application/json": {
 							"schema": {
-								"$ref": "#/components/schemas/ISOEntity"
-							}
-						}
-					}
-				}
-			},
-			"delete": {
-				"operationId": "Delete",
-				"responses": {
-					"200": {
-						"description": "Ok",
-						"content": {
-							"application/json": {
-								"schema": {}
-							}
-						}
-					}
-				},
-				"tags": [
-					"ISO Service"
-				],
-				"security": [],
-				"parameters": [],
-				"requestBody": {
-					"required": true,
-					"content": {
-						"application/json": {
-							"schema": {
-								"properties": {
-									"ids": {
-										"items": {
-											"type": "string"
-										},
-										"type": "array"
-									}
-								},
-								"required": [
-									"ids"
-								],
-								"type": "object"
+								"$ref": "#/components/schemas/RecordDTO"
 							}
 						}
 					}
@@ -1153,7 +281,7 @@
 					}
 				},
 				"tags": [
-					"ISO Service"
+					"Record Services"
 				],
 				"security": [],
 				"parameters": [
@@ -1174,19 +302,11 @@
 							"format": "double",
 							"type": "number"
 						}
-					},
-					{
-						"in": "query",
-						"name": "params",
-						"required": false,
-						"schema": {
-							"type": "string"
-						}
 					}
 				]
 			}
 		},
-		"/api/iso/{id}": {
+		"/api/records/{id}": {
 			"put": {
 				"operationId": "Update",
 				"responses": {
@@ -1200,12 +320,12 @@
 					}
 				},
 				"tags": [
-					"ISO Service"
+					"Record Services"
 				],
 				"security": [],
 				"parameters": [
 					{
-						"in": "query",
+						"in": "path",
 						"name": "id",
 						"required": true,
 						"schema": {
@@ -1218,64 +338,7 @@
 					"content": {
 						"application/json": {
 							"schema": {
-								"$ref": "#/components/schemas/ISOEntity"
-							}
-						}
-					}
-				}
-			},
-			"get": {
-				"operationId": "Show",
-				"responses": {
-					"200": {
-						"description": "Ok",
-						"content": {
-							"application/json": {
-								"schema": {}
-							}
-						}
-					}
-				},
-				"tags": [
-					"ISO Service"
-				],
-				"security": [],
-				"parameters": [
-					{
-						"in": "query",
-						"name": "id",
-						"required": true,
-						"schema": {
-							"type": "string"
-						}
-					}
-				]
-			}
-		},
-		"/api/users": {
-			"post": {
-				"operationId": "Create",
-				"responses": {
-					"200": {
-						"description": "Ok",
-						"content": {
-							"application/json": {
-								"schema": {}
-							}
-						}
-					}
-				},
-				"tags": [
-					"User Service"
-				],
-				"security": [],
-				"parameters": [],
-				"requestBody": {
-					"required": true,
-					"content": {
-						"application/json": {
-							"schema": {
-								"$ref": "#/components/schemas/UserDTO"
+								"$ref": "#/components/schemas/RecordDTO"
 							}
 						}
 					}
@@ -1294,7 +357,63 @@
 					}
 				},
 				"tags": [
-					"User Service"
+					"Record Services"
+				],
+				"security": [],
+				"parameters": [
+					{
+						"in": "path",
+						"name": "id",
+						"required": true,
+						"schema": {
+							"type": "string"
+						}
+					}
+				]
+			},
+			"get": {
+				"operationId": "Show",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {}
+							}
+						}
+					}
+				},
+				"tags": [
+					"Record Services"
+				],
+				"security": [],
+				"parameters": [
+					{
+						"in": "path",
+						"name": "id",
+						"required": true,
+						"schema": {
+							"type": "string"
+						}
+					}
+				]
+			}
+		},
+		"/api/sdm": {
+			"post": {
+				"operationId": "Create",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {}
+							}
+						}
+					}
+				},
+				"tags": [
+					"Sdm Services"
 				],
 				"security": [],
 				"parameters": [],
@@ -1303,18 +422,7 @@
 					"content": {
 						"application/json": {
 							"schema": {
-								"properties": {
-									"ids": {
-										"items": {
-											"type": "string"
-										},
-										"type": "array"
-									}
-								},
-								"required": [
-									"ids"
-								],
-								"type": "object"
+								"$ref": "#/components/schemas/SdmDTO"
 							}
 						}
 					}
@@ -1333,7 +441,7 @@
 					}
 				},
 				"tags": [
-					"User Service"
+					"Sdm Services"
 				],
 				"security": [],
 				"parameters": [
@@ -1354,19 +462,11 @@
 							"format": "double",
 							"type": "number"
 						}
-					},
-					{
-						"in": "query",
-						"name": "role",
-						"required": false,
-						"schema": {
-							"$ref": "#/components/schemas/UserRole"
-						}
 					}
 				]
 			}
 		},
-		"/api/users/{id}": {
+		"/api/sdm/{id}": {
 			"put": {
 				"operationId": "Update",
 				"responses": {
@@ -1380,12 +480,12 @@
 					}
 				},
 				"tags": [
-					"User Service"
+					"Sdm Services"
 				],
 				"security": [],
 				"parameters": [
 					{
-						"in": "query",
+						"in": "path",
 						"name": "id",
 						"required": true,
 						"schema": {
@@ -1398,11 +498,38 @@
 					"content": {
 						"application/json": {
 							"schema": {
-								"$ref": "#/components/schemas/UserDTO"
+								"$ref": "#/components/schemas/SdmDTO"
 							}
 						}
 					}
 				}
+			},
+			"delete": {
+				"operationId": "Delete",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {}
+							}
+						}
+					}
+				},
+				"tags": [
+					"Sdm Services"
+				],
+				"security": [],
+				"parameters": [
+					{
+						"in": "path",
+						"name": "id",
+						"required": true,
+						"schema": {
+							"type": "string"
+						}
+					}
+				]
 			},
 			"get": {
 				"operationId": "Show",
@@ -1417,12 +544,12 @@
 					}
 				},
 				"tags": [
-					"User Service"
+					"Sdm Services"
 				],
 				"security": [],
 				"parameters": [
 					{
-						"in": "query",
+						"in": "path",
 						"name": "id",
 						"required": true,
 						"schema": {

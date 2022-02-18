@@ -10,6 +10,10 @@ import { AuditorEducationModel } from "src/app/auditor/data/models/auditor-educa
 import { ApplicantModel } from "src/app/applicant/data/models/applicant.model";
 import { ApplicantDetailModel } from "src/app/applicant/data/models/applicant-detail.model";
 import { RecordModel } from "src/app/supporting/record/data/models/record.model";
+import { SdmModel } from "src/app/supporting/sdm/data/models/sdm.model";
+import { SdmEducationModel } from "src/app/supporting/sdm/data/models/sdm-education.model";
+import { SdmWorkExperienceModel } from "src/app/supporting/sdm/data/models/sdm-work-experience.model";
+import { SdmFunctionalModel } from "src/app/supporting/sdm/data/models/sdm-functional.model";
 
 dotenv.config({});
 class Database {
@@ -29,19 +33,24 @@ class Database {
       password: envString(process.env.DATABASE_PASSWORD!, "eigen3m!"),
       database: envString(process.env.DATABASE_NAME!, "chse"),
       entities: [
-        UserModel,
-        ISOModel,
-        ISODetailModel,
-        CompanyModel,
+        // UserModel,
+        // ISOModel,
+        // ISODetailModel,
+        // CompanyModel,
 
-        AuditorModel,
-        AuditorWorkExperienceModel,
-        AuditorEducationModel,
+        // AuditorModel,
+        // AuditorWorkExperienceModel,
+        // AuditorEducationModel,
 
-        ApplicantModel,
-        ApplicantDetailModel,
+        // ApplicantModel,
+        // ApplicantDetailModel,
 
-        RecordModel
+        /** Supporting Models */
+        RecordModel,
+        SdmModel,
+        SdmEducationModel,
+        SdmWorkExperienceModel,
+        SdmFunctionalModel
       ],
       synchronize: true,
       logging: false
