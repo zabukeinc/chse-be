@@ -1,27 +1,13 @@
-import { FormField } from "tsoa"
-import { RecordType } from "../../domain/entities/record.entity"
+import { AreaEntity } from "../../../area/domain/entities/area.entity"
+import { RecordEntity, RecordType } from "../../domain/entities/record.entity"
 
-export class RecordDTO{
+export class RecordDTO implements RecordEntity {
   id?: string
-
-  @FormField('type')
   type: RecordType
-
-  @FormField('pic')
   pic?: string
-
-  @FormField('area')
-  area?: string
-
-  @FormField('title')
+  area?: AreaEntity
   title: string
-
-  @FormField('year')
   year: number
-
-  @FormField('resensi')
   resensi: Date
-
-  @FormField('file_path')
   file_path?: string
 }

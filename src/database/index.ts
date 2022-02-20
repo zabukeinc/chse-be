@@ -14,6 +14,7 @@ import { SdmModel } from "src/app/supporting/sdm/data/models/sdm.model";
 import { SdmEducationModel } from "src/app/supporting/sdm/data/models/sdm-education.model";
 import { SdmWorkExperienceModel } from "src/app/supporting/sdm/data/models/sdm-work-experience.model";
 import { SdmFunctionalModel } from "src/app/supporting/sdm/data/models/sdm-functional.model";
+import { AreaModel } from "src/app/supporting/area/data/models/area.model";
 
 dotenv.config({});
 class Database {
@@ -21,43 +22,51 @@ class Database {
   public connection: Connection;
 
   constructor() {
-    this.connectToDB();
+    if (!this.connection) {
+      this.connectToDB();
+    }
   }
 
   private connectToDB(): void {
-    createConnection({
-      type: "mysql",
-      host: envString(process.env.DATABASE_HOST!, ""),
-      port: envString(Number(process.env.DATABASE_PORT!), 3306),
-      username: envString(process.env.DATABASE_USERNAME!, "root"),
-      password: envString(process.env.DATABASE_PASSWORD!, "eigen3m!"),
-      database: envString(process.env.DATABASE_NAME!, "chse"),
-      entities: [
-        // UserModel,
-        // ISOModel,
-        // ISODetailModel,
-        // CompanyModel,
+    if (!this.connection) {
+      createConnection({
+        type: "mysql",
+        host: envString(process.env.DATABASE_HOST!, ""),
+        port: envString(Number(process.env.DATABASE_PORT!), 3306),
+        username: envString(process.env.DATABASE_USERNAME!, "root"),
+        password: envString(process.env.DATABASE_PASSWORD!, "eigen3m!"),
+        database: envString(process.env.DATABASE_NAME!, "chse"),
+        entities: [
+          // UserModel,
+          // ISOModel,
+          // ISODetailModel,
+          // CompanyModel,
 
-        // AuditorModel,
-        // AuditorWorkExperienceModel,
-        // AuditorEducationModel,
+          // AuditorModel,
+          // AuditorWorkExperienceModel,
+          // AuditorEducationModel,
 
-        // ApplicantModel,
-        // ApplicantDetailModel,
+          // ApplicantModel,
+          // ApplicantDetailModel,
 
-        /** Supporting Models */
-        RecordModel,
-        SdmModel,
-        SdmEducationModel,
-        SdmWorkExperienceModel,
-        SdmFunctionalModel
-      ],
-      synchronize: true,
-      logging: false
-    }).then(_con => {
-      this.connection = _con;
-      console.log("Connected to db!!");
-    }).catch(console.error)
+          /** Supporting Models */
+          RecordModel,
+          SdmModel,
+          SdmEducationModel,
+          SdmWorkExperienceModel,
+          SdmFunctionalModel,
+          AreaModel
+        ],
+        synchronize: true,
+        logging: false
+      }).then(_con => {
+        if (!this.connection) {
+          this.connection = _con;
+        }
+
+        console.log("Connected to db!!");
+      }).catch(console.error)
+    }
   }
 
 }

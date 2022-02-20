@@ -32,13 +32,7 @@ export abstract class BaseDataService<Entity> {
   }
 
   async findOne(options: FindOneOptions<Entity>): Promise<Entity | undefined> {
-    const entity = await this.baseRepo.findOne({ ...options, relations: this.relations })
-
-    if (!entity) {
-      throw new Error(`Data not found`)
-    }
-
-    return entity
+    return await this.baseRepo.findOne({ ...options, relations: this.relations })
   }
 
   async index(page: number, limit: number, options: FindManyOptions<Entity>): Promise<any> {

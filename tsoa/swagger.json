@@ -13,18 +13,99 @@
 				],
 				"type": "string"
 			},
-			"RecordDTO": {
+			"AreaEntity": {
 				"properties": {
 					"id": {
 						"type": "string"
+					},
+					"creator_name": {
+						"type": "string",
+						"nullable": true
+					},
+					"editor_name": {
+						"type": "string",
+						"nullable": true
+					},
+					"creator_id": {
+						"type": "string",
+						"nullable": true
+					},
+					"editor_id": {
+						"type": "string",
+						"nullable": true
+					},
+					"created_at": {
+						"type": "string",
+						"format": "date-time"
+					},
+					"updated_at": {
+						"type": "string",
+						"format": "date-time"
+					},
+					"deleted_at": {
+						"type": "string",
+						"format": "date-time",
+						"nullable": true
+					},
+					"name": {
+						"type": "string"
+					},
+					"code": {
+						"type": "string"
+					},
+					"records": {
+						"items": {
+							"$ref": "#/components/schemas/RecordEntity"
+						},
+						"type": "array",
+						"description": "Relations"
+					}
+				},
+				"required": [
+					"name",
+					"code"
+				],
+				"type": "object",
+				"additionalProperties": false
+			},
+			"RecordEntity": {
+				"properties": {
+					"id": {
+						"type": "string"
+					},
+					"creator_name": {
+						"type": "string",
+						"nullable": true
+					},
+					"editor_name": {
+						"type": "string",
+						"nullable": true
+					},
+					"creator_id": {
+						"type": "string",
+						"nullable": true
+					},
+					"editor_id": {
+						"type": "string",
+						"nullable": true
+					},
+					"created_at": {
+						"type": "string",
+						"format": "date-time"
+					},
+					"updated_at": {
+						"type": "string",
+						"format": "date-time"
+					},
+					"deleted_at": {
+						"type": "string",
+						"format": "date-time",
+						"nullable": true
 					},
 					"type": {
 						"$ref": "#/components/schemas/RecordType"
 					},
 					"pic": {
-						"type": "string"
-					},
-					"area": {
 						"type": "string"
 					},
 					"title": {
@@ -39,6 +120,139 @@
 						"format": "date-time"
 					},
 					"file_path": {
+						"type": "string"
+					},
+					"area": {
+						"$ref": "#/components/schemas/AreaEntity",
+						"description": "relation"
+					},
+					"area_id": {
+						"type": "string"
+					}
+				},
+				"required": [
+					"type",
+					"title",
+					"year",
+					"resensi"
+				],
+				"type": "object",
+				"additionalProperties": false
+			},
+			"AreaDTO": {
+				"properties": {
+					"id": {
+						"type": "string"
+					},
+					"creator_name": {
+						"type": "string",
+						"nullable": true
+					},
+					"editor_name": {
+						"type": "string",
+						"nullable": true
+					},
+					"creator_id": {
+						"type": "string",
+						"nullable": true
+					},
+					"editor_id": {
+						"type": "string",
+						"nullable": true
+					},
+					"created_at": {
+						"type": "string",
+						"format": "date-time"
+					},
+					"updated_at": {
+						"type": "string",
+						"format": "date-time"
+					},
+					"deleted_at": {
+						"type": "string",
+						"format": "date-time",
+						"nullable": true
+					},
+					"name": {
+						"type": "string"
+					},
+					"code": {
+						"type": "string"
+					},
+					"records": {
+						"items": {
+							"$ref": "#/components/schemas/RecordEntity"
+						},
+						"type": "array",
+						"description": "Relations"
+					}
+				},
+				"required": [
+					"name",
+					"code"
+				],
+				"type": "object",
+				"additionalProperties": false
+			},
+			"RecordDTO": {
+				"properties": {
+					"id": {
+						"type": "string"
+					},
+					"creator_name": {
+						"type": "string",
+						"nullable": true
+					},
+					"editor_name": {
+						"type": "string",
+						"nullable": true
+					},
+					"creator_id": {
+						"type": "string",
+						"nullable": true
+					},
+					"editor_id": {
+						"type": "string",
+						"nullable": true
+					},
+					"created_at": {
+						"type": "string",
+						"format": "date-time"
+					},
+					"updated_at": {
+						"type": "string",
+						"format": "date-time"
+					},
+					"deleted_at": {
+						"type": "string",
+						"format": "date-time",
+						"nullable": true
+					},
+					"type": {
+						"$ref": "#/components/schemas/RecordType"
+					},
+					"pic": {
+						"type": "string"
+					},
+					"title": {
+						"type": "string"
+					},
+					"year": {
+						"type": "number",
+						"format": "double"
+					},
+					"resensi": {
+						"type": "string",
+						"format": "date-time"
+					},
+					"file_path": {
+						"type": "string"
+					},
+					"area": {
+						"$ref": "#/components/schemas/AreaEntity",
+						"description": "relation"
+					},
+					"area_id": {
 						"type": "string"
 					}
 				},
@@ -199,6 +413,174 @@
 	},
 	"openapi": "3.0.0",
 	"paths": {
+		"/api/areas": {
+			"post": {
+				"operationId": "Create",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {}
+							}
+						}
+					}
+				},
+				"tags": [
+					"Area Services"
+				],
+				"security": [],
+				"parameters": [],
+				"requestBody": {
+					"required": true,
+					"content": {
+						"application/json": {
+							"schema": {
+								"$ref": "#/components/schemas/AreaDTO"
+							}
+						}
+					}
+				}
+			},
+			"get": {
+				"operationId": "Index",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {}
+							}
+						}
+					}
+				},
+				"tags": [
+					"Area Services"
+				],
+				"security": [],
+				"parameters": [
+					{
+						"in": "query",
+						"name": "page",
+						"required": true,
+						"schema": {
+							"format": "double",
+							"type": "number"
+						}
+					},
+					{
+						"in": "query",
+						"name": "limit",
+						"required": true,
+						"schema": {
+							"format": "double",
+							"type": "number"
+						}
+					},
+					{
+						"in": "query",
+						"name": "search",
+						"required": false,
+						"schema": {
+							"type": "string"
+						}
+					}
+				]
+			}
+		},
+		"/api/areas/{id}": {
+			"put": {
+				"operationId": "Update",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {}
+							}
+						}
+					}
+				},
+				"tags": [
+					"Area Services"
+				],
+				"security": [],
+				"parameters": [
+					{
+						"in": "path",
+						"name": "id",
+						"required": true,
+						"schema": {
+							"type": "string"
+						}
+					}
+				],
+				"requestBody": {
+					"required": true,
+					"content": {
+						"application/json": {
+							"schema": {
+								"$ref": "#/components/schemas/AreaDTO"
+							}
+						}
+					}
+				}
+			},
+			"delete": {
+				"operationId": "Delete",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {}
+							}
+						}
+					}
+				},
+				"tags": [
+					"Area Services"
+				],
+				"security": [],
+				"parameters": [
+					{
+						"in": "path",
+						"name": "id",
+						"required": true,
+						"schema": {
+							"type": "string"
+						}
+					}
+				]
+			},
+			"get": {
+				"operationId": "Show",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {}
+							}
+						}
+					}
+				},
+				"tags": [
+					"Area Services"
+				],
+				"security": [],
+				"parameters": [
+					{
+						"in": "path",
+						"name": "id",
+						"required": true,
+						"schema": {
+							"type": "string"
+						}
+					}
+				]
+			}
+		},
 		"/files/uploadFile": {
 			"post": {
 				"operationId": "UploadFile",

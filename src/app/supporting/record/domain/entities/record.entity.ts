@@ -1,18 +1,21 @@
+import { BaseEntity } from "../../../../base/data/entities/base.entity";
+import { AreaEntity } from "../../../area/domain/entities/area.entity";
+
 export enum RecordType {
   MUTU = 'mutu',
   TEKNIS = 'teknis'
 }
 
-export interface RecordEntity {
+export interface RecordEntity extends BaseEntity {
   id?: string
   type: RecordType
   pic?: string
-  area?: string
   title: string
   year: number
   resensi: Date
   file_path?: string
-  created_at?: Date
-  updated_at?: Date
-  deleted_at?: Date
+
+  /** relation */
+  area?: AreaEntity
+  area_id?: string
 }
