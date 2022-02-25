@@ -194,6 +194,116 @@
 				"type": "object",
 				"additionalProperties": false
 			},
+			"DocumentType": {
+				"enum": [
+					"internal",
+					"external"
+				],
+				"type": "string"
+			},
+			"DocumentCategory": {
+				"enum": [
+					"manual",
+					"sop",
+					"ik",
+					"form",
+					"standard",
+					"rule",
+					"guideline",
+					"other"
+				],
+				"type": "string"
+			},
+			"DocumentDTO": {
+				"properties": {
+					"id": {
+						"type": "string"
+					},
+					"creator_name": {
+						"type": "string",
+						"nullable": true
+					},
+					"editor_name": {
+						"type": "string",
+						"nullable": true
+					},
+					"creator_id": {
+						"type": "string",
+						"nullable": true
+					},
+					"editor_id": {
+						"type": "string",
+						"nullable": true
+					},
+					"created_at": {
+						"anyOf": [],
+						"nullable": true
+					},
+					"updated_at": {
+						"type": "string",
+						"format": "date-time",
+						"nullable": true
+					},
+					"deleted_at": {
+						"type": "string",
+						"format": "date-time",
+						"nullable": true
+					},
+					"code": {
+						"type": "string"
+					},
+					"title": {
+						"type": "string"
+					},
+					"name": {
+						"type": "string"
+					},
+					"no_publish": {
+						"type": "number",
+						"format": "double",
+						"nullable": true
+					},
+					"publish_date": {
+						"type": "string",
+						"format": "date-time",
+						"nullable": true
+					},
+					"no_revision": {
+						"type": "number",
+						"format": "double",
+						"nullable": true
+					},
+					"revision_date": {
+						"type": "string",
+						"format": "date-time",
+						"nullable": true
+					},
+					"file_path": {
+						"type": "string",
+						"nullable": true
+					},
+					"type": {
+						"$ref": "#/components/schemas/DocumentType"
+					},
+					"category": {
+						"$ref": "#/components/schemas/DocumentCategory"
+					}
+				},
+				"required": [
+					"code",
+					"title",
+					"name",
+					"no_publish",
+					"publish_date",
+					"no_revision",
+					"revision_date",
+					"file_path",
+					"type",
+					"category"
+				],
+				"type": "object",
+				"additionalProperties": false
+			},
 			"RecordDTO": {
 				"properties": {
 					"id": {
@@ -567,6 +677,174 @@
 				},
 				"tags": [
 					"Area Services"
+				],
+				"security": [],
+				"parameters": [
+					{
+						"in": "path",
+						"name": "id",
+						"required": true,
+						"schema": {
+							"type": "string"
+						}
+					}
+				]
+			}
+		},
+		"/api/documents": {
+			"post": {
+				"operationId": "Create",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {}
+							}
+						}
+					}
+				},
+				"tags": [
+					"Document Services"
+				],
+				"security": [],
+				"parameters": [],
+				"requestBody": {
+					"required": true,
+					"content": {
+						"application/json": {
+							"schema": {
+								"$ref": "#/components/schemas/DocumentDTO"
+							}
+						}
+					}
+				}
+			},
+			"get": {
+				"operationId": "Index",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {}
+							}
+						}
+					}
+				},
+				"tags": [
+					"Document Services"
+				],
+				"security": [],
+				"parameters": [
+					{
+						"in": "query",
+						"name": "page",
+						"required": true,
+						"schema": {
+							"format": "double",
+							"type": "number"
+						}
+					},
+					{
+						"in": "query",
+						"name": "limit",
+						"required": true,
+						"schema": {
+							"format": "double",
+							"type": "number"
+						}
+					},
+					{
+						"in": "query",
+						"name": "search",
+						"required": false,
+						"schema": {
+							"type": "string"
+						}
+					}
+				]
+			}
+		},
+		"/api/documents/{id}": {
+			"put": {
+				"operationId": "Update",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {}
+							}
+						}
+					}
+				},
+				"tags": [
+					"Document Services"
+				],
+				"security": [],
+				"parameters": [
+					{
+						"in": "path",
+						"name": "id",
+						"required": true,
+						"schema": {
+							"type": "string"
+						}
+					}
+				],
+				"requestBody": {
+					"required": true,
+					"content": {
+						"application/json": {
+							"schema": {
+								"$ref": "#/components/schemas/DocumentDTO"
+							}
+						}
+					}
+				}
+			},
+			"delete": {
+				"operationId": "Delete",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {}
+							}
+						}
+					}
+				},
+				"tags": [
+					"Document Services"
+				],
+				"security": [],
+				"parameters": [
+					{
+						"in": "path",
+						"name": "id",
+						"required": true,
+						"schema": {
+							"type": "string"
+						}
+					}
+				]
+			},
+			"get": {
+				"operationId": "Show",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {}
+							}
+						}
+					}
+				},
+				"tags": [
+					"Document Services"
 				],
 				"security": [],
 				"parameters": [

@@ -15,6 +15,7 @@ import { SdmEducationModel } from "src/app/supporting/sdm/data/models/sdm-educat
 import { SdmWorkExperienceModel } from "src/app/supporting/sdm/data/models/sdm-work-experience.model";
 import { SdmFunctionalModel } from "src/app/supporting/sdm/data/models/sdm-functional.model";
 import { AreaModel } from "src/app/supporting/area/data/models/area.model";
+import { DocumentModel } from "src/app/supporting/document/data/models/document.model";
 
 dotenv.config({});
 class Database {
@@ -55,7 +56,8 @@ class Database {
           SdmEducationModel,
           SdmWorkExperienceModel,
           SdmFunctionalModel,
-          AreaModel
+          AreaModel,
+          DocumentModel
         ],
         synchronize: true,
         logging: false
