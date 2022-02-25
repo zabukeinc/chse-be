@@ -64,11 +64,10 @@ export class RecordController extends BaseController<RecordEntity> {
   async index(
     @Query('page') page: number,
     @Query('limit') limit: number,
+    @Query('search') search?: string
   ): Promise<any> {
     try {
-      let params = null
-
-      const entities = await this.orchestrator.index(page, limit, params)
+      const entities = await this.orchestrator.index(page, limit, search)
 
       return this.responses.json(200, entities) as IResponses
     } catch (err) {

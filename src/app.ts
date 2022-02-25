@@ -6,6 +6,7 @@ import swaggerUi from 'swagger-ui-express';
 import { ValidateError } from 'tsoa';
 import { RegisterRoutes } from '../tsoa/routes';
 import '@database';
+const path = require('path')
 
 const app: Express = express();
 
@@ -16,6 +17,7 @@ const app: Express = express();
 app.set('json spaces', 4);
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+app.use(express.static(path.join(__dirname, '../uploads')))
 
 // Handle logs in console during development
 if (process.env.NODE_ENV === 'development' || process.env.NODE_ENV === 'development') {

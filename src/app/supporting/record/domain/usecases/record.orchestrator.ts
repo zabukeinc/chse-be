@@ -1,4 +1,5 @@
 import { BaseOrchestrator } from "src/app/base/domain/usecases/base.orchestrator";
+import { FindManyOptions, Like } from "typeorm";
 import { RecordDataService } from "../../data/services/record-data.service";
 import { RecordEntity } from "../entities/record.entity";
 import { CreateRecordManager } from "./managers/create-record.manager";
@@ -10,7 +11,17 @@ export class RecordOrchestrator extends BaseOrchestrator<RecordEntity> {
     super(service)
   }
 
-  async index(page: number, limit: number, params: any): Promise<RecordEntity[]> {
+  async index(page: number, limit: number, search?: string): Promise<RecordEntity[]> {
+    let params: FindManyOptions<RecordEntity> = {}
+
+    if (search) {
+      Object.assign(params, {
+        where: {
+          title: Like(`%${search}%`),
+        }
+      });
+    }
+
     return await this.service.index(page, limit, params)
   }
 

@@ -8,7 +8,7 @@ import { Responses } from 'src/app/base/data/entities/response.entity';
 import { v4 as uuid } from 'uuid';
 
 
-@Route('files')
+@Route('api/files')
 export class FilesController {
 
   protected year = new Date().getFullYear()
@@ -18,7 +18,7 @@ export class FilesController {
   public async uploadFile(
     @Request() request: express.Request,
     @UploadedFile('file') file: Express.Multer.File,
-    @FormField('fileType') fileType: string
+    @FormField('fileType') fileType: string = 'documents'
   ): Promise<any> {
     file.filename = this.serializeName(file.originalname)
     file.destination = this.getFilePath(fileType, file.filename)
@@ -26,9 +26,10 @@ export class FilesController {
     const uploaded = await this.handleFile(request, file, fileType);
 
     if (uploaded) {
+      const realPath = file.destination.substring(9, file.destination.length)
       return new Responses().json(201, {
-        path: file.destination,
-        filename: file.filename
+        filename: file.filename,
+        path: realPath
       })
     }
   }

@@ -581,7 +581,7 @@
 				]
 			}
 		},
-		"/files/uploadFile": {
+		"/api/files/uploadFile": {
 			"post": {
 				"operationId": "UploadFile",
 				"responses": {
@@ -612,8 +612,7 @@
 									}
 								},
 								"required": [
-									"file",
-									"fileType"
+									"file"
 								]
 							}
 						}
@@ -683,6 +682,14 @@
 						"schema": {
 							"format": "double",
 							"type": "number"
+						}
+					},
+					{
+						"in": "query",
+						"name": "search",
+						"required": false,
+						"schema": {
+							"type": "string"
 						}
 					}
 				]
