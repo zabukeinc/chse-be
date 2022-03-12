@@ -10,6 +10,9 @@ export class SdmDTO {
   born_date: Date;
   status: SdmStatus;
   title?: string;
+  nik: string;
+  npwp?: string;
+  no_ktp: string;
   educations?: SdmEducationDTO[];
   work_experiences?: SdmWorkExperienceDTO[];
   functionals?: SdmFunctionalDTO[];
@@ -20,13 +23,15 @@ export class SdmEducationDTO {
   instance_name: string;
   major_name: string;
   level: string;
+  graduate_year: number;
 }
 
 export class SdmWorkExperienceDTO {
   id?: string
   company_name: string;
   position: string;
-  year: number;
+  year_in: number;
+  year_out: number;
 }
 
 export class SdmFunctionalDTO {

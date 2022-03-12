@@ -34,6 +34,15 @@ export class SdmModel extends BaseModel implements SdmEntity {
   @Column('varchar', { name: 'title', nullable: true })
   title?: string;
 
+  @Column('varchar', { name: 'no_ktp' })
+  no_ktp: string;
+
+  @Column('varchar', { name: 'nik' })
+  nik: string;
+
+  @Column('varchar', { name: 'npwp', nullable: true })
+  npwp?: string;
+
   @OneToMany(() => SdmEducationModel, model => model.sdm, {
     cascade: ['insert', 'update', 'remove']
   })

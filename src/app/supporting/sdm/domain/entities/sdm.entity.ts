@@ -1,10 +1,10 @@
 import { BaseDateEntity } from "src/app/base/data/entities/base.entity";
 
 export enum SdmStatus {
-  MARRIED = 'menikah',
-  UN_MARRIED = 'lajang',
-  STUDENT = 'pelajar/mahasiswa',
-  WORK = 'pekerja'
+  KAWIN = 'KAWIN',
+  BELUM_KAWIN = 'BELUM_KAWIN',
+  CERAI_HIDUP = 'CERAI_HIDUP',
+  CERAI_MATI = 'CERAI_MATI'
 }
 
 export interface SdmEntity extends BaseDateEntity {
@@ -18,6 +18,9 @@ export interface SdmEntity extends BaseDateEntity {
   born_date: Date
   status: SdmStatus
   title?: string
+  no_ktp: string
+  nik: string
+  npwp?: string
   educations?: SdmEducationEntity[]
   work_experiences?: SdmWorkExperienceEntity[]
   functionals?: SdmFunctionalEntity[]
@@ -28,13 +31,15 @@ export interface SdmEducationEntity extends BaseDateEntity {
   instance_name: string
   major_name: string
   level: string
+  graduate_year: number
 }
 
 export interface SdmWorkExperienceEntity extends BaseDateEntity {
   id?: string
   company_name: string
   position: string
-  year: number
+  year_in: number
+  year_out: number
 }
 
 export interface SdmFunctionalEntity extends BaseDateEntity {
@@ -42,4 +47,5 @@ export interface SdmFunctionalEntity extends BaseDateEntity {
   schema: string
   scope: string
   position: string
+  justification_path?: string
 }

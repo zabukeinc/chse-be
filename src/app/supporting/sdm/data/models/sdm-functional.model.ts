@@ -1,5 +1,5 @@
 import { BaseEntity, Column, CreateDateColumn, DeleteDateColumn, Entity, JoinColumn, ManyToOne, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
-import { SdmEducationEntity, SdmFunctionalEntity } from "../../domain/entities/sdm.entity";
+import { SdmFunctionalEntity } from "../../domain/entities/sdm.entity";
 import { SdmModel } from "./sdm.model";
 
 @Entity({ name: 'supporting_sdm_functionals' })
@@ -15,6 +15,9 @@ export class SdmFunctionalModel extends BaseEntity implements SdmFunctionalEntit
 
   @Column('varchar', { name: 'position', nullable: true })
   position: string;
+
+  @Column('varchar', { name: 'justification_path', nullable: true })
+  justification_path?: string;
 
   @CreateDateColumn({ type: 'datetime' })
   created_at?: Date;

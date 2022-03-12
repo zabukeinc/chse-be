@@ -16,6 +16,9 @@ export class SdmEducationModel extends BaseEntity implements SdmEducationEntity 
   @Column('varchar', { name: 'level', nullable: true })
   level: string;
 
+  @Column('int', { name: 'graduate_year', nullable: true })
+  graduate_year: number;
+
   @CreateDateColumn({ type: 'datetime' })
   created_at?: Date;
 

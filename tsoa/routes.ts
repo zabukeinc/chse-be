@@ -143,7 +143,7 @@ const models: TsoaRoute.Models = {
     // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
     "SdmStatus": {
         "dataType": "refEnum",
-        "enums": ["menikah","lajang","pelajar/mahasiswa","pekerja"],
+        "enums": ["KAWIN","BELUM_KAWIN","CERAI_HIDUP","CERAI_MATI"],
     },
     // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
     "SdmEducationDTO": {
@@ -153,6 +153,7 @@ const models: TsoaRoute.Models = {
             "instance_name": {"dataType":"string","required":true},
             "major_name": {"dataType":"string","required":true},
             "level": {"dataType":"string","required":true},
+            "graduate_year": {"dataType":"double","required":true},
         },
         "additionalProperties": false,
     },
@@ -163,7 +164,8 @@ const models: TsoaRoute.Models = {
             "id": {"dataType":"string"},
             "company_name": {"dataType":"string","required":true},
             "position": {"dataType":"string","required":true},
-            "year": {"dataType":"double","required":true},
+            "year_in": {"dataType":"double","required":true},
+            "year_out": {"dataType":"double","required":true},
         },
         "additionalProperties": false,
     },
@@ -191,6 +193,9 @@ const models: TsoaRoute.Models = {
             "born_date": {"dataType":"datetime","required":true},
             "status": {"ref":"SdmStatus","required":true},
             "title": {"dataType":"string"},
+            "nik": {"dataType":"string","required":true},
+            "npwp": {"dataType":"string"},
+            "no_ktp": {"dataType":"string","required":true},
             "educations": {"dataType":"array","array":{"dataType":"refObject","ref":"SdmEducationDTO"}},
             "work_experiences": {"dataType":"array","array":{"dataType":"refObject","ref":"SdmWorkExperienceDTO"}},
             "functionals": {"dataType":"array","array":{"dataType":"refObject","ref":"SdmFunctionalDTO"}},

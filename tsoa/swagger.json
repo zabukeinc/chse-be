@@ -377,10 +377,10 @@
 			},
 			"SdmStatus": {
 				"enum": [
-					"menikah",
-					"lajang",
-					"pelajar/mahasiswa",
-					"pekerja"
+					"KAWIN",
+					"BELUM_KAWIN",
+					"CERAI_HIDUP",
+					"CERAI_MATI"
 				],
 				"type": "string"
 			},
@@ -397,12 +397,17 @@
 					},
 					"level": {
 						"type": "string"
+					},
+					"graduate_year": {
+						"type": "number",
+						"format": "double"
 					}
 				},
 				"required": [
 					"instance_name",
 					"major_name",
-					"level"
+					"level",
+					"graduate_year"
 				],
 				"type": "object",
 				"additionalProperties": false
@@ -418,7 +423,11 @@
 					"position": {
 						"type": "string"
 					},
-					"year": {
+					"year_in": {
+						"type": "number",
+						"format": "double"
+					},
+					"year_out": {
 						"type": "number",
 						"format": "double"
 					}
@@ -426,7 +435,8 @@
 				"required": [
 					"company_name",
 					"position",
-					"year"
+					"year_in",
+					"year_out"
 				],
 				"type": "object",
 				"additionalProperties": false
@@ -484,6 +494,15 @@
 					"title": {
 						"type": "string"
 					},
+					"nik": {
+						"type": "string"
+					},
+					"npwp": {
+						"type": "string"
+					},
+					"no_ktp": {
+						"type": "string"
+					},
 					"educations": {
 						"items": {
 							"$ref": "#/components/schemas/SdmEducationDTO"
@@ -510,7 +529,9 @@
 					"address",
 					"born_address",
 					"born_date",
-					"status"
+					"status",
+					"nik",
+					"no_ktp"
 				],
 				"type": "object",
 				"additionalProperties": false
