@@ -35,6 +35,10 @@ export abstract class BaseDataService<Entity> {
     return await this.baseRepo.findOne({ ...options, relations: this.relations })
   }
 
+  async count(): Promise<number> {
+    return await this.baseRepo.count()
+  }
+
   async index(page: number, limit: number, options: FindManyOptions<Entity>): Promise<any> {
     const sortDefault = { order: { 'created_at': 'DESC' } }
     const [data, count] = await this.baseRepo.findAndCount({

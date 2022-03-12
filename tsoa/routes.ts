@@ -93,6 +93,11 @@ const models: TsoaRoute.Models = {
         "enums": ["manual","sop","ik","form","standard","rule","guideline","other"],
     },
     // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+    "DocumentStatus": {
+        "dataType": "refEnum",
+        "enums": ["active","expired"],
+    },
+    // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
     "DocumentDTO": {
         "dataType": "refObject",
         "properties": {
@@ -104,16 +109,19 @@ const models: TsoaRoute.Models = {
             "created_at": {"dataType":"union","subSchemas":[{"dataType":"enum","enums":[null]}]},
             "updated_at": {"dataType":"union","subSchemas":[{"dataType":"datetime"},{"dataType":"enum","enums":[null]}]},
             "deleted_at": {"dataType":"union","subSchemas":[{"dataType":"datetime"},{"dataType":"enum","enums":[null]}]},
-            "code": {"dataType":"string","required":true},
-            "title": {"dataType":"string","required":true},
-            "name": {"dataType":"string","required":true},
-            "no_publish": {"dataType":"union","subSchemas":[{"dataType":"double"},{"dataType":"enum","enums":[null]}],"required":true},
-            "publish_date": {"dataType":"union","subSchemas":[{"dataType":"datetime"},{"dataType":"enum","enums":[null]}],"required":true},
-            "no_revision": {"dataType":"union","subSchemas":[{"dataType":"double"},{"dataType":"enum","enums":[null]}],"required":true},
-            "revision_date": {"dataType":"union","subSchemas":[{"dataType":"datetime"},{"dataType":"enum","enums":[null]}],"required":true},
-            "file_path": {"dataType":"union","subSchemas":[{"dataType":"string"},{"dataType":"enum","enums":[null]}],"required":true},
             "type": {"ref":"DocumentType","required":true},
+            "code": {"dataType":"union","subSchemas":[{"dataType":"string"},{"dataType":"enum","enums":[null]}]},
+            "title": {"dataType":"string","required":true},
+            "name": {"dataType":"union","subSchemas":[{"dataType":"string"},{"dataType":"enum","enums":[null]}]},
+            "publish_date": {"dataType":"union","subSchemas":[{"dataType":"datetime"},{"dataType":"enum","enums":[null]}],"required":true},
             "category": {"ref":"DocumentCategory","required":true},
+            "owner": {"dataType":"union","subSchemas":[{"ref":"AreaEntity"},{"dataType":"enum","enums":[null]}]},
+            "status": {"dataType":"union","subSchemas":[{"ref":"DocumentStatus"},{"dataType":"enum","enums":[null]}]},
+            "access": {"dataType":"union","subSchemas":[{"dataType":"array","array":{"dataType":"refObject","ref":"AreaEntity"}},{"dataType":"enum","enums":[null]}]},
+            "file_path": {"dataType":"union","subSchemas":[{"dataType":"string"},{"dataType":"enum","enums":[null]}]},
+            "no_revision": {"dataType":"union","subSchemas":[{"dataType":"double"},{"dataType":"enum","enums":[null]}]},
+            "revision_date": {"dataType":"union","subSchemas":[{"dataType":"datetime"},{"dataType":"enum","enums":[null]}]},
+            "effective_date": {"dataType":"union","subSchemas":[{"dataType":"datetime"},{"dataType":"enum","enums":[null]}]},
         },
         "additionalProperties": false,
     },
@@ -431,6 +439,7 @@ export function RegisterRoutes(app: express.Router) {
                     page: {"in":"query","name":"page","required":true,"dataType":"double"},
                     limit: {"in":"query","name":"limit","required":true,"dataType":"double"},
                     search: {"in":"query","name":"search","dataType":"string"},
+                    type: {"in":"query","name":"type","ref":"DocumentType"},
             };
 
             // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa

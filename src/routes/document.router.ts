@@ -1,7 +1,7 @@
 import { BaseController } from "../app/base/base-controller";
 import { IResponses } from "../app/base/data/entities/response.entity";
 import { Body, Delete, Get, Post, Put, Query, Route, Tags } from "tsoa";
-import { DocumentEntity } from "../app/supporting/document/domain/entities/document.entity";
+import { DocumentEntity, DocumentType } from "../app/supporting/document/domain/entities/document.entity";
 import { DocumentOrchestrator } from "../app/supporting/document/domain/usecases/document.orchestrator";
 import { DocumentDataService } from "../app/supporting/document/data/services/document-data.service";
 import { DocumentModel } from "../app/supporting//document/data/models/document.model";
@@ -64,10 +64,11 @@ export class DocumentController extends BaseController<DocumentEntity> {
   async index(
     @Query('page') page: number,
     @Query('limit') limit: number,
-    @Query('search') search?: string
+    @Query('search') search?: string,
+    @Query('type') type?: DocumentType
   ): Promise<any> {
     try {
-      const entities = await this.orchestrator.index(page, limit, search)
+      const entities = await this.orchestrator.index(page, limit, search, type)
 
       return this.responses.json(200, entities) as IResponses
     } catch (err: any) {

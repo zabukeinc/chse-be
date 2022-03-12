@@ -214,6 +214,13 @@
 				],
 				"type": "string"
 			},
+			"DocumentStatus": {
+				"enum": [
+					"active",
+					"expired"
+				],
+				"type": "string"
+			},
 			"DocumentDTO": {
 				"properties": {
 					"id": {
@@ -249,23 +256,53 @@
 						"format": "date-time",
 						"nullable": true
 					},
+					"type": {
+						"$ref": "#/components/schemas/DocumentType"
+					},
 					"code": {
-						"type": "string"
+						"type": "string",
+						"nullable": true
 					},
 					"title": {
 						"type": "string"
 					},
 					"name": {
-						"type": "string"
-					},
-					"no_publish": {
-						"type": "number",
-						"format": "double",
+						"type": "string",
 						"nullable": true
 					},
 					"publish_date": {
 						"type": "string",
 						"format": "date-time",
+						"nullable": true
+					},
+					"category": {
+						"$ref": "#/components/schemas/DocumentCategory"
+					},
+					"owner": {
+						"allOf": [
+							{
+								"$ref": "#/components/schemas/AreaEntity"
+							}
+						],
+						"nullable": true
+					},
+					"status": {
+						"allOf": [
+							{
+								"$ref": "#/components/schemas/DocumentStatus"
+							}
+						],
+						"nullable": true
+					},
+					"access": {
+						"items": {
+							"$ref": "#/components/schemas/AreaEntity"
+						},
+						"type": "array",
+						"nullable": true
+					},
+					"file_path": {
+						"type": "string",
 						"nullable": true
 					},
 					"no_revision": {
@@ -278,27 +315,16 @@
 						"format": "date-time",
 						"nullable": true
 					},
-					"file_path": {
+					"effective_date": {
 						"type": "string",
+						"format": "date-time",
 						"nullable": true
-					},
-					"type": {
-						"$ref": "#/components/schemas/DocumentType"
-					},
-					"category": {
-						"$ref": "#/components/schemas/DocumentCategory"
 					}
 				},
 				"required": [
-					"code",
-					"title",
-					"name",
-					"no_publish",
-					"publish_date",
-					"no_revision",
-					"revision_date",
-					"file_path",
 					"type",
+					"title",
+					"publish_date",
 					"category"
 				],
 				"type": "object",
@@ -782,6 +808,14 @@
 						"required": false,
 						"schema": {
 							"type": "string"
+						}
+					},
+					{
+						"in": "query",
+						"name": "type",
+						"required": false,
+						"schema": {
+							"$ref": "#/components/schemas/DocumentType"
 						}
 					}
 				]

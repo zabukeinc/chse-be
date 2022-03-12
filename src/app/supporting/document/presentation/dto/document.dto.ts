@@ -1,16 +1,19 @@
-import { DocumentCategory, DocumentEntity, DocumentType } from "../../domain/entities/document.entity";
+import { AreaEntity } from "../../../area/domain/entities/area.entity";
+import { DocumentCategory, DocumentEntity, DocumentStatus, DocumentType } from "../../domain/entities/document.entity";
 
 export class DocumentDTO implements DocumentEntity {
   type: DocumentType;
   category: DocumentCategory;
-  code: string;
+  code?: string | null;
   title: string;
-  name: string;
-  no_publish: number | null;
+  name?: string | null;
   publish_date: Date | null;
-  no_revision: number | null;
-  revision_date: Date | null;
-  file_path: string | null;
+  revision_date?: Date | null;
+  file_path?: string | null;
+  owner?: AreaEntity | null;
+  status?: DocumentStatus | null;
+  access?: AreaEntity[] | null;
+  effective_date?: Date | null;
   id?: string;
   creator_name?: string | null;
   editor_name?: string | null;

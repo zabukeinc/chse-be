@@ -1,7 +1,7 @@
 import { BaseOrchestrator } from "src/app/base/domain/usecases/base.orchestrator";
 import { FindManyOptions, Like } from "typeorm";
 import { DocumentDataService } from "../../data/services/document-data.service";
-import { DocumentEntity } from "../entities/document.entity";
+import { DocumentEntity, DocumentType } from "../entities/document.entity";
 import { CreateDocumentManager } from "./managers/create-document.manager";
 import { DeleteDocumentManager } from "./managers/delete-document.manager";
 import { UpdateDocumentManager } from "./managers/update-document.manager";
@@ -11,16 +11,29 @@ export class DocumentOrchestrator extends BaseOrchestrator<DocumentEntity>{
     super(service)
   }
 
-  async index(page: number, limit: number, search?: string): Promise<DocumentEntity[]> {
-    const params: FindManyOptions<DocumentEntity> = {}
+  async index(
+    page: number,
+    limit: number,
+    search?: string,
+    type?: DocumentType
+  ): Promise<DocumentEntity[]> {
+    const params: FindManyOptions<DocumentEntity> = {
+      where: {}
+    }
 
     if (search) {
-      Object.assign(params, {
-        where: {
-          title: Like(`%${search}%`),
-          name: Like(`%${search}%`)
-        }
+      Object.assign(params.where, {
+        ...params.where as Object,
+        title: Like(`%${search}%`),
+        name: Like(`%${search}%`)
       });
+    }
+
+    if (type) {
+      Object.assign(params.where, {
+        ...params.where as Object,
+        type
+      })
     }
 
     return await this.service.index(page, limit, params)

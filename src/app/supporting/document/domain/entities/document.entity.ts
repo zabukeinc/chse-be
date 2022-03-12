@@ -1,3 +1,4 @@
+import { AreaEntity } from "../../../area/domain/entities/area.entity";
 import { BaseEntity } from "../../../../base/data/entities/base.entity";
 
 export enum DocumentType {
@@ -16,15 +17,23 @@ export enum DocumentCategory {
   OTHER = 'other'
 }
 
+export enum DocumentStatus {
+  ACTIVE = 'active',
+  EXPIRED = 'expired'
+}
+
 export interface DocumentEntity extends BaseEntity {
-  code: string
-  title: string
-  name: string
-  no_publish: number
-  publish_date: Date
-  no_revision: number
-  revision_date: Date
-  file_path: string
   type: DocumentType
+  code?: string
+  title: string
+  name?: string
+  publish_date: Date
   category: DocumentCategory
+  owner?: AreaEntity
+  status?: DocumentStatus | null
+  access?: AreaEntity[] | null
+  file_path?: string | null
+  no_revision?: number | null
+  revision_date?: Date | null
+  effective_date?: Date | null
 }
