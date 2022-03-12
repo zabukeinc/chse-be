@@ -7,7 +7,7 @@ export class RecordDTO implements RecordEntity {
   pic?: string
   area?: AreaEntity
   title: string
-  year: number
-  resensi: Date
+  year: Date
+  resensi: number
   file_path?: string
 }

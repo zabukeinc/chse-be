@@ -14,11 +14,11 @@ export class RecordModel extends BaseModel implements RecordEntity {
   @Column('varchar', { name: 'title' })
   title: string;
 
-  @Column('int', { name: 'year' })
-  year: number;
+  @Column('datetime', { name: 'year' })
+  year: Date;
 
-  @Column('date', { name: 'resensi' })
-  resensi: Date;
+  @Column('int', { name: 'resensi' })
+  resensi: number;
 
   @Column('text', { name: 'file_path', nullable: true })
   file_path?: string;

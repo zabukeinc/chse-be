@@ -11,8 +11,8 @@ export interface RecordEntity extends BaseEntity {
   type: RecordType
   pic?: string
   title: string
-  year: number
-  resensi: Date
+  year: Date
+  resensi: number
   file_path?: string
 
   /** relation */

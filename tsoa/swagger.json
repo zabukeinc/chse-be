@@ -112,12 +112,12 @@
 						"type": "string"
 					},
 					"year": {
-						"type": "number",
-						"format": "double"
-					},
-					"resensi": {
 						"type": "string",
 						"format": "date-time"
+					},
+					"resensi": {
+						"type": "number",
+						"format": "double"
 					},
 					"file_path": {
 						"type": "string"
@@ -348,12 +348,12 @@
 						"type": "string"
 					},
 					"year": {
-						"type": "number",
-						"format": "double"
-					},
-					"resensi": {
 						"type": "string",
 						"format": "date-time"
+					},
+					"resensi": {
+						"type": "number",
+						"format": "double"
 					},
 					"file_path": {
 						"type": "string"
