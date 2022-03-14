@@ -252,6 +252,7 @@ const models: TsoaRoute.Models = {
         "dataType": "refObject",
         "properties": {
             "id": {"dataType":"string"},
+            "sdm_id": {"dataType":"string"},
             "instance_name": {"dataType":"string","required":true},
             "major_name": {"dataType":"string","required":true},
             "level": {"dataType":"string","required":true},
@@ -264,6 +265,7 @@ const models: TsoaRoute.Models = {
         "dataType": "refObject",
         "properties": {
             "id": {"dataType":"string"},
+            "sdm_id": {"dataType":"string"},
             "company_name": {"dataType":"string","required":true},
             "position": {"dataType":"string","required":true},
             "year_in": {"dataType":"double","required":true},
@@ -276,9 +278,11 @@ const models: TsoaRoute.Models = {
         "dataType": "refObject",
         "properties": {
             "id": {"dataType":"string"},
+            "sdm_id": {"dataType":"string"},
             "schema": {"dataType":"string","required":true},
             "scope": {"dataType":"string","required":true},
             "position": {"dataType":"string","required":true},
+            "justification_path": {"dataType":"string"},
         },
         "additionalProperties": false,
     },

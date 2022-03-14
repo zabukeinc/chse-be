@@ -20,6 +20,7 @@ export class SdmDTO {
 
 export class SdmEducationDTO {
   id?: string;
+  sdm_id?: string
   instance_name: string;
   major_name: string;
   level: string;
@@ -28,6 +29,7 @@ export class SdmEducationDTO {
 
 export class SdmWorkExperienceDTO {
   id?: string
+  sdm_id?: string
   company_name: string;
   position: string;
   year_in: number;
@@ -36,7 +38,9 @@ export class SdmWorkExperienceDTO {
 
 export class SdmFunctionalDTO {
   id?: string
+  sdm_id?: string
   schema: string;
   scope: string;
   position: string;
+  justification_path?: string;
 }

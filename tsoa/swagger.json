@@ -643,6 +643,9 @@
 					"id": {
 						"type": "string"
 					},
+					"sdm_id": {
+						"type": "string"
+					},
 					"instance_name": {
 						"type": "string"
 					},
@@ -669,6 +672,9 @@
 			"SdmWorkExperienceDTO": {
 				"properties": {
 					"id": {
+						"type": "string"
+					},
+					"sdm_id": {
 						"type": "string"
 					},
 					"company_name": {
@@ -700,6 +706,9 @@
 					"id": {
 						"type": "string"
 					},
+					"sdm_id": {
+						"type": "string"
+					},
 					"schema": {
 						"type": "string"
 					},
@@ -707,6 +716,9 @@
 						"type": "string"
 					},
 					"position": {
+						"type": "string"
+					},
+					"justification_path": {
 						"type": "string"
 					}
 				},
