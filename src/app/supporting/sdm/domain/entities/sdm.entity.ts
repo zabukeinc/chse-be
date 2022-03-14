@@ -39,7 +39,7 @@ export interface SdmWorkExperienceEntity extends BaseDateEntity {
   company_name: string
   position: string
   year_in: number
-  year_out: number
+  year_out: string
 }
 
 export interface SdmFunctionalEntity extends BaseDateEntity {

@@ -269,7 +269,7 @@ const models: TsoaRoute.Models = {
             "company_name": {"dataType":"string","required":true},
             "position": {"dataType":"string","required":true},
             "year_in": {"dataType":"double","required":true},
-            "year_out": {"dataType":"double","required":true},
+            "year_out": {"dataType":"string","required":true},
         },
         "additionalProperties": false,
     },

@@ -33,7 +33,7 @@ export class SdmWorkExperienceDTO {
   company_name: string;
   position: string;
   year_in: number;
-  year_out: number;
+  year_out: string;
 }
 
 export class SdmFunctionalDTO {

@@ -16,8 +16,8 @@ export class SdmWorkExperienceModel extends BaseEntity implements SdmWorkExperie
   @Column('int', { name: 'year_in', nullable: true })
   year_in: number;
 
-  @Column('int', { name: 'year_out', nullable: true })
-  year_out: number;
+  @Column('varchar', { name: 'year_out', nullable: true })
+  year_out: string;
 
   @CreateDateColumn({ type: 'datetime' })
   created_at?: Date;
