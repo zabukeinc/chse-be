@@ -11,6 +11,8 @@ import { FilesController } from './../src/routes/file.router';
 // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
 import { RecordController } from './../src/routes/record.router';
 // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+import { RiskController } from './../src/routes/risk.router';
+// WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
 import { SdmController } from './../src/routes/sdm.router';
 import * as express from 'express';
 const multer = require('multer');
@@ -145,6 +147,98 @@ const models: TsoaRoute.Models = {
             "file_path": {"dataType":"string"},
             "area": {"ref":"AreaEntity"},
             "area_id": {"dataType":"string"},
+        },
+        "additionalProperties": false,
+    },
+    // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+    "RiskSourceType": {
+        "dataType": "refEnum",
+        "enums": ["INTERNAL","EXTERNAL"],
+    },
+    // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+    "RiskSource": {
+        "dataType": "refEnum",
+        "enums": ["Budaya","Karyawan","Bisnis Proses","Vendor","Pasar","Peraturan","Teknologi","Ekonomi","Sosial","Pemerintah","Konsumen"],
+    },
+    // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+    "RiskType": {
+        "dataType": "refEnum",
+        "enums": ["Strategi","Operasional","Keuangan","Kepatuhan","Ketidakberpihakan","Keselamatan"],
+    },
+    // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+    "RiskConlusion": {
+        "dataType": "refEnum",
+        "enums": ["Diterima","Mitigasi Ulang"],
+    },
+    // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+    "RiskEvaluationResult": {
+        "dataType": "refEnum",
+        "enums": ["Efektif","Tidak Efektif"],
+    },
+    // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+    "ConsequenceValue": {
+        "dataType": "refEnum",
+        "enums": [1,2,3,4,5],
+    },
+    // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+    "LikelyhoodValue": {
+        "dataType": "refEnum",
+        "enums": [1,2,3,4,5],
+    },
+    // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+    "RiskDetailDTO": {
+        "dataType": "refObject",
+        "properties": {
+            "deleted_at": {"dataType":"datetime"},
+            "updated_at": {"dataType":"datetime"},
+            "created_at": {"dataType":"datetime"},
+            "consequence": {"ref":"ConsequenceValue","required":true},
+            "likelyhood": {"ref":"LikelyhoodValue","required":true},
+        },
+        "additionalProperties": false,
+    },
+    // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+    "RiskDetailEntity": {
+        "dataType": "refObject",
+        "properties": {
+            "deleted_at": {"dataType":"datetime"},
+            "updated_at": {"dataType":"datetime"},
+            "created_at": {"dataType":"datetime"},
+            "consequence": {"ref":"ConsequenceValue","required":true},
+            "likelyhood": {"ref":"LikelyhoodValue","required":true},
+        },
+        "additionalProperties": false,
+    },
+    // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+    "RiskDTO": {
+        "dataType": "refObject",
+        "properties": {
+            "id": {"dataType":"string"},
+            "creator_name": {"dataType":"union","subSchemas":[{"dataType":"string"},{"dataType":"enum","enums":[null]}]},
+            "editor_name": {"dataType":"union","subSchemas":[{"dataType":"string"},{"dataType":"enum","enums":[null]}]},
+            "creator_id": {"dataType":"union","subSchemas":[{"dataType":"string"},{"dataType":"enum","enums":[null]}]},
+            "editor_id": {"dataType":"union","subSchemas":[{"dataType":"string"},{"dataType":"enum","enums":[null]}]},
+            "created_at": {"dataType":"datetime"},
+            "updated_at": {"dataType":"datetime"},
+            "deleted_at": {"dataType":"union","subSchemas":[{"dataType":"datetime"},{"dataType":"enum","enums":[null]}]},
+            "source_type": {"ref":"RiskSourceType","required":true},
+            "report_date": {"dataType":"datetime","required":true},
+            "identification": {"dataType":"string","required":true},
+            "consequence": {"dataType":"string","required":true},
+            "source": {"ref":"RiskSource","required":true},
+            "type": {"ref":"RiskType","required":true},
+            "code": {"dataType":"string"},
+            "mitigasi_action": {"dataType":"string"},
+            "controlling": {"dataType":"string"},
+            "pic": {"ref":"AreaEntity"},
+            "conclusion": {"ref":"RiskConlusion"},
+            "evaluation_date": {"dataType":"datetime"},
+            "evaluated_by": {"dataType":"string"},
+            "evaluation_result": {"ref":"RiskEvaluationResult"},
+            "inherit_risk": {"ref":"RiskDetailDTO","required":true},
+            "inherit_risk_result": {"dataType":"string"},
+            "residual_risk": {"ref":"RiskDetailDTO","required":true},
+            "residual_risk_result": {"dataType":"string"},
         },
         "additionalProperties": false,
     },
@@ -593,6 +687,123 @@ export function RegisterRoutes(app: express.Router) {
                 validatedArgs = getValidatedArgs(args, request, response);
 
                 const controller = new RecordController();
+
+
+              const promise = controller.index.apply(controller, validatedArgs as any);
+              promiseHandler(controller, promise, response, undefined, next);
+            } catch (err) {
+                return next(err);
+            }
+        });
+        // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+        app.post('/api/risks',
+
+            function RiskController_create(request: any, response: any, next: any) {
+            const args = {
+                    body: {"in":"body","name":"body","required":true,"ref":"RiskDTO"},
+            };
+
+            // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+
+            let validatedArgs: any[] = [];
+            try {
+                validatedArgs = getValidatedArgs(args, request, response);
+
+                const controller = new RiskController();
+
+
+              const promise = controller.create.apply(controller, validatedArgs as any);
+              promiseHandler(controller, promise, response, undefined, next);
+            } catch (err) {
+                return next(err);
+            }
+        });
+        // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+        app.put('/api/risks/:id',
+
+            function RiskController_update(request: any, response: any, next: any) {
+            const args = {
+                    id: {"in":"path","name":"id","required":true,"dataType":"string"},
+                    updateData: {"in":"body","name":"updateData","required":true,"ref":"RiskDTO"},
+            };
+
+            // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+
+            let validatedArgs: any[] = [];
+            try {
+                validatedArgs = getValidatedArgs(args, request, response);
+
+                const controller = new RiskController();
+
+
+              const promise = controller.update.apply(controller, validatedArgs as any);
+              promiseHandler(controller, promise, response, undefined, next);
+            } catch (err) {
+                return next(err);
+            }
+        });
+        // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+        app.delete('/api/risks/:id',
+
+            function RiskController_delete(request: any, response: any, next: any) {
+            const args = {
+                    id: {"in":"path","name":"id","required":true,"dataType":"string"},
+            };
+
+            // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+
+            let validatedArgs: any[] = [];
+            try {
+                validatedArgs = getValidatedArgs(args, request, response);
+
+                const controller = new RiskController();
+
+
+              const promise = controller.delete.apply(controller, validatedArgs as any);
+              promiseHandler(controller, promise, response, undefined, next);
+            } catch (err) {
+                return next(err);
+            }
+        });
+        // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+        app.get('/api/risks/:id',
+
+            function RiskController_show(request: any, response: any, next: any) {
+            const args = {
+                    id: {"in":"path","name":"id","required":true,"dataType":"string"},
+            };
+
+            // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+
+            let validatedArgs: any[] = [];
+            try {
+                validatedArgs = getValidatedArgs(args, request, response);
+
+                const controller = new RiskController();
+
+
+              const promise = controller.show.apply(controller, validatedArgs as any);
+              promiseHandler(controller, promise, response, undefined, next);
+            } catch (err) {
+                return next(err);
+            }
+        });
+        // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+        app.get('/api/risks',
+
+            function RiskController_index(request: any, response: any, next: any) {
+            const args = {
+                    page: {"in":"query","name":"page","required":true,"dataType":"double"},
+                    limit: {"in":"query","name":"limit","required":true,"dataType":"double"},
+            };
+
+            // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+
+            let validatedArgs: any[] = [];
+            try {
+                validatedArgs = getValidatedArgs(args, request, response);
+
+                const controller = new RiskController();
 
 
               const promise = controller.index.apply(controller, validatedArgs as any);

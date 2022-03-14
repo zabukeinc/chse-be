@@ -16,6 +16,8 @@ import { SdmWorkExperienceModel } from "src/app/supporting/sdm/data/models/sdm-w
 import { SdmFunctionalModel } from "src/app/supporting/sdm/data/models/sdm-functional.model";
 import { AreaModel } from "src/app/supporting/area/data/models/area.model";
 import { DocumentModel } from "src/app/supporting/document/data/models/document.model";
+import { RiskModel } from "src/app/supporting/risk/data/models/risk.model";
+import { RiskDetailModel } from "src/app/supporting/risk/data/models/risk-detail.model";
 
 dotenv.config({});
 class Database {
@@ -57,7 +59,9 @@ class Database {
           SdmWorkExperienceModel,
           SdmFunctionalModel,
           AreaModel,
-          DocumentModel
+          DocumentModel,
+          RiskModel,
+          RiskDetailModel
         ],
         synchronize: true,
         logging: false
