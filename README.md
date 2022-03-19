@@ -1,16 +1,7 @@
-npm install
 
-
-Database Preparation.
-
-1. Create your local Database.
-2. Import your local database configuration to database/index.php or you can set up your env files (example on env.example).
-
-// For Development, you can use
-npm run start (running concurently tsoa and nodemon)
-
-
-// or
-npm run tsoa:generate
-npm run start:dev
-
+Step by step
+1. Install NodeJS
+2. Open your terminal (bash) and paste https://gitlab.com/zabukeinc/chse-be.git
+3. Open folder chse-be, open terminal in current folder -> npm install
+4. Open folder on VSCode -> open .env file -> config like your local machine database
+5. to start the project (npm run dev).
