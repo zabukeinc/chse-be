@@ -3,6 +3,7 @@ import { Column, Entity, OneToMany } from "typeorm";
 import { SdmEntity, SdmStatus } from "../../domain/entities/sdm.entity";
 import { SdmEducationModel } from "./sdm-education.model";
 import { SdmFunctionalModel } from "./sdm-functional.model";
+import { SdmTrainingModel } from "./sdm-training.model";
 import { SdmWorkExperienceModel } from "./sdm-work-experience.model";
 
 @Entity({ name: 'supporting_sdm' })
@@ -57,4 +58,9 @@ export class SdmModel extends BaseModel implements SdmEntity {
     cascade: ['insert', 'update', 'remove']
   })
   functionals: SdmFunctionalModel[];
+
+  @OneToMany(() => SdmTrainingModel, model => model.sdm, {
+    cascade: ['insert', 'update', 'remove']
+  })
+  trainings: SdmTrainingModel[]
 }

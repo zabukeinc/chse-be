@@ -18,6 +18,7 @@ import { AreaModel } from "src/app/supporting/area/data/models/area.model";
 import { DocumentModel } from "src/app/supporting/document/data/models/document.model";
 import { RiskModel } from "src/app/supporting/risk/data/models/risk.model";
 import { RiskDetailModel } from "src/app/supporting/risk/data/models/risk-detail.model";
+import { SdmTrainingModel } from "src/app/supporting/sdm/data/models/sdm-training.model";
 
 dotenv.config({});
 class Database {
@@ -58,6 +59,7 @@ class Database {
           SdmEducationModel,
           SdmWorkExperienceModel,
           SdmFunctionalModel,
+          SdmTrainingModel,
           AreaModel,
           DocumentModel,
           RiskModel,

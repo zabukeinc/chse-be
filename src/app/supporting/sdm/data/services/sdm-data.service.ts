@@ -7,6 +7,7 @@ export class SdmDataService extends BaseDataService<SdmEntity> {
     'educations',
     'work_experiences',
     'functionals',
+    'trainings'
   ]
   constructor(repo: Repository<SdmEntity>) {
     super(repo)

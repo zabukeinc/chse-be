@@ -24,6 +24,7 @@ export interface SdmEntity extends BaseDateEntity {
   educations?: SdmEducationEntity[]
   work_experiences?: SdmWorkExperienceEntity[]
   functionals?: SdmFunctionalEntity[]
+  trainings?: SdmTrainingEntity[]
 }
 
 export interface SdmEducationEntity extends BaseDateEntity {
@@ -48,4 +49,14 @@ export interface SdmFunctionalEntity extends BaseDateEntity {
   scope: string
   position: string
   justification_path?: string
+}
+
+export interface SdmTrainingEntity extends BaseDateEntity {
+  id?: string
+  name: string
+  date: Date
+  instance?: string
+  instructur?: string
+  status: string
+  certification_path?: string
 }

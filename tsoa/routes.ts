@@ -287,6 +287,21 @@ const models: TsoaRoute.Models = {
         "additionalProperties": false,
     },
     // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+    "SdmTrainingDTO": {
+        "dataType": "refObject",
+        "properties": {
+            "id": {"dataType":"string"},
+            "sdm_id": {"dataType":"string"},
+            "name": {"dataType":"string","required":true},
+            "date": {"dataType":"datetime","required":true},
+            "instance": {"dataType":"string"},
+            "instructur": {"dataType":"string"},
+            "status": {"dataType":"string","required":true},
+            "certification_path": {"dataType":"string"},
+        },
+        "additionalProperties": false,
+    },
+    // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
     "SdmDTO": {
         "dataType": "refObject",
         "properties": {
@@ -305,6 +320,7 @@ const models: TsoaRoute.Models = {
             "educations": {"dataType":"array","array":{"dataType":"refObject","ref":"SdmEducationDTO"}},
             "work_experiences": {"dataType":"array","array":{"dataType":"refObject","ref":"SdmWorkExperienceDTO"}},
             "functionals": {"dataType":"array","array":{"dataType":"refObject","ref":"SdmFunctionalDTO"}},
+            "trainings": {"dataType":"array","array":{"dataType":"refObject","ref":"SdmTrainingDTO"}},
         },
         "additionalProperties": false,
     },

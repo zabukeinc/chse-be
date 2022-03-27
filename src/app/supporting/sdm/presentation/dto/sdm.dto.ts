@@ -16,6 +16,7 @@ export class SdmDTO {
   educations?: SdmEducationDTO[];
   work_experiences?: SdmWorkExperienceDTO[];
   functionals?: SdmFunctionalDTO[];
+  trainings?: SdmTrainingDTO[];
 }
 
 export class SdmEducationDTO {
@@ -43,4 +44,15 @@ export class SdmFunctionalDTO {
   scope: string;
   position: string;
   justification_path?: string;
+}
+
+export class SdmTrainingDTO {
+  id?: string;
+  sdm_id?: string;
+  name: string;
+  date: Date;
+  instance?: string;
+  instructur?: string;
+  status: string;
+  certification_path?: string;
 }

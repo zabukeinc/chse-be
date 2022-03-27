@@ -729,6 +729,42 @@
 				"type": "object",
 				"additionalProperties": false
 			},
+			"SdmTrainingDTO": {
+				"properties": {
+					"id": {
+						"type": "string"
+					},
+					"sdm_id": {
+						"type": "string"
+					},
+					"name": {
+						"type": "string"
+					},
+					"date": {
+						"type": "string",
+						"format": "date-time"
+					},
+					"instance": {
+						"type": "string"
+					},
+					"instructur": {
+						"type": "string"
+					},
+					"status": {
+						"type": "string"
+					},
+					"certification_path": {
+						"type": "string"
+					}
+				},
+				"required": [
+					"name",
+					"date",
+					"status"
+				],
+				"type": "object",
+				"additionalProperties": false
+			},
 			"SdmDTO": {
 				"properties": {
 					"id": {
@@ -783,6 +819,12 @@
 					"functionals": {
 						"items": {
 							"$ref": "#/components/schemas/SdmFunctionalDTO"
+						},
+						"type": "array"
+					},
+					"trainings": {
+						"items": {
+							"$ref": "#/components/schemas/SdmTrainingDTO"
 						},
 						"type": "array"
 					}
