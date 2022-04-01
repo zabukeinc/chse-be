@@ -19,6 +19,8 @@ export class SdmDueDiligenceModel implements SdmDueDiligenceEntity {
 
   @Column('varchar', { name: 'evaluator', nullable: true })
   evaluator: string;
+
+  @Column('enum', { name: 'risk', enum: SdmDueDiligenceRiskType, nullable: true })
   risk: SdmDueDiligenceRiskType;
 
   @Column('text', { name: 'action', nullable: true })

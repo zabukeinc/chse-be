@@ -97,6 +97,7 @@ export interface SdmDueDiligenceEntity extends BaseDateEntity {
 
 export interface SdmDueDiligenceAnswerEntity extends BaseDateEntity {
   id?: string
+  index?: number
   answer?: SdmDueDiligenceAnswerValue
   description?: string
   verification: SdmDueDiligenceAnswerVerif

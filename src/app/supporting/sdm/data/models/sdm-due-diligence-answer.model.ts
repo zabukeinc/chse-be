@@ -26,6 +26,9 @@ export class SdmDueDiligenceAnswerModel implements SdmDueDiligenceAnswerEntity {
   @JoinColumn({ name: 'sdm_due_diligence_id' })
   sdm_due_diligence: SdmDueDiligenceModel
 
+  @Column('int', { name: 'index', nullable: true })
+  index: number
+
   @CreateDateColumn({ type: 'timestamp' })
   created_at?: Date;
 

@@ -791,10 +791,15 @@
 			"SdmDueDiligenceAnswerDTO": {
 				"properties": {
 					"id": {
-						"type": "string"
+						"type": "string",
+						"nullable": true
 					},
 					"answer": {
 						"$ref": "#/components/schemas/SdmDueDiligenceAnswerValue"
+					},
+					"index": {
+						"type": "number",
+						"format": "double"
 					},
 					"description": {
 						"type": "string"
@@ -804,15 +809,22 @@
 					},
 					"created_at": {
 						"type": "string",
-						"format": "date-time"
+						"format": "date-time",
+						"nullable": true
 					},
 					"updated_at": {
 						"type": "string",
-						"format": "date-time"
+						"format": "date-time",
+						"nullable": true
 					},
 					"deleted_at": {
 						"type": "string",
-						"format": "date-time"
+						"format": "date-time",
+						"nullable": true
+					},
+					"sdm_due_diligence_id": {
+						"type": "string",
+						"nullable": true
 					}
 				},
 				"required": [
@@ -869,6 +881,9 @@
 					"deleted_at": {
 						"type": "string",
 						"format": "date-time"
+					},
+					"sdm_id": {
+						"type": "string"
 					}
 				},
 				"required": [

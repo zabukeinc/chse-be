@@ -76,14 +76,17 @@ export class SdmDueDiligenceDTO {
   created_at?: Date;
   updated_at?: Date;
   deleted_at?: Date;
+  sdm_id?: string;
 }
 
 export class SdmDueDiligenceAnswerDTO {
-  id?: string;
+  id?: string | null;
   answer?: SdmDueDiligenceAnswerValue;
+  index?: number;
   description?: string;
   verification: SdmDueDiligenceAnswerVerif;
-  created_at?: Date;
-  updated_at?: Date;
-  deleted_at?: Date;
+  created_at?: Date | null;
+  updated_at?: Date | null;
+  deleted_at?: Date | null;
+  sdm_due_diligence_id?: string | null;
 }
