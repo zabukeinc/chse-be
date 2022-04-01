@@ -302,6 +302,58 @@ const models: TsoaRoute.Models = {
         "additionalProperties": false,
     },
     // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+    "SdmDueDiligenceType": {
+        "dataType": "refEnum",
+        "enums": ["Seleksi","Mutasi","Promosi","Evaluasi"],
+    },
+    // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+    "SdmDueDiligenceAnswerValue": {
+        "dataType": "refEnum",
+        "enums": ["Ya","Tidak"],
+    },
+    // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+    "SdmDueDiligenceAnswerVerif": {
+        "dataType": "refEnum",
+        "enums": ["Valid","Tidak Valid"],
+    },
+    // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+    "SdmDueDiligenceAnswerDTO": {
+        "dataType": "refObject",
+        "properties": {
+            "id": {"dataType":"string"},
+            "answer": {"ref":"SdmDueDiligenceAnswerValue"},
+            "description": {"dataType":"string"},
+            "verification": {"ref":"SdmDueDiligenceAnswerVerif","required":true},
+            "created_at": {"dataType":"datetime"},
+            "updated_at": {"dataType":"datetime"},
+            "deleted_at": {"dataType":"datetime"},
+        },
+        "additionalProperties": false,
+    },
+    // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+    "SdmDueDiligenceRiskType": {
+        "dataType": "refEnum",
+        "enums": ["Konflik","Tidak Ada Konflik"],
+    },
+    // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+    "SdmDueDiligenceDTO": {
+        "dataType": "refObject",
+        "properties": {
+            "id": {"dataType":"string"},
+            "type": {"ref":"SdmDueDiligenceType","required":true},
+            "answers": {"dataType":"array","array":{"dataType":"refObject","ref":"SdmDueDiligenceAnswerDTO"}},
+            "conclusion": {"dataType":"string"},
+            "verification_date": {"dataType":"datetime","required":true},
+            "evaluator": {"dataType":"string","required":true},
+            "risk": {"ref":"SdmDueDiligenceRiskType","required":true},
+            "action": {"dataType":"string","required":true},
+            "created_at": {"dataType":"datetime"},
+            "updated_at": {"dataType":"datetime"},
+            "deleted_at": {"dataType":"datetime"},
+        },
+        "additionalProperties": false,
+    },
+    // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
     "SdmDTO": {
         "dataType": "refObject",
         "properties": {
@@ -321,6 +373,7 @@ const models: TsoaRoute.Models = {
             "work_experiences": {"dataType":"array","array":{"dataType":"refObject","ref":"SdmWorkExperienceDTO"}},
             "functionals": {"dataType":"array","array":{"dataType":"refObject","ref":"SdmFunctionalDTO"}},
             "trainings": {"dataType":"array","array":{"dataType":"refObject","ref":"SdmTrainingDTO"}},
+            "due_diligence": {"ref":"SdmDueDiligenceDTO"},
         },
         "additionalProperties": false,
     },

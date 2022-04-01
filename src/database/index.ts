@@ -19,6 +19,8 @@ import { DocumentModel } from "src/app/supporting/document/data/models/document.
 import { RiskModel } from "src/app/supporting/risk/data/models/risk.model";
 import { RiskDetailModel } from "src/app/supporting/risk/data/models/risk-detail.model";
 import { SdmTrainingModel } from "src/app/supporting/sdm/data/models/sdm-training.model";
+import { SdmDueDiligenceModel } from "src/app/supporting/sdm/data/models/sdm-due-diligence.model";
+import { SdmDueDiligenceAnswerModel } from "src/app/supporting/sdm/data/models/sdm-due-diligence-answer.model";
 
 dotenv.config({});
 class Database {
@@ -60,6 +62,8 @@ class Database {
           SdmWorkExperienceModel,
           SdmFunctionalModel,
           SdmTrainingModel,
+          SdmDueDiligenceModel,
+          SdmDueDiligenceAnswerModel,
           AreaModel,
           DocumentModel,
           RiskModel,

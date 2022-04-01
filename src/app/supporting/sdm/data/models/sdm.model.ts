@@ -1,6 +1,7 @@
 import { BaseModel } from "src/app/base/data/models/base.model";
-import { Column, Entity, OneToMany } from "typeorm";
+import { Column, Entity, OneToMany, OneToOne } from "typeorm";
 import { SdmEntity, SdmStatus } from "../../domain/entities/sdm.entity";
+import { SdmDueDiligenceModel } from "./sdm-due-diligence.model";
 import { SdmEducationModel } from "./sdm-education.model";
 import { SdmFunctionalModel } from "./sdm-functional.model";
 import { SdmTrainingModel } from "./sdm-training.model";
@@ -63,4 +64,9 @@ export class SdmModel extends BaseModel implements SdmEntity {
     cascade: ['insert', 'update', 'remove']
   })
   trainings: SdmTrainingModel[]
+
+  @OneToOne(() => SdmDueDiligenceModel, model => model.sdm, {
+    cascade: ['insert', 'update', 'remove']
+  })
+  due_diligence: SdmDueDiligenceModel
 }

@@ -765,6 +765,122 @@
 				"type": "object",
 				"additionalProperties": false
 			},
+			"SdmDueDiligenceType": {
+				"enum": [
+					"Seleksi",
+					"Mutasi",
+					"Promosi",
+					"Evaluasi"
+				],
+				"type": "string"
+			},
+			"SdmDueDiligenceAnswerValue": {
+				"enum": [
+					"Ya",
+					"Tidak"
+				],
+				"type": "string"
+			},
+			"SdmDueDiligenceAnswerVerif": {
+				"enum": [
+					"Valid",
+					"Tidak Valid"
+				],
+				"type": "string"
+			},
+			"SdmDueDiligenceAnswerDTO": {
+				"properties": {
+					"id": {
+						"type": "string"
+					},
+					"answer": {
+						"$ref": "#/components/schemas/SdmDueDiligenceAnswerValue"
+					},
+					"description": {
+						"type": "string"
+					},
+					"verification": {
+						"$ref": "#/components/schemas/SdmDueDiligenceAnswerVerif"
+					},
+					"created_at": {
+						"type": "string",
+						"format": "date-time"
+					},
+					"updated_at": {
+						"type": "string",
+						"format": "date-time"
+					},
+					"deleted_at": {
+						"type": "string",
+						"format": "date-time"
+					}
+				},
+				"required": [
+					"verification"
+				],
+				"type": "object",
+				"additionalProperties": false
+			},
+			"SdmDueDiligenceRiskType": {
+				"enum": [
+					"Konflik",
+					"Tidak Ada Konflik"
+				],
+				"type": "string"
+			},
+			"SdmDueDiligenceDTO": {
+				"properties": {
+					"id": {
+						"type": "string"
+					},
+					"type": {
+						"$ref": "#/components/schemas/SdmDueDiligenceType"
+					},
+					"answers": {
+						"items": {
+							"$ref": "#/components/schemas/SdmDueDiligenceAnswerDTO"
+						},
+						"type": "array"
+					},
+					"conclusion": {
+						"type": "string"
+					},
+					"verification_date": {
+						"type": "string",
+						"format": "date-time"
+					},
+					"evaluator": {
+						"type": "string"
+					},
+					"risk": {
+						"$ref": "#/components/schemas/SdmDueDiligenceRiskType"
+					},
+					"action": {
+						"type": "string"
+					},
+					"created_at": {
+						"type": "string",
+						"format": "date-time"
+					},
+					"updated_at": {
+						"type": "string",
+						"format": "date-time"
+					},
+					"deleted_at": {
+						"type": "string",
+						"format": "date-time"
+					}
+				},
+				"required": [
+					"type",
+					"verification_date",
+					"evaluator",
+					"risk",
+					"action"
+				],
+				"type": "object",
+				"additionalProperties": false
+			},
 			"SdmDTO": {
 				"properties": {
 					"id": {
@@ -827,6 +943,9 @@
 							"$ref": "#/components/schemas/SdmTrainingDTO"
 						},
 						"type": "array"
+					},
+					"due_diligence": {
+						"$ref": "#/components/schemas/SdmDueDiligenceDTO"
 					}
 				},
 				"required": [
