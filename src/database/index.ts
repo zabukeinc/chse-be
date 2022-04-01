@@ -40,7 +40,7 @@ class Database {
         host: envString(process.env.DATABASE_HOST!, ""),
         port: envString(Number(process.env.DATABASE_PORT!), 3306),
         username: envString(process.env.DATABASE_USERNAME!, "root"),
-        password: envString(process.env.DATABASE_PASSWORD!, "eigen3m!"),
+        password: envString(process.env.DATABASE_PASSWORD!, ""),
         database: envString(process.env.DATABASE_NAME!, "chse"),
         entities: [
           // UserModel,
