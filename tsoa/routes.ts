@@ -14,6 +14,8 @@ import { RecordController } from './../src/routes/record.router';
 import { RiskController } from './../src/routes/risk.router';
 // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
 import { SdmController } from './../src/routes/sdm.router';
+// WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+import { SupplierController } from './../src/routes/supplier.router';
 import * as express from 'express';
 const multer = require('multer');
 const upload = multer();
@@ -377,6 +379,125 @@ const models: TsoaRoute.Models = {
             "functionals": {"dataType":"array","array":{"dataType":"refObject","ref":"SdmFunctionalDTO"}},
             "trainings": {"dataType":"array","array":{"dataType":"refObject","ref":"SdmTrainingDTO"}},
             "due_diligence": {"ref":"SdmDueDiligenceDTO"},
+        },
+        "additionalProperties": false,
+    },
+    // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+    "SupplierServiceDTO": {
+        "dataType": "refObject",
+        "properties": {
+            "id": {"dataType":"string"},
+            "name": {"dataType":"string","required":true},
+            "specification": {"dataType":"string","required":true},
+            "file_url": {"dataType":"string","required":true},
+            "created_at": {"dataType":"datetime"},
+            "updated_at": {"dataType":"datetime"},
+            "deleted_at": {"dataType":"datetime"},
+        },
+        "additionalProperties": false,
+    },
+    // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+    "SupplierExperienceDTO": {
+        "dataType": "refObject",
+        "properties": {
+            "id": {"dataType":"string"},
+            "project_name": {"dataType":"string","required":true},
+            "activity": {"dataType":"string","required":true},
+            "year": {"dataType":"double","required":true},
+            "created_at": {"dataType":"datetime"},
+            "updated_at": {"dataType":"datetime"},
+            "deleted_at": {"dataType":"datetime"},
+        },
+        "additionalProperties": false,
+    },
+    // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+    "SelectionAnswerDTO": {
+        "dataType": "refObject",
+        "properties": {
+            "id": {"dataType":"string"},
+            "index": {"dataType":"double"},
+            "answer": {"ref":"SdmDueDiligenceAnswerValue"},
+            "description": {"dataType":"string"},
+            "verification": {"ref":"SdmDueDiligenceAnswerVerif","required":true},
+            "created_at": {"dataType":"datetime"},
+            "updated_at": {"dataType":"datetime"},
+            "deleted_at": {"dataType":"datetime"},
+        },
+        "additionalProperties": false,
+    },
+    // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+    "SupplierDueDiligenceRiskType": {
+        "dataType": "refEnum",
+        "enums": ["Rendah","Sedang","Tinggi"],
+    },
+    // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+    "SupplierDueDiligenceEvaluationAnswer": {
+        "dataType": "refEnum",
+        "enums": ["Sangat Baik","Baik","Kurang"],
+    },
+    // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+    "EvaluationAnswerDTO": {
+        "dataType": "refObject",
+        "properties": {
+            "id": {"dataType":"string"},
+            "index": {"dataType":"double"},
+            "answer": {"ref":"SupplierDueDiligenceEvaluationAnswer"},
+        },
+        "additionalProperties": false,
+    },
+    // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+    "SupplierDueDiligenceDecision": {
+        "dataType": "refEnum",
+        "enums": ["Dipertahakan","Blacklist"],
+    },
+    // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+    "SupplierDueDiligenceDTO": {
+        "dataType": "refObject",
+        "properties": {
+            "id": {"dataType":"string"},
+            "type": {"ref":"SdmDueDiligenceType","required":true},
+            "selection_answers": {"dataType":"array","array":{"dataType":"refObject","ref":"SelectionAnswerDTO"}},
+            "selection_conclusion": {"dataType":"string"},
+            "selection_verification_date": {"dataType":"string"},
+            "selection_evaluator": {"dataType":"string"},
+            "selection_risk": {"ref":"SupplierDueDiligenceRiskType"},
+            "selection_action": {"dataType":"string"},
+            "evaluation_answers": {"dataType":"array","array":{"dataType":"refObject","ref":"EvaluationAnswerDTO"}},
+            "evaluation_conclusion": {"dataType":"string"},
+            "evaluation_evaluated_date": {"dataType":"string"},
+            "evaluation_evaluator": {"dataType":"string"},
+            "evaluation_decision": {"ref":"SupplierDueDiligenceDecision"},
+            "evaluation_action": {"dataType":"string"},
+            "created_at": {"dataType":"datetime"},
+            "updated_at": {"dataType":"datetime"},
+            "deleted_at": {"dataType":"datetime"},
+        },
+        "additionalProperties": false,
+    },
+    // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+    "SupplierDTO": {
+        "dataType": "refObject",
+        "properties": {
+            "name": {"dataType":"string","required":true},
+            "code": {"dataType":"string","required":true},
+            "address": {"dataType":"string","required":true},
+            "email": {"dataType":"string","required":true},
+            "telp": {"dataType":"string","required":true},
+            "connector_name": {"dataType":"string","required":true},
+            "connector_telp": {"dataType":"string","required":true},
+            "company_deed": {"dataType":"string","required":true},
+            "npwp": {"dataType":"string","required":true},
+            "services": {"dataType":"array","array":{"dataType":"refObject","ref":"SupplierServiceDTO"}},
+            "experiences": {"dataType":"array","array":{"dataType":"refObject","ref":"SupplierExperienceDTO"}},
+            "due_diligence": {"ref":"SupplierDueDiligenceDTO"},
+            "id": {"dataType":"string"},
+            "creator_name": {"dataType":"string"},
+            "editor_name": {"dataType":"string"},
+            "creator_id": {"dataType":"string"},
+            "editor_id": {"dataType":"string"},
+            "created_at": {"dataType":"datetime"},
+            "updated_at": {"dataType":"datetime"},
+            "deleted_at": {"dataType":"datetime"},
         },
         "additionalProperties": false,
     },
@@ -997,6 +1118,123 @@ export function RegisterRoutes(app: express.Router) {
                 validatedArgs = getValidatedArgs(args, request, response);
 
                 const controller = new SdmController();
+
+
+              const promise = controller.index.apply(controller, validatedArgs as any);
+              promiseHandler(controller, promise, response, undefined, next);
+            } catch (err) {
+                return next(err);
+            }
+        });
+        // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+        app.post('/api/suppliers',
+
+            function SupplierController_create(request: any, response: any, next: any) {
+            const args = {
+                    body: {"in":"body","name":"body","required":true,"ref":"SupplierDTO"},
+            };
+
+            // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+
+            let validatedArgs: any[] = [];
+            try {
+                validatedArgs = getValidatedArgs(args, request, response);
+
+                const controller = new SupplierController();
+
+
+              const promise = controller.create.apply(controller, validatedArgs as any);
+              promiseHandler(controller, promise, response, undefined, next);
+            } catch (err) {
+                return next(err);
+            }
+        });
+        // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+        app.put('/api/suppliers/:id',
+
+            function SupplierController_update(request: any, response: any, next: any) {
+            const args = {
+                    id: {"in":"path","name":"id","required":true,"dataType":"string"},
+                    updateData: {"in":"body","name":"updateData","required":true,"ref":"SupplierDTO"},
+            };
+
+            // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+
+            let validatedArgs: any[] = [];
+            try {
+                validatedArgs = getValidatedArgs(args, request, response);
+
+                const controller = new SupplierController();
+
+
+              const promise = controller.update.apply(controller, validatedArgs as any);
+              promiseHandler(controller, promise, response, undefined, next);
+            } catch (err) {
+                return next(err);
+            }
+        });
+        // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+        app.delete('/api/suppliers/:id',
+
+            function SupplierController_delete(request: any, response: any, next: any) {
+            const args = {
+                    id: {"in":"path","name":"id","required":true,"dataType":"string"},
+            };
+
+            // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+
+            let validatedArgs: any[] = [];
+            try {
+                validatedArgs = getValidatedArgs(args, request, response);
+
+                const controller = new SupplierController();
+
+
+              const promise = controller.delete.apply(controller, validatedArgs as any);
+              promiseHandler(controller, promise, response, undefined, next);
+            } catch (err) {
+                return next(err);
+            }
+        });
+        // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+        app.get('/api/suppliers/:id',
+
+            function SupplierController_show(request: any, response: any, next: any) {
+            const args = {
+                    id: {"in":"path","name":"id","required":true,"dataType":"string"},
+            };
+
+            // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+
+            let validatedArgs: any[] = [];
+            try {
+                validatedArgs = getValidatedArgs(args, request, response);
+
+                const controller = new SupplierController();
+
+
+              const promise = controller.show.apply(controller, validatedArgs as any);
+              promiseHandler(controller, promise, response, undefined, next);
+            } catch (err) {
+                return next(err);
+            }
+        });
+        // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+        app.get('/api/suppliers',
+
+            function SupplierController_index(request: any, response: any, next: any) {
+            const args = {
+                    page: {"in":"query","name":"page","required":true,"dataType":"double"},
+                    limit: {"in":"query","name":"limit","required":true,"dataType":"double"},
+            };
+
+            // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+
+            let validatedArgs: any[] = [];
+            try {
+                validatedArgs = getValidatedArgs(args, request, response);
+
+                const controller = new SupplierController();
 
 
               const promise = controller.index.apply(controller, validatedArgs as any);

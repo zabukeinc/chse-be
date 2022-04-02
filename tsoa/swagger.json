@@ -976,6 +976,308 @@
 				],
 				"type": "object",
 				"additionalProperties": false
+			},
+			"SupplierServiceDTO": {
+				"properties": {
+					"id": {
+						"type": "string"
+					},
+					"name": {
+						"type": "string"
+					},
+					"specification": {
+						"type": "string"
+					},
+					"file_url": {
+						"type": "string"
+					},
+					"created_at": {
+						"type": "string",
+						"format": "date-time"
+					},
+					"updated_at": {
+						"type": "string",
+						"format": "date-time"
+					},
+					"deleted_at": {
+						"type": "string",
+						"format": "date-time"
+					}
+				},
+				"required": [
+					"name",
+					"specification",
+					"file_url"
+				],
+				"type": "object",
+				"additionalProperties": false
+			},
+			"SupplierExperienceDTO": {
+				"properties": {
+					"id": {
+						"type": "string"
+					},
+					"project_name": {
+						"type": "string"
+					},
+					"activity": {
+						"type": "string"
+					},
+					"year": {
+						"type": "number",
+						"format": "double"
+					},
+					"created_at": {
+						"type": "string",
+						"format": "date-time"
+					},
+					"updated_at": {
+						"type": "string",
+						"format": "date-time"
+					},
+					"deleted_at": {
+						"type": "string",
+						"format": "date-time"
+					}
+				},
+				"required": [
+					"project_name",
+					"activity",
+					"year"
+				],
+				"type": "object",
+				"additionalProperties": false
+			},
+			"SelectionAnswerDTO": {
+				"properties": {
+					"id": {
+						"type": "string"
+					},
+					"index": {
+						"type": "number",
+						"format": "double"
+					},
+					"answer": {
+						"$ref": "#/components/schemas/SdmDueDiligenceAnswerValue"
+					},
+					"description": {
+						"type": "string"
+					},
+					"verification": {
+						"$ref": "#/components/schemas/SdmDueDiligenceAnswerVerif"
+					},
+					"created_at": {
+						"type": "string",
+						"format": "date-time"
+					},
+					"updated_at": {
+						"type": "string",
+						"format": "date-time"
+					},
+					"deleted_at": {
+						"type": "string",
+						"format": "date-time"
+					}
+				},
+				"required": [
+					"verification"
+				],
+				"type": "object",
+				"additionalProperties": false
+			},
+			"SupplierDueDiligenceRiskType": {
+				"enum": [
+					"Rendah",
+					"Sedang",
+					"Tinggi"
+				],
+				"type": "string"
+			},
+			"SupplierDueDiligenceEvaluationAnswer": {
+				"enum": [
+					"Sangat Baik",
+					"Baik",
+					"Kurang"
+				],
+				"type": "string"
+			},
+			"EvaluationAnswerDTO": {
+				"properties": {
+					"id": {
+						"type": "string"
+					},
+					"index": {
+						"type": "number",
+						"format": "double"
+					},
+					"answer": {
+						"$ref": "#/components/schemas/SupplierDueDiligenceEvaluationAnswer"
+					}
+				},
+				"type": "object",
+				"additionalProperties": false
+			},
+			"SupplierDueDiligenceDecision": {
+				"enum": [
+					"Dipertahakan",
+					"Blacklist"
+				],
+				"type": "string"
+			},
+			"SupplierDueDiligenceDTO": {
+				"properties": {
+					"id": {
+						"type": "string"
+					},
+					"type": {
+						"$ref": "#/components/schemas/SdmDueDiligenceType"
+					},
+					"selection_answers": {
+						"items": {
+							"$ref": "#/components/schemas/SelectionAnswerDTO"
+						},
+						"type": "array"
+					},
+					"selection_conclusion": {
+						"type": "string"
+					},
+					"selection_verification_date": {
+						"type": "string"
+					},
+					"selection_evaluator": {
+						"type": "string"
+					},
+					"selection_risk": {
+						"$ref": "#/components/schemas/SupplierDueDiligenceRiskType"
+					},
+					"selection_action": {
+						"type": "string"
+					},
+					"evaluation_answers": {
+						"items": {
+							"$ref": "#/components/schemas/EvaluationAnswerDTO"
+						},
+						"type": "array"
+					},
+					"evaluation_conclusion": {
+						"type": "string"
+					},
+					"evaluation_evaluated_date": {
+						"type": "string"
+					},
+					"evaluation_evaluator": {
+						"type": "string"
+					},
+					"evaluation_decision": {
+						"$ref": "#/components/schemas/SupplierDueDiligenceDecision"
+					},
+					"evaluation_action": {
+						"type": "string"
+					},
+					"created_at": {
+						"type": "string",
+						"format": "date-time"
+					},
+					"updated_at": {
+						"type": "string",
+						"format": "date-time"
+					},
+					"deleted_at": {
+						"type": "string",
+						"format": "date-time"
+					}
+				},
+				"required": [
+					"type"
+				],
+				"type": "object",
+				"additionalProperties": false
+			},
+			"SupplierDTO": {
+				"properties": {
+					"name": {
+						"type": "string"
+					},
+					"code": {
+						"type": "string"
+					},
+					"address": {
+						"type": "string"
+					},
+					"email": {
+						"type": "string"
+					},
+					"telp": {
+						"type": "string"
+					},
+					"connector_name": {
+						"type": "string"
+					},
+					"connector_telp": {
+						"type": "string"
+					},
+					"company_deed": {
+						"type": "string"
+					},
+					"npwp": {
+						"type": "string"
+					},
+					"services": {
+						"items": {
+							"$ref": "#/components/schemas/SupplierServiceDTO"
+						},
+						"type": "array"
+					},
+					"experiences": {
+						"items": {
+							"$ref": "#/components/schemas/SupplierExperienceDTO"
+						},
+						"type": "array"
+					},
+					"due_diligence": {
+						"$ref": "#/components/schemas/SupplierDueDiligenceDTO"
+					},
+					"id": {
+						"type": "string"
+					},
+					"creator_name": {
+						"type": "string"
+					},
+					"editor_name": {
+						"type": "string"
+					},
+					"creator_id": {
+						"type": "string"
+					},
+					"editor_id": {
+						"type": "string"
+					},
+					"created_at": {
+						"type": "string",
+						"format": "date-time"
+					},
+					"updated_at": {
+						"type": "string",
+						"format": "date-time"
+					},
+					"deleted_at": {
+						"type": "string",
+						"format": "date-time"
+					}
+				},
+				"required": [
+					"name",
+					"code",
+					"address",
+					"email",
+					"telp",
+					"connector_name",
+					"connector_telp",
+					"company_deed",
+					"npwp"
+				],
+				"type": "object",
+				"additionalProperties": false
 			}
 		},
 		"securitySchemes": {}
@@ -1842,6 +2144,166 @@
 				},
 				"tags": [
 					"Sdm Services"
+				],
+				"security": [],
+				"parameters": [
+					{
+						"in": "path",
+						"name": "id",
+						"required": true,
+						"schema": {
+							"type": "string"
+						}
+					}
+				]
+			}
+		},
+		"/api/suppliers": {
+			"post": {
+				"operationId": "Create",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {}
+							}
+						}
+					}
+				},
+				"tags": [
+					"Supplier Services"
+				],
+				"security": [],
+				"parameters": [],
+				"requestBody": {
+					"required": true,
+					"content": {
+						"application/json": {
+							"schema": {
+								"$ref": "#/components/schemas/SupplierDTO"
+							}
+						}
+					}
+				}
+			},
+			"get": {
+				"operationId": "Index",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {}
+							}
+						}
+					}
+				},
+				"tags": [
+					"Supplier Services"
+				],
+				"security": [],
+				"parameters": [
+					{
+						"in": "query",
+						"name": "page",
+						"required": true,
+						"schema": {
+							"format": "double",
+							"type": "number"
+						}
+					},
+					{
+						"in": "query",
+						"name": "limit",
+						"required": true,
+						"schema": {
+							"format": "double",
+							"type": "number"
+						}
+					}
+				]
+			}
+		},
+		"/api/suppliers/{id}": {
+			"put": {
+				"operationId": "Update",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {}
+							}
+						}
+					}
+				},
+				"tags": [
+					"Supplier Services"
+				],
+				"security": [],
+				"parameters": [
+					{
+						"in": "path",
+						"name": "id",
+						"required": true,
+						"schema": {
+							"type": "string"
+						}
+					}
+				],
+				"requestBody": {
+					"required": true,
+					"content": {
+						"application/json": {
+							"schema": {
+								"$ref": "#/components/schemas/SupplierDTO"
+							}
+						}
+					}
+				}
+			},
+			"delete": {
+				"operationId": "Delete",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {}
+							}
+						}
+					}
+				},
+				"tags": [
+					"Supplier Services"
+				],
+				"security": [],
+				"parameters": [
+					{
+						"in": "path",
+						"name": "id",
+						"required": true,
+						"schema": {
+							"type": "string"
+						}
+					}
+				]
+			},
+			"get": {
+				"operationId": "Show",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {}
+							}
+						}
+					}
+				},
+				"tags": [
+					"Supplier Services"
 				],
 				"security": [],
 				"parameters": [

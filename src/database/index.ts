@@ -21,6 +21,10 @@ import { RiskDetailModel } from "src/app/supporting/risk/data/models/risk-detail
 import { SdmTrainingModel } from "src/app/supporting/sdm/data/models/sdm-training.model";
 import { SdmDueDiligenceModel } from "src/app/supporting/sdm/data/models/sdm-due-diligence.model";
 import { SdmDueDiligenceAnswerModel } from "src/app/supporting/sdm/data/models/sdm-due-diligence-answer.model";
+import { SupplierModel } from "src/app/supporting/supplier/data/models/supplier.model";
+import { SupplierServiceModel } from "src/app/supporting/supplier/data/models/supplier-service.model";
+import { SupplierExperienceModel } from "src/app/supporting/supplier/data/models/supplier-experience.model";
+import { SupplierDueDiligenceEvaluationAnswerModel, SupplierDueDiligenceModel, SupplierDueDiligenceSelectionAnswerModel } from "src/app/supporting/supplier/data/models/supplier-due-diligence.model";
 
 dotenv.config({});
 class Database {
@@ -67,7 +71,14 @@ class Database {
           AreaModel,
           DocumentModel,
           RiskModel,
-          RiskDetailModel
+          RiskDetailModel,
+
+          SupplierModel,
+          SupplierServiceModel,
+          SupplierExperienceModel,
+          SupplierDueDiligenceModel,
+          SupplierDueDiligenceSelectionAnswerModel,
+          SupplierDueDiligenceEvaluationAnswerModel,
         ],
         synchronize: true,
         logging: false
