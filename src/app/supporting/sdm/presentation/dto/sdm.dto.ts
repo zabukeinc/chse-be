@@ -1,4 +1,10 @@
-import { SdmStatus } from "../../domain/entities/sdm.entity";
+import { 
+  SdmDueDiligenceAnswerValue, 
+  SdmDueDiligenceAnswerVerif, 
+  SdmDueDiligenceRiskType, 
+  SdmDueDiligenceType, 
+  SdmStatus
+ } from "../../domain/entities/sdm.entity";
 
 export class SdmDTO {
   id?: string;
@@ -17,6 +23,7 @@ export class SdmDTO {
   work_experiences?: SdmWorkExperienceDTO[];
   functionals?: SdmFunctionalDTO[];
   trainings?: SdmTrainingDTO[];
+  due_diligence?: SdmDueDiligenceDTO;
 }
 
 export class SdmEducationDTO {
@@ -55,4 +62,31 @@ export class SdmTrainingDTO {
   instructur?: string;
   status: string;
   certification_path?: string;
+}
+
+export class SdmDueDiligenceDTO {
+  id?: string;
+  type: SdmDueDiligenceType;
+  answers?: SdmDueDiligenceAnswerDTO[];
+  conclusion?: string;
+  verification_date: Date;
+  evaluator: string;
+  risk: SdmDueDiligenceRiskType;
+  action: string;
+  created_at?: Date;
+  updated_at?: Date;
+  deleted_at?: Date;
+  sdm_id?: string;
+}
+
+export class SdmDueDiligenceAnswerDTO {
+  id?: string | null;
+  answer?: SdmDueDiligenceAnswerValue;
+  index?: number;
+  description?: string;
+  verification: SdmDueDiligenceAnswerVerif;
+  created_at?: Date | null;
+  updated_at?: Date | null;
+  deleted_at?: Date | null;
+  sdm_due_diligence_id?: string | null;
 }

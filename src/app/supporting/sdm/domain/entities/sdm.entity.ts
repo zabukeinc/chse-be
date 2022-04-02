@@ -7,6 +7,28 @@ export enum SdmStatus {
   CERAI_MATI = 'CERAI_MATI'
 }
 
+export enum SdmDueDiligenceType {
+  SELEKSI = 'Seleksi',
+  MUTASI = 'Mutasi',
+  PROMOSI = 'Promosi',
+  EVALUASI = 'Evaluasi'
+}
+
+export enum SdmDueDiligenceAnswerVerif {
+  VALID = 'Valid',
+  NOT_VALID = 'Tidak Valid'
+}
+
+export enum SdmDueDiligenceAnswerValue {
+  YES = 'Ya',
+  NO = 'Tidak'
+}
+
+export enum SdmDueDiligenceRiskType {
+  CONFLICT = 'Konflik',
+  NOT_CONFLICT = 'Tidak Ada Konflik'
+}
+
 export interface SdmEntity extends BaseDateEntity {
   id?: string
   code?: string
@@ -25,6 +47,7 @@ export interface SdmEntity extends BaseDateEntity {
   work_experiences?: SdmWorkExperienceEntity[]
   functionals?: SdmFunctionalEntity[]
   trainings?: SdmTrainingEntity[]
+  due_diligence?: SdmDueDiligenceEntity
 }
 
 export interface SdmEducationEntity extends BaseDateEntity {
@@ -59,4 +82,23 @@ export interface SdmTrainingEntity extends BaseDateEntity {
   instructur?: string
   status: string
   certification_path?: string
+}
+
+export interface SdmDueDiligenceEntity extends BaseDateEntity {
+  id?: string
+  type: SdmDueDiligenceType
+  answers?: SdmDueDiligenceAnswerEntity[]
+  conclusion?: string
+  verification_date: Date
+  evaluator: string
+  risk: SdmDueDiligenceRiskType
+  action: string
+}
+
+export interface SdmDueDiligenceAnswerEntity extends BaseDateEntity {
+  id?: string
+  index?: number
+  answer?: SdmDueDiligenceAnswerValue
+  description?: string
+  verification: SdmDueDiligenceAnswerVerif
 }
