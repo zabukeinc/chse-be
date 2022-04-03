@@ -22,7 +22,8 @@ export enum SupplierDueDiligenceEvaluationAnswer {
 
 export interface SupplierEntity extends BaseEntity {
   name: string
-  code: string
+  code?: string
+  leader: string
   address: string
   email: string
   telp: string

@@ -10,6 +10,9 @@ export class SupplierModel extends BaseModel implements SupplierEntity {
   @Column('varchar', { name: 'name' })
   name: string;
 
+  @Column('varchar', { name: 'leader' })
+  leader: string
+
   @Column('varchar', { name: 'code' })
   code: string;
 
@@ -33,7 +36,7 @@ export class SupplierModel extends BaseModel implements SupplierEntity {
 
   @Column('varchar', { name: 'npwp', nullable: true })
   npwp: string;
-  
+
   @OneToMany(() => SupplierServiceModel, model => model.supplier, {
     cascade: ['insert', 'update', 'remove']
   })
