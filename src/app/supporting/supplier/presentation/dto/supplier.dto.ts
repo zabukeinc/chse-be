@@ -7,7 +7,8 @@ import { SupplierDueDiligenceDecision, SupplierDueDiligenceEvaluationAnswer, Sup
 
 export class SupplierDTO {
   name: string;
-  code: string;
+  code?: string;
+  leader: string;
   address: string;
   email: string;
   telp: string;
@@ -50,19 +51,19 @@ export class SupplierExperienceDTO {
 
 export class SupplierDueDiligenceDTO {
   id?: string;
-  type: SdmDueDiligenceType;
+  type: SdmDueDiligenceType | null;
   selection_answers?: SelectionAnswerDTO[];
-  selection_conclusion?: string;
-  selection_verification_date?: string;
-  selection_evaluator?: string;
-  selection_risk?: SupplierDueDiligenceRiskType;
-  selection_action?: string;
+  selection_conclusion?: string | null;
+  selection_verification_date?: string | null;
+  selection_evaluator?: string | null;
+  selection_risk?: SupplierDueDiligenceRiskType | null;
+  selection_action?: string | null;
   evaluation_answers?: EvaluationAnswerDTO[];
-  evaluation_conclusion?: string;
-  evaluation_evaluated_date?: string;
-  evaluation_evaluator?: string;
-  evaluation_decision?: SupplierDueDiligenceDecision;
-  evaluation_action?: string;
+  evaluation_conclusion?: string | null;
+  evaluation_evaluated_date?: string | null;
+  evaluation_evaluator?: string | null;
+  evaluation_decision?: SupplierDueDiligenceDecision | null;
+  evaluation_action?: string | null;
   created_at?: Date;
   updated_at?: Date;
   deleted_at?: Date;

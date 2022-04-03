@@ -64,7 +64,7 @@ export interface RiskEntity extends BaseEntity {
   source_type: RiskSourceType
   report_date: Date
   identification: string
-  consequence: string
+  consequence?: string | null
   source: RiskSource
   type: RiskType
   code?: string

@@ -16,7 +16,7 @@ export class RiskModel extends BaseModel implements RiskEntity {
   @Column('text', { name: 'identification' })
   identification: string;
 
-  @Column('text', { name: 'consequence' })
+  @Column('text', { name: 'consequence', nullable: true })
   consequence: string;
 
   @Column('enum', { name: 'source', enum: RiskSource })
