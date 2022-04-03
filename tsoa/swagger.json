@@ -570,7 +570,8 @@
 						"type": "string"
 					},
 					"consequence": {
-						"type": "string"
+						"type": "string",
+						"nullable": true
 					},
 					"source": {
 						"$ref": "#/components/schemas/RiskSource"
@@ -620,7 +621,6 @@
 					"source_type",
 					"report_date",
 					"identification",
-					"consequence",
 					"source",
 					"type",
 					"inherit_risk",
@@ -777,7 +777,9 @@
 			"SdmDueDiligenceAnswerValue": {
 				"enum": [
 					"Ya",
-					"Tidak"
+					"Tidak",
+					"Dalam Proses",
+					"Sudah"
 				],
 				"type": "string"
 			},
@@ -1130,7 +1132,12 @@
 						"type": "string"
 					},
 					"type": {
-						"$ref": "#/components/schemas/SdmDueDiligenceType"
+						"allOf": [
+							{
+								"$ref": "#/components/schemas/SdmDueDiligenceType"
+							}
+						],
+						"nullable": true
 					},
 					"selection_answers": {
 						"items": {
@@ -1139,19 +1146,28 @@
 						"type": "array"
 					},
 					"selection_conclusion": {
-						"type": "string"
+						"type": "string",
+						"nullable": true
 					},
 					"selection_verification_date": {
-						"type": "string"
+						"type": "string",
+						"nullable": true
 					},
 					"selection_evaluator": {
-						"type": "string"
+						"type": "string",
+						"nullable": true
 					},
 					"selection_risk": {
-						"$ref": "#/components/schemas/SupplierDueDiligenceRiskType"
+						"allOf": [
+							{
+								"$ref": "#/components/schemas/SupplierDueDiligenceRiskType"
+							}
+						],
+						"nullable": true
 					},
 					"selection_action": {
-						"type": "string"
+						"type": "string",
+						"nullable": true
 					},
 					"evaluation_answers": {
 						"items": {
@@ -1160,19 +1176,28 @@
 						"type": "array"
 					},
 					"evaluation_conclusion": {
-						"type": "string"
+						"type": "string",
+						"nullable": true
 					},
 					"evaluation_evaluated_date": {
-						"type": "string"
+						"type": "string",
+						"nullable": true
 					},
 					"evaluation_evaluator": {
-						"type": "string"
+						"type": "string",
+						"nullable": true
 					},
 					"evaluation_decision": {
-						"$ref": "#/components/schemas/SupplierDueDiligenceDecision"
+						"allOf": [
+							{
+								"$ref": "#/components/schemas/SupplierDueDiligenceDecision"
+							}
+						],
+						"nullable": true
 					},
 					"evaluation_action": {
-						"type": "string"
+						"type": "string",
+						"nullable": true
 					},
 					"created_at": {
 						"type": "string",
@@ -1199,6 +1224,9 @@
 						"type": "string"
 					},
 					"code": {
+						"type": "string"
+					},
+					"leader": {
 						"type": "string"
 					},
 					"address": {
@@ -1267,7 +1295,7 @@
 				},
 				"required": [
 					"name",
-					"code",
+					"leader",
 					"address",
 					"email",
 					"telp",
