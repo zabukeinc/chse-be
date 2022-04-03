@@ -23,7 +23,7 @@ export enum SdmDueDiligenceAnswerValue {
   YES = 'Ya',
   NO = 'Tidak',
   IN_PROGRESS = 'Dalam Proses',
-  DONE = 'Sudah
+  DONE = 'Sudah'
 }
 
 export enum SdmDueDiligenceRiskType {
