@@ -21,7 +21,9 @@ export enum SdmDueDiligenceAnswerVerif {
 
 export enum SdmDueDiligenceAnswerValue {
   YES = 'Ya',
-  NO = 'Tidak'
+  NO = 'Tidak',
+  IN_PROGRESS = 'Dalam Proses',
+  DONE = 'Sudah
 }
 
 export enum SdmDueDiligenceRiskType {
