@@ -559,6 +559,9 @@
 						"format": "date-time",
 						"nullable": true
 					},
+					"event": {
+						"type": "string"
+					},
 					"source_type": {
 						"$ref": "#/components/schemas/RiskSourceType"
 					},
@@ -615,9 +618,13 @@
 					},
 					"residual_risk_result": {
 						"type": "string"
+					},
+					"action": {
+						"type": "string"
 					}
 				},
 				"required": [
+					"event",
 					"source_type",
 					"report_date",
 					"identification",
@@ -872,6 +879,14 @@
 					"action": {
 						"type": "string"
 					},
+					"evaluation_performance_path": {
+						"type": "string",
+						"nullable": true
+					},
+					"evaluation_maintenance_path": {
+						"type": "string",
+						"nullable": true
+					},
 					"created_at": {
 						"type": "string",
 						"format": "date-time"
@@ -1040,6 +1055,9 @@
 					"deleted_at": {
 						"type": "string",
 						"format": "date-time"
+					},
+					"supplier_id": {
+						"type": "string"
 					}
 				},
 				"required": [
@@ -1070,15 +1088,22 @@
 					},
 					"created_at": {
 						"type": "string",
-						"format": "date-time"
+						"format": "date-time",
+						"nullable": true
 					},
 					"updated_at": {
 						"type": "string",
-						"format": "date-time"
+						"format": "date-time",
+						"nullable": true
 					},
 					"deleted_at": {
 						"type": "string",
-						"format": "date-time"
+						"format": "date-time",
+						"nullable": true
+					},
+					"supplier_due_diligence_id": {
+						"type": "string",
+						"nullable": true
 					}
 				},
 				"required": [
@@ -1114,8 +1139,32 @@
 					},
 					"answer": {
 						"$ref": "#/components/schemas/SupplierDueDiligenceEvaluationAnswer"
+					},
+					"supplier_due_diligence_id": {
+						"type": "string",
+						"nullable": true
+					},
+					"created_at": {
+						"type": "string",
+						"format": "date-time",
+						"nullable": true
+					},
+					"updated_at": {
+						"type": "string",
+						"format": "date-time",
+						"nullable": true
+					},
+					"deleted_at": {
+						"type": "string",
+						"format": "date-time",
+						"nullable": true
 					}
 				},
+				"required": [
+					"created_at",
+					"updated_at",
+					"deleted_at"
+				],
 				"type": "object",
 				"additionalProperties": false
 			},
@@ -1169,6 +1218,18 @@
 						"type": "string",
 						"nullable": true
 					},
+					"selection_leader": {
+						"type": "string",
+						"nullable": true
+					},
+					"selection_approval": {
+						"type": "string",
+						"nullable": true
+					},
+					"selection_statement_letter_path": {
+						"type": "string",
+						"nullable": true
+					},
 					"evaluation_answers": {
 						"items": {
 							"$ref": "#/components/schemas/EvaluationAnswerDTO"
@@ -1199,17 +1260,31 @@
 						"type": "string",
 						"nullable": true
 					},
+					"evaluation_approval": {
+						"type": "string",
+						"nullable": true
+					},
+					"evaluation_leader": {
+						"type": "string",
+						"nullable": true
+					},
 					"created_at": {
 						"type": "string",
-						"format": "date-time"
+						"format": "date-time",
+						"nullable": true
 					},
 					"updated_at": {
 						"type": "string",
-						"format": "date-time"
+						"format": "date-time",
+						"nullable": true
 					},
 					"deleted_at": {
 						"type": "string",
-						"format": "date-time"
+						"format": "date-time",
+						"nullable": true
+					},
+					"supplier_id": {
+						"type": "string"
 					}
 				},
 				"required": [
@@ -1928,6 +2003,14 @@
 						"schema": {
 							"format": "double",
 							"type": "number"
+						}
+					},
+					{
+						"in": "query",
+						"name": "search",
+						"required": false,
+						"schema": {
+							"type": "string"
 						}
 					}
 				]

@@ -59,6 +59,9 @@ export interface SupplierDueDiligenceEntity extends BaseDateEntity {
   selection_evaluator?: string
   selection_risk?: SupplierDueDiligenceRiskType
   selection_action?: string
+  selection_approval?: string
+  selection_leader?: string
+  selection_statement_letter_path?: string
 
   evaluation_answers?: SupplierDueDiligenceEvaluationEntity[]
   evaluation_conclusion?: string
@@ -66,6 +69,8 @@ export interface SupplierDueDiligenceEntity extends BaseDateEntity {
   evaluation_evaluator?: string
   evaluation_decision?: SupplierDueDiligenceDecision
   evaluation_action?: string
+  evaluation_approval?: string
+  evaluation_leader?: string
 }
 
 export interface SupplierDueDiligenceSelectionAnswerEntity extends BaseDateEntity {

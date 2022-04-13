@@ -30,6 +30,15 @@ export class SupplierDueDiligenceModel implements SupplierDueDiligenceEntity {
 
   @Column('varchar', { name: 'selection_action', nullable: true })
   selection_action?: string;
+  
+  @Column('varchar', { name: 'selection_approval', nullable: true })
+  selection_approval?: string;
+
+  @Column('varchar', { name: 'selection_leader', nullable: true })
+  selection_leader?: string;
+
+  @Column('varchar', { name: 'selection_statement_letter_path', nullable: true })
+  selection_statement_letter_path: string;
 
   @OneToMany(() => SupplierDueDiligenceEvaluationAnswerModel, model => model.due_diligence, {
     cascade: ['insert', 'update', 'remove']
@@ -47,6 +56,12 @@ export class SupplierDueDiligenceModel implements SupplierDueDiligenceEntity {
 
   @Column('enum', { name: 'evaluation_decision', enum: SupplierDueDiligenceDecision, nullable: true })
   evaluation_decision?: SupplierDueDiligenceDecision;
+
+  @Column('varchar', { name: 'evaluation_approval', nullable: true })
+  evaluation_approval?: string
+
+  @Column('varchar', { name: 'evaluation_leader', nullable: true })
+  evaluation_leader?: string;
 
   @Column('varchar', { name: 'evaluation_action', nullable: true })
   evaluation_action?: string;

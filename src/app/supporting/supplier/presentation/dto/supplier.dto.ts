@@ -47,6 +47,7 @@ export class SupplierExperienceDTO {
   created_at?: Date;
   updated_at?: Date;
   deleted_at?: Date;
+  supplier_id?: string;
 }
 
 export class SupplierDueDiligenceDTO {
@@ -58,15 +59,23 @@ export class SupplierDueDiligenceDTO {
   selection_evaluator?: string | null;
   selection_risk?: SupplierDueDiligenceRiskType | null;
   selection_action?: string | null;
+  selection_leader?: string | null;
+  selection_approval?: string | null;
+  selection_statement_letter_path?: string | null;
+
   evaluation_answers?: EvaluationAnswerDTO[];
   evaluation_conclusion?: string | null;
   evaluation_evaluated_date?: string | null;
   evaluation_evaluator?: string | null;
   evaluation_decision?: SupplierDueDiligenceDecision | null;
   evaluation_action?: string | null;
-  created_at?: Date;
-  updated_at?: Date;
-  deleted_at?: Date;
+  evaluation_approval?: string | null;
+  evaluation_leader?: string | null;
+  created_at?: Date | null;
+  updated_at?: Date | null;
+  deleted_at?: Date | null;
+
+  supplier_id?: string;
 }
 
 export class SelectionAnswerDTO {
@@ -75,13 +84,18 @@ export class SelectionAnswerDTO {
   answer?: SdmDueDiligenceAnswerValue;
   description?: string;
   verification: SdmDueDiligenceAnswerVerif;
-  created_at?: Date;
-  updated_at?: Date;
-  deleted_at?: Date;
+  created_at?: Date | null;
+  updated_at?: Date | null;
+  deleted_at?: Date | null;
+  supplier_due_diligence_id?: string | null;
 }
 
 export class EvaluationAnswerDTO {
   id?: string
   index?: number
   answer?: SupplierDueDiligenceEvaluationAnswer
+  supplier_due_diligence_id?: string | null;
+  created_at: Date | null;
+  updated_at: Date | null;
+  deleted_at: Date | null;
 }
