@@ -13,11 +13,11 @@ export class RiskOrchestrator extends BaseOrchestrator<RiskEntity> {
 
   async index(page: number, limit: number, search?: string): Promise<RiskEntity[]> {
     let params: FindManyOptions<RiskEntity> = {}
-
+    
     if (search) {
       Object.assign(params, {
         where: {
-          title: Like(`%${search}%`),
+          code: Like(`%${search}%`),
         }
       });
     }
