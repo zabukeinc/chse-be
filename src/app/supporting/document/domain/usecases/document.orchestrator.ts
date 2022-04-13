@@ -25,7 +25,6 @@ export class DocumentOrchestrator extends BaseOrchestrator<DocumentEntity>{
       Object.assign(params.where, {
         ...params.where as Object,
         title: Like(`%${search}%`),
-        name: Like(`%${search}%`)
       });
     }
 
