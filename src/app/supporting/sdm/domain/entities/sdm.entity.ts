@@ -95,6 +95,8 @@ export interface SdmDueDiligenceEntity extends BaseDateEntity {
   evaluator: string
   risk: SdmDueDiligenceRiskType
   action: string
+  evaluation_performance_path?: string
+  evaluation_maintenance_path?: string
 }
 
 export interface SdmDueDiligenceAnswerEntity extends BaseDateEntity {

@@ -31,6 +31,12 @@ export class SdmDueDiligenceModel implements SdmDueDiligenceEntity {
   })
   answers: SdmDueDiligenceAnswerModel[];
 
+  @Column('varchar', { name: 'evaluation_performance_path', nullable: true })
+  evaluation_performance_path: string;
+
+  @Column('varchar', { name: 'evaluation_maintenance_path', nullable: true })
+  evaluation_maintenance_path: string;
+
   @Column('uuid', { name: 'sdm_id', nullable: true })
   sdm_id: string
 

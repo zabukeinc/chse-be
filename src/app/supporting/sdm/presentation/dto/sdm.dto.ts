@@ -73,6 +73,8 @@ export class SdmDueDiligenceDTO {
   evaluator: string;
   risk: SdmDueDiligenceRiskType;
   action: string;
+  evaluation_performance_path?: string | null
+  evaluation_maintenance_path?: string | null
   created_at?: Date;
   updated_at?: Date;
   deleted_at?: Date;
