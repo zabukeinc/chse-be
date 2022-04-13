@@ -12,13 +12,12 @@ export class SupplierOrchestrator extends BaseOrchestrator<SupplierEntity> {
   }
 
   async index(page: number, limit: number, search?: string): Promise<SupplierEntity[]> {
-    const params: FindManyOptions<SupplierEntity> = {}
+    let params: FindManyOptions<SupplierEntity> = {}
 
     if (search) {
       Object.assign(params, {
         where: {
-          code: Like(`%${search}%`),
-          name: Like(`%${search}%`)
+          name: Like(`%${search}%`),
         }
       })
     }
