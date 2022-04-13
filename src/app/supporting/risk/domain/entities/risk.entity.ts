@@ -61,6 +61,7 @@ export interface RiskDetailEntity extends BaseDateEntity {
 }
 
 export interface RiskEntity extends BaseEntity {
+  event: string
   source_type: RiskSourceType
   report_date: Date
   identification: string
@@ -79,5 +80,6 @@ export interface RiskEntity extends BaseEntity {
   inherit_risk_result?: string
   residual_risk: RiskDetailEntity
   residual_risk_result?: string
+  action?: string
 }
 

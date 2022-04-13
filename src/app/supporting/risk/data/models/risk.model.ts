@@ -7,6 +7,9 @@ import { RiskDetailModel } from "./risk-detail.model";
 
 @Entity({ name: 'risks' })
 export class RiskModel extends BaseModel implements RiskEntity {
+  @Column('varchar', { name: 'event', nullable: true })
+  event: string;
+  
   @Column('enum', { name: 'source_type', enum: RiskSourceType })
   source_type: RiskSourceType;
 
@@ -78,4 +81,7 @@ export class RiskModel extends BaseModel implements RiskEntity {
 
   @Column('varchar', { name: 'residual_risk_result', nullable: true })
   residual_risk_result?: string
+
+  @Column('varchar', { name: 'action', nullable: true })
+  action?: string;
 }

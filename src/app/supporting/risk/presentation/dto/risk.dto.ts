@@ -7,6 +7,7 @@ export class RiskDetailDTO implements RiskDetailEntity {
 }
 
 export class RiskDTO implements RiskEntity {
+  event: string;
   source_type: RiskSourceType;
   report_date: Date;
   identification: string;
@@ -25,5 +26,6 @@ export class RiskDTO implements RiskEntity {
   inherit_risk_result?: string;
   inherit_risk: RiskDetailDTO;
   residual_risk: RiskDetailDTO;
+  action?: string;
   id?: string;
 }
