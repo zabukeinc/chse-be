@@ -1,4 +1,5 @@
 import { BaseOrchestrator } from "src/app/base/domain/usecases/base.orchestrator";
+import { FindManyOptions, Like } from "typeorm";
 import { SdmDataService } from "../../data/services/sdm-data.service";
 import { SdmEntity } from "../entities/sdm.entity";
 import { CreateSdmManager } from "./managers/create-sdm.manager";
@@ -10,7 +11,17 @@ export class SdmOrchestrator extends BaseOrchestrator<SdmEntity> {
     super(service)
   }
 
-  async index(page: number, limit: number, params: any): Promise<SdmEntity[]> {
+  async index(page: number, limit: number, search: string): Promise<SdmEntity[]> {
+    let params: FindManyOptions<SdmEntity> = {}
+
+    if (search) {
+      Object.assign(params, {
+        where: {
+          name: Like(`%${search}%`),
+        }
+      })
+    }
+
     return await this.service.index(page, limit, params)
   }
 
