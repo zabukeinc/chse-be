@@ -1,5 +1,5 @@
 import { BaseDeleteManager } from "src/app/base/domain/usecases/managers/base-delete.manager";
-import { ClientDataService } from "src/app/client/data/services/client-data.service";
+import { ClientDataService } from "../../../data/services/client-data.service";
 import { ClientEntity } from "../../entities/client.entity";
 
 export class DeleteClientManager extends BaseDeleteManager<ClientEntity> {

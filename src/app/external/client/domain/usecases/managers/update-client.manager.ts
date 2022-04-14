@@ -1,5 +1,5 @@
 import { BaseUpdateManager } from "src/app/base/domain/usecases/managers/base-update.manager";
-import { ClientDataService } from "src/app/client/data/services/client-data.service";
+import { ClientDataService } from "../../../data/services/client-data.service";
 import { ClientEntity } from "../../entities/client.entity";
 
 export class UpdateClientManager extends BaseUpdateManager<ClientEntity> {

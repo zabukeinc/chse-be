@@ -1,11 +1,11 @@
 import { BaseController } from "../app/base/base-controller";
 import { IResponses } from "../app/base/data/entities/response.entity";
 import { Body, Delete, Get, Post, Put, Query, Route, Tags } from "tsoa";
-import { ClientEntity } from "../app/client/domain/entities/client.entity";
-import { ClientOrchestrator } from "../app/client/domain/usecases/client.orchestrator";
-import { ClientDataService } from "../app/client/data/services/client-data.service";
-import { ClientModel } from "../app/client/data/models/client.model";
-import { ClientDTO } from "../app/client/presentation/dto/client.dto";
+import { ClientEntity } from "../app/external/client/domain/entities/client.entity";
+import { ClientOrchestrator } from "../app/external/client/domain/usecases/client.orchestrator";
+import { ClientDataService } from "../app/external/client/data/services/client-data.service";
+import { ClientModel } from "../app/external/client/data/models/client.model";
+import { ClientDTO } from "../app/external/client/presentation/dto/client.dto";
 
 @Tags('Client Services')
 @Route('/api/clients')
