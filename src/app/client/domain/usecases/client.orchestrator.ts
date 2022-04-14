@@ -1,4 +1,5 @@
 import { BaseOrchestrator } from "src/app/base/domain/usecases/base.orchestrator";
+import { FindManyOptions, Like } from "typeorm";
 import { ClientDataService } from "../../data/services/client-data.service";
 import { ClientEntity } from "../entities/client.entity";
 import { CreateClientManager } from "./managers/create-client.manager";
@@ -11,7 +12,16 @@ export class ClientOrchestrator extends BaseOrchestrator<ClientEntity> {
   }
 
   async index(page: number, limit: number, search?: string): Promise<ClientEntity[]> {
-    return await this.service.index(page, limit, null)
+    let params: FindManyOptions<ClientEntity> = {}
+
+    if (search) {
+      Object.assign(params, {
+        where: {
+          name: Like(`%${search}%`),
+        }
+      })
+    }
+    return await this.service.index(page, limit, params)
   }
 
   async show(id: string): Promise<ClientEntity> {
