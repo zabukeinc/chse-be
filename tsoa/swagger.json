@@ -281,18 +281,12 @@
 					}
 				},
 				"required": [
-					"code",
 					"name",
 					"address",
 					"city",
 					"province",
 					"phone",
-					"email",
-					"service_position",
-					"service_phone",
-					"service_email",
-					"finance_phone",
-					"finance_email"
+					"email"
 				],
 				"type": "object",
 				"additionalProperties": false
