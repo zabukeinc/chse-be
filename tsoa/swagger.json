@@ -194,6 +194,109 @@
 				"type": "object",
 				"additionalProperties": false
 			},
+			"ClientDTO": {
+				"properties": {
+					"code": {
+						"type": "string",
+						"nullable": true
+					},
+					"name": {
+						"type": "string",
+						"nullable": true
+					},
+					"address": {
+						"type": "string",
+						"nullable": true
+					},
+					"city": {
+						"type": "string",
+						"nullable": true
+					},
+					"province": {
+						"type": "string",
+						"nullable": true
+					},
+					"phone": {
+						"type": "string",
+						"nullable": true
+					},
+					"email": {
+						"type": "string",
+						"nullable": true
+					},
+					"service_position": {
+						"type": "string",
+						"nullable": true
+					},
+					"service_phone": {
+						"type": "string",
+						"nullable": true
+					},
+					"service_email": {
+						"type": "string",
+						"nullable": true
+					},
+					"finance_phone": {
+						"type": "string",
+						"nullable": true
+					},
+					"finance_email": {
+						"type": "string",
+						"nullable": true
+					},
+					"id": {
+						"type": "string",
+						"nullable": true
+					},
+					"creator_name": {
+						"type": "string",
+						"nullable": true
+					},
+					"editor_name": {
+						"type": "string",
+						"nullable": true
+					},
+					"creator_id": {
+						"type": "string",
+						"nullable": true
+					},
+					"editor_id": {
+						"type": "string",
+						"nullable": true
+					},
+					"created_at": {
+						"type": "string",
+						"format": "date-time",
+						"nullable": true
+					},
+					"updated_at": {
+						"type": "string",
+						"format": "date-time",
+						"nullable": true
+					},
+					"deleted_at": {
+						"type": "string",
+						"format": "date-time",
+						"nullable": true
+					}
+				},
+				"required": [
+					"code",
+					"name",
+					"address",
+					"city",
+					"province",
+					"phone",
+					"email",
+					"service_position",
+					"service_phone",
+					"service_email",
+					"finance_phone",
+					"finance_email"
+				],
+				"type": "object",
+				"additionalProperties": false
+			},
 			"DocumentType": {
 				"enum": [
 					"internal",
@@ -1544,6 +1647,174 @@
 				},
 				"tags": [
 					"Area Services"
+				],
+				"security": [],
+				"parameters": [
+					{
+						"in": "path",
+						"name": "id",
+						"required": true,
+						"schema": {
+							"type": "string"
+						}
+					}
+				]
+			}
+		},
+		"/api/clients": {
+			"post": {
+				"operationId": "Create",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {}
+							}
+						}
+					}
+				},
+				"tags": [
+					"Client Services"
+				],
+				"security": [],
+				"parameters": [],
+				"requestBody": {
+					"required": true,
+					"content": {
+						"application/json": {
+							"schema": {
+								"$ref": "#/components/schemas/ClientDTO"
+							}
+						}
+					}
+				}
+			},
+			"get": {
+				"operationId": "Index",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {}
+							}
+						}
+					}
+				},
+				"tags": [
+					"Client Services"
+				],
+				"security": [],
+				"parameters": [
+					{
+						"in": "query",
+						"name": "page",
+						"required": true,
+						"schema": {
+							"format": "double",
+							"type": "number"
+						}
+					},
+					{
+						"in": "query",
+						"name": "limit",
+						"required": true,
+						"schema": {
+							"format": "double",
+							"type": "number"
+						}
+					},
+					{
+						"in": "query",
+						"name": "search",
+						"required": false,
+						"schema": {
+							"type": "string"
+						}
+					}
+				]
+			}
+		},
+		"/api/clients/{id}": {
+			"put": {
+				"operationId": "Update",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {}
+							}
+						}
+					}
+				},
+				"tags": [
+					"Client Services"
+				],
+				"security": [],
+				"parameters": [
+					{
+						"in": "path",
+						"name": "id",
+						"required": true,
+						"schema": {
+							"type": "string"
+						}
+					}
+				],
+				"requestBody": {
+					"required": true,
+					"content": {
+						"application/json": {
+							"schema": {
+								"$ref": "#/components/schemas/ClientDTO"
+							}
+						}
+					}
+				}
+			},
+			"delete": {
+				"operationId": "Delete",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {}
+							}
+						}
+					}
+				},
+				"tags": [
+					"Client Services"
+				],
+				"security": [],
+				"parameters": [
+					{
+						"in": "path",
+						"name": "id",
+						"required": true,
+						"schema": {
+							"type": "string"
+						}
+					}
+				]
+			},
+			"get": {
+				"operationId": "Show",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {}
+							}
+						}
+					}
+				},
+				"tags": [
+					"Client Services"
 				],
 				"security": [],
 				"parameters": [

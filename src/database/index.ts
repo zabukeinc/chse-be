@@ -25,6 +25,7 @@ import { SupplierModel } from "src/app/supporting/supplier/data/models/supplier.
 import { SupplierServiceModel } from "src/app/supporting/supplier/data/models/supplier-service.model";
 import { SupplierExperienceModel } from "src/app/supporting/supplier/data/models/supplier-experience.model";
 import { SupplierDueDiligenceEvaluationAnswerModel, SupplierDueDiligenceModel, SupplierDueDiligenceSelectionAnswerModel } from "src/app/supporting/supplier/data/models/supplier-due-diligence.model";
+import { ClientModel } from "src/app/client/data/models/client.model";
 
 dotenv.config({});
 class Database {
@@ -47,20 +48,9 @@ class Database {
         password: envString(process.env.DATABASE_PASSWORD!, ""),
         database: envString(process.env.DATABASE_NAME!, "chse"),
         entities: [
-          // UserModel,
-          // ISOModel,
-          // ISODetailModel,
-          // CompanyModel,
-
-          // AuditorModel,
-          // AuditorWorkExperienceModel,
-          // AuditorEducationModel,
-
-          // ApplicantModel,
-          // ApplicantDetailModel,
-
           /** Supporting Models */
           RecordModel,
+
           SdmModel,
           SdmEducationModel,
           SdmWorkExperienceModel,
@@ -68,8 +58,11 @@ class Database {
           SdmTrainingModel,
           SdmDueDiligenceModel,
           SdmDueDiligenceAnswerModel,
+
           AreaModel,
+
           DocumentModel,
+
           RiskModel,
           RiskDetailModel,
 
@@ -79,6 +72,9 @@ class Database {
           SupplierDueDiligenceModel,
           SupplierDueDiligenceSelectionAnswerModel,
           SupplierDueDiligenceEvaluationAnswerModel,
+
+          ClientModel
+
         ],
         synchronize: true,
         logging: false
