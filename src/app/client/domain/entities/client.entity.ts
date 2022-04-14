@@ -1,16 +1,16 @@
 import { BaseEntity } from "src/app/base/data/entities/base.entity";
 
 export interface ClientEntity extends BaseEntity {
-  code: string;
-  name: string;
-  address: string;
-  city: string;
-  province: string;
-  phone: string;
-  email: string;
-  service_position: string;
-  service_phone: string;
-  service_email: string;
-  finance_phone: string;
-  finance_email: string;
+  code?: string | null;
+  name: string | null;
+  address: string | null;
+  city: string | null;
+  province: string | null;
+  phone: string | null;
+  email: string | null;
+  service_position?: string | null;
+  service_phone?: string | null;
+  service_email?: string | null;
+  finance_phone?: string | null;
+  finance_email?: string | null;
 }
