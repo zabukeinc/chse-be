@@ -17,6 +17,8 @@ import { SupplierServiceModel } from "src/app/supporting/supplier/data/models/su
 import { SupplierExperienceModel } from "src/app/supporting/supplier/data/models/supplier-experience.model";
 import { SupplierDueDiligenceEvaluationAnswerModel, SupplierDueDiligenceModel, SupplierDueDiligenceSelectionAnswerModel } from "src/app/supporting/supplier/data/models/supplier-due-diligence.model";
 import { ClientModel } from "src/app/external/client/data/models/client.model";
+import { ApplicantModel } from "src/app/external/applicant/data/models/applicant.model";
+import { ApplicantLocationModel } from "src/app/external/applicant/data/models/applicant-location.model";
 
 dotenv.config({});
 class Database {
@@ -64,7 +66,10 @@ class Database {
           SupplierDueDiligenceSelectionAnswerModel,
           SupplierDueDiligenceEvaluationAnswerModel,
 
-          ClientModel
+          ClientModel,
+
+          ApplicantModel,
+          ApplicantLocationModel
 
         ],
         synchronize: true,

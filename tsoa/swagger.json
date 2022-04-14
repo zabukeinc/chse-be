@@ -6,6 +6,142 @@
 		"requestBodies": {},
 		"responses": {},
 		"schemas": {
+			"CertificationType": {
+				"enum": [
+					"ISO 9001",
+					"ISO 37001"
+				],
+				"type": "string"
+			},
+			"ApplicantType": {
+				"enum": [
+					"Baru",
+					"Perpanjangan",
+					"Penambahan Lingkup",
+					"Transfer"
+				],
+				"type": "string"
+			},
+			"LocationType": {
+				"enum": [
+					"Lokasi Pusat",
+					"Multi Lokasi"
+				],
+				"type": "string"
+			},
+			"ApplicantDTO": {
+				"properties": {
+					"client_id": {
+						"type": "string"
+					},
+					"certification_type": {
+						"$ref": "#/components/schemas/CertificationType"
+					},
+					"applicant_type": {
+						"$ref": "#/components/schemas/ApplicantType"
+					},
+					"applicant_path": {
+						"type": "string",
+						"nullable": true
+					},
+					"scope": {
+						"type": "string"
+					},
+					"location_type": {
+						"$ref": "#/components/schemas/LocationType"
+					},
+					"locations": {
+						"items": {
+							"$ref": "#/components/schemas/ApplicantLocationDTO"
+						},
+						"type": "array"
+					},
+					"application_path": {
+						"type": "string"
+					},
+					"code": {
+						"type": "string"
+					},
+					"id": {
+						"type": "string"
+					},
+					"creator_name": {
+						"type": "string",
+						"nullable": true
+					},
+					"editor_name": {
+						"type": "string",
+						"nullable": true
+					},
+					"creator_id": {
+						"type": "string",
+						"nullable": true
+					},
+					"editor_id": {
+						"type": "string",
+						"nullable": true
+					},
+					"created_at": {
+						"type": "string",
+						"format": "date-time"
+					},
+					"updated_at": {
+						"type": "string",
+						"format": "date-time"
+					},
+					"deleted_at": {
+						"type": "string",
+						"format": "date-time",
+						"nullable": true
+					}
+				},
+				"required": [
+					"certification_type",
+					"applicant_type",
+					"scope",
+					"location_type"
+				],
+				"type": "object",
+				"additionalProperties": false
+			},
+			"ApplicantLocationDTO": {
+				"properties": {
+					"id": {
+						"type": "string"
+					},
+					"address": {
+						"type": "string"
+					},
+					"activity": {
+						"type": "string"
+					},
+					"applicant_id": {
+						"type": "string"
+					},
+					"applicant": {
+						"$ref": "#/components/schemas/ApplicantDTO"
+					},
+					"created_at": {
+						"type": "string",
+						"format": "date-time"
+					},
+					"updated_at": {
+						"type": "string",
+						"format": "date-time"
+					},
+					"deleted_at": {
+						"type": "string",
+						"format": "date-time",
+						"nullable": true
+					}
+				},
+				"required": [
+					"address",
+					"activity"
+				],
+				"type": "object",
+				"additionalProperties": false
+			},
 			"RecordType": {
 				"enum": [
 					"mutu",
@@ -1487,6 +1623,174 @@
 	},
 	"openapi": "3.0.0",
 	"paths": {
+		"/api/applicants": {
+			"post": {
+				"operationId": "Create",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {}
+							}
+						}
+					}
+				},
+				"tags": [
+					"Applicant Services"
+				],
+				"security": [],
+				"parameters": [],
+				"requestBody": {
+					"required": true,
+					"content": {
+						"application/json": {
+							"schema": {
+								"$ref": "#/components/schemas/ApplicantDTO"
+							}
+						}
+					}
+				}
+			},
+			"get": {
+				"operationId": "Index",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {}
+							}
+						}
+					}
+				},
+				"tags": [
+					"Applicant Services"
+				],
+				"security": [],
+				"parameters": [
+					{
+						"in": "query",
+						"name": "page",
+						"required": true,
+						"schema": {
+							"format": "double",
+							"type": "number"
+						}
+					},
+					{
+						"in": "query",
+						"name": "limit",
+						"required": true,
+						"schema": {
+							"format": "double",
+							"type": "number"
+						}
+					},
+					{
+						"in": "query",
+						"name": "search",
+						"required": false,
+						"schema": {
+							"type": "string"
+						}
+					}
+				]
+			}
+		},
+		"/api/applicants/{id}": {
+			"put": {
+				"operationId": "Update",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {}
+							}
+						}
+					}
+				},
+				"tags": [
+					"Applicant Services"
+				],
+				"security": [],
+				"parameters": [
+					{
+						"in": "path",
+						"name": "id",
+						"required": true,
+						"schema": {
+							"type": "string"
+						}
+					}
+				],
+				"requestBody": {
+					"required": true,
+					"content": {
+						"application/json": {
+							"schema": {
+								"$ref": "#/components/schemas/ApplicantDTO"
+							}
+						}
+					}
+				}
+			},
+			"delete": {
+				"operationId": "Delete",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {}
+							}
+						}
+					}
+				},
+				"tags": [
+					"Applicant Services"
+				],
+				"security": [],
+				"parameters": [
+					{
+						"in": "path",
+						"name": "id",
+						"required": true,
+						"schema": {
+							"type": "string"
+						}
+					}
+				]
+			},
+			"get": {
+				"operationId": "Show",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {}
+							}
+						}
+					}
+				},
+				"tags": [
+					"Applicant Services"
+				],
+				"security": [],
+				"parameters": [
+					{
+						"in": "path",
+						"name": "id",
+						"required": true,
+						"schema": {
+							"type": "string"
+						}
+					}
+				]
+			}
+		},
 		"/api/areas": {
 			"post": {
 				"operationId": "Create",
